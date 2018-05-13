@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
 
 public class TestManager : MonoBehaviour
 {
@@ -20,7 +19,6 @@ public class TestManager : MonoBehaviour
     private static byte onSessionFailedIncrement = 10;
     private static byte onSessionSuccessDecrement = 5;
 
-    [ReadOnly]
     [SerializeField]
     private byte currentVolume;
     #endregion
@@ -32,7 +30,6 @@ public class TestManager : MonoBehaviour
     private static byte startFrequencyIndex = 3;
 
     private byte currentFrequencyIndex;
-    [ReadOnly]
     private int CurrentFrequency
     {
         get { return frequencies[currentFrequencyIndex]; }
@@ -40,18 +37,10 @@ public class TestManager : MonoBehaviour
     #endregion
 
     #region Sessions
-    [ReadOnly]
-    [ShowInInspector]
     private Session currentSession = null;
 
-    [ReadOnly]
-    [ShowInInspector]
     private Session preLimitFailedSession = null;
-    [ReadOnly]
-    [ShowInInspector]
     private Session onLimitSucceedSession = null;
-    [ReadOnly]
-    [ShowInInspector]
     private Session postLimitSucceedSession = null;
 
     private static Vector2 timeBetweenSessionsExperimental;

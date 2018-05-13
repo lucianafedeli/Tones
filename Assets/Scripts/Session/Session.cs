@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 /// <summary>
 /// Esta clase se encarga de definir la duracion total de las partes de una prueba 
@@ -8,7 +7,7 @@ using Sirenix.OdinInspector;
 /// Es la base de las sesiones clasicas y experimentales.
 /// </summary>
 [Serializable]
-public abstract class Session : SerializedBehaviour
+public abstract class Session : MonoBehaviour
 {
     protected static TestManager testManager;
 
@@ -17,7 +16,6 @@ public abstract class Session : SerializedBehaviour
     protected byte frequencyIndex = 3;
 
     [SerializeField]
-    [ReadOnly]
     private bool succeded = false;
     private bool isPacientPushOngoing = false;
 
