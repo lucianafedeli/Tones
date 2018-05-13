@@ -1,0 +1,1 @@
+using System.Collections;using System.Collections.Generic;using UnityEngine;public class SceneManagerFinder : MonoBehaviour {    public void LoadScene (string scene)    {        ScenesManager.Instance.LoadScene(scene);    }	public void LoadPrevious ()	{        ScenesManager.Instance.LoadPrevious();	}}
