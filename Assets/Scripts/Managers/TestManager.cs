@@ -59,7 +59,10 @@ public class TestManager : MonoBehaviour
     {
         pacientButton.onButtonDown += OnPacientButtonDown;
         pacientButton.onButtonUp += OnPacientButtonUp;
+
+#if UNITY_EDITOR
         pacientButton.SpaceBarPushEnabled = true;
+#endif
 
         manualSessionButton.onButtonDown += StartTest;
     }
@@ -84,7 +87,7 @@ public class TestManager : MonoBehaviour
     {
         Init();
 
-        switch(currentSessionType)
+        switch (currentSessionType)
         {
             case SessionType.Classic_Manual:
                 Debug.Log("Manual Classic test Started.");
@@ -104,18 +107,18 @@ public class TestManager : MonoBehaviour
 
     public void SessionEnd(bool sessionSucceded)
     {
-        if(sessionSucceded)
+        if (sessionSucceded)
         {
             StartCoroutine(WaitForPacient());
         }
-        else if(currentSessionType != SessionType.Classic_Manual)
+        else if (currentSessionType != SessionType.Classic_Manual)
         {
             preLimitFailedSession = currentSession;
 
-            if(currentVolume < maxDb)
+            if (currentVolume < maxDb)
             {
                 currentVolume += onSessionFailedIncrement;
-                if(currentVolume > maxDb)
+                if (currentVolume > maxDb)
                     currentVolume = maxDb;
                 Debug.Log("Vol: " + currentVolume + "dB (+" + onSessionFailedIncrement + ')');
             }
@@ -126,9 +129,9 @@ public class TestManager : MonoBehaviour
     {
         yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
 
-        if(currentSessionType != SessionType.Classic_Manual)
+        if (currentSessionType != SessionType.Classic_Manual)
         {
-            if(null == postLimitSucceedSession)
+            if (null == postLimitSucceedSession)
             {
                 postLimitSucceedSession = currentSession;
             }
@@ -136,7 +139,7 @@ public class TestManager : MonoBehaviour
             {
                 onLimitSucceedSession = currentSession;
             }
-            if(currentVolume > 0)
+            if (currentVolume > 0)
             {
                 currentVolume -= onSessionSuccessDecrement;
                 Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');

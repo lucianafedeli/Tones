@@ -1,1 +1,3 @@
-using System.Collections;using System.Collections.Generic;using UnityEngine;public class SceneManagerFinder : MonoBehaviour {    public void LoadScene (string scene)    {        ScenesManager.Instance.LoadScene(scene);    }	public void LoadPrevious ()	{        ScenesManager.Instance.LoadPrevious();	}}
+using System.Collections;using System.Collections.Generic;using UnityEngine;using UnityEngine.SceneManagement;
+
+public class SceneManagerFinder : MonoBehaviour {	public void LoadScene (string scene)	{		ScenesManager.Instance.LoadScene(scene);	}	public void LoadPrevious ()	{		if (SceneManager.GetActiveScene().name == "Instructions")			SceneManager.LoadScene("StartSelection");		ScenesManager.Instance.LoadPrevious();	}}
