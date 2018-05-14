@@ -13,10 +13,10 @@ public class GraphManager : Singleton<GraphManager>
         float pacientMaxDuration = session.PacientPushEvents.GetLongestDuration();
         float sessionDuration = 0;
 
-        if(pacientMaxDuration > toneMaxDuration)
+        if (pacientMaxDuration > toneMaxDuration)
             sessionDuration = pacientMaxDuration;
         else
-            sessionDuration = toneMaxDuration;
+            sessionDuration = toneMaxDuration; 
 
         Debug.Log("Session Duration: \t\t\t" + sessionDuration);
         Debug.Log("Tone Event: \t" + session.TonePlayEvents.Normalized(normalizeTo).ToString());

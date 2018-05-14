@@ -10,5 +10,4 @@ public class Assisted : Session
     public Assisted( int frequency, float volume, float prePlayDelay) : base(frequency, volume)
     {
     }
-
 }

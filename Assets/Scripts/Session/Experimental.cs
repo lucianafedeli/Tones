@@ -10,6 +10,7 @@ using UnityEngine;
 
     public Experimental(int frequency, float volume) : base(frequency, volume)
     {
+
     }
 
     private void CreateTones()    {
