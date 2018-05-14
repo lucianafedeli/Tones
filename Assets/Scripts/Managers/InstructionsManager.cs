@@ -1,0 +1,1 @@
+using System.Collections;using System.Collections.Generic;using UnityEngine;public class InstructionsManager : MonoBehaviour{    public void DontShowInstructions(bool shouldHide)    {        PlayerPrefs.SetInt("DontShowInstructions", shouldHide? 0: 1);    }}
