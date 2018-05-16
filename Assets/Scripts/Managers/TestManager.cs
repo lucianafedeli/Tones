@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestManager : MonoBehaviour
+public class TestManager : Singleton<TestManager>
 {
     #region Buttons
     [SerializeField]
@@ -57,6 +57,8 @@ public class TestManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
+
         pacientButton.onButtonDown += OnPacientButtonDown;
         pacientButton.onButtonUp += OnPacientButtonUp;
 
