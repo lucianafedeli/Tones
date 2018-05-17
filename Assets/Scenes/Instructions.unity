@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 122329620}
   - component: {fileID: 122329619}
   - component: {fileID: 122329618}
+  - component: {fileID: 122329621}
   m_Layer: 5
   m_Name: ButtonHC
   m_TagString: Untagged
@@ -285,6 +286,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122329616}
+--- !u!95 &122329621
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 122329616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00d15f8c1e2824eb3ae56a1bac2319e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &244393468
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +473,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -22.849998, y: 67}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -12.849998, y: 69}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &409734567
 MonoBehaviour:
@@ -717,10 +736,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Una vez completado el paso anterior, es necesario elegir el modo en el
-    que realizara la audiometria: ''Modo Manual'', ''Modo Asistido'', ''Modo Experimental''.
-    Cada modo tiene configuraciones por defecto, que pueden ser personalizadas para
-    cada examen.'
+  m_Text: "Existen 2 modos posibles para realizar la audiometr\xEDa: 'Modo Cl\xE1sico'
+    y 'Modo Experimental'. Dentro del 'Modo Cl\xE1sico' se encuentran los modos 'Manual'
+    y 'Asistido', que pueden ser intercambiados.\nCada modo tiene configuraciones
+    por defecto, que pueden ser personalizadas para cada examen."
 --- !u!222 &680328135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1053,11 +1072,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Indicar al paciente como posicionarse y explicarle que escuchara sonidos,
+  m_Text: "Indicar al paciente c\xF3mo posicionarse, explicarle que escuchar\xE1 sonidos,
     y que al escucharlos debe mantener presionado el pulsador durante el tiempo que
-    el sonido este presente.
-
-    Luego, colocar auriculares y entregar pulsador.'
+    el sonido est\xE9 presente.\nLuego, colocar auriculares y entregar pulsador."
 --- !u!222 &845330880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1199,11 +1216,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Paso opcional.
-
-    Es posible comenzar el estudio registrando los datos personales del paciente,
-    para lo cual debe dirigirse a la seccion ''Historia Clinica''. Caso contrario,
-    ir a la seccion ''Nueva audiometria''.'
+  m_Text: "Paso opcional.\nEs posible comenzar el estudio registrando los datos personales
+    del paciente, para lo cual debe dirigirse a la seccion 'Historia Cl\xEDnica'.
+    Caso contrario, ir a la seccion 'Nueva audiometr\xEDa'."
 --- !u!222 &1091349812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1642,11 +1657,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'En los modos ''Manual'' y ''Asistido'', se oprimen manualmente los botones
-    de Play y la opcion de finalizar la prueba, redirige al audiograma.
-
-    En el modo ''Experimental'', luego de presionado el boton Play, la prueba finalizara
-    sola, habilitando la opcion de visualizar el audiograma.'
+  m_Text: "En los modos 'Manual' y 'Asistido', se oprimen manualmente los botones
+    de Play y la opci\xF3n de finalizar la prueba, redirige al audiograma.\nEn el
+    modo 'Experimental', luego de presionado el bot\xF3n Play, la prueba finalizar\xE1
+    sola, habilitando la opci\xF3n de visualizar el audiograma."
 --- !u!222 &1780839226
 CanvasRenderer:
   m_ObjectHideFlags: 0

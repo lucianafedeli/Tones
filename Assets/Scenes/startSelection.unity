@@ -637,7 +637,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NUEVA AUDIOMETRIA
+  m_Text: "NUEVA AUDIOMETR\xCDA"
 --- !u!222 &1247608039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HISTORIA CLINICA
+  m_Text: "HISTORIA CL\xCDNICA"
 --- !u!222 &1250520903
 CanvasRenderer:
   m_ObjectHideFlags: 0

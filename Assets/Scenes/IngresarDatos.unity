@@ -226,12 +226,12 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 0.14117648, g: 0.8431373, b: 0.7411765, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: Luciano Donati
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 3
   m_ReadOnly: 0
 --- !u!114 &68598461
 MonoBehaviour:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9483357, b: 0.9483357, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -608,7 +608,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -70, y: 205}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610611349
 MonoBehaviour:
@@ -808,12 +808,12 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 0.14117648, g: 0.8431373, b: 0.7411765, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 3
   m_ReadOnly: 0
 --- !u!114 &767908785
 MonoBehaviour:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9483357, b: 0.9483357, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -961,12 +961,12 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 0.14117648, g: 0.8431373, b: 0.7411765, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 3
   m_ReadOnly: 0
 --- !u!114 &814930477
 MonoBehaviour:
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9483357, b: 0.9483357, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1109,7 +1109,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -70, y: 90}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843565523
 MonoBehaviour:
@@ -1309,12 +1309,12 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 0.14117648, g: 0.8431373, b: 0.7411765, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 3
   m_ReadOnly: 0
 --- !u!114 &872429281
 MonoBehaviour:
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9483357, b: 0.9483357, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1741,7 +1741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1995,7 +1995,7 @@ GameObject:
   - component: {fileID: 1254793336}
   - component: {fileID: 1254793335}
   m_Layer: 0
-  m_Name: PanelInformacion
+  m_Name: PanelPersonalInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2145,7 +2145,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Luciano Donati
 --- !u!222 &1259116498
 CanvasRenderer:
   m_ObjectHideFlags: 0
