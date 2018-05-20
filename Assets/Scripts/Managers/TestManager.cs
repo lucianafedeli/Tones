@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TestManager : Singleton<TestManager>
@@ -57,7 +58,7 @@ public class TestManager : Singleton<TestManager>
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         pacientButton.onButtonDown += OnPacientButtonDown;
         pacientButton.onButtonUp += OnPacientButtonUp;
