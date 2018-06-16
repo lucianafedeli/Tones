@@ -32,8 +32,8 @@ using UnityEngine;using System.Collections;using System.Collections.Generic;
         new Tone(8000, .5f),
         new Tone(8000, 1f),        };    private void Start()    {        if (null == toneSource)            toneSource = GetComponent<AudioSource>();        toneSource.panStereo = (int)currentEar;
 
-        StartCoroutine(PlayTone());
-    }    IEnumerator PlayTone()
+        StartCoroutine(PlayTestTones());
+    }    IEnumerator PlayTestTones()
     {
         while (true)
         {
