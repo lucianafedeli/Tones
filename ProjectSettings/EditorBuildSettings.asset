@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 995bf725b6a3e4fbc88cc3fe4d13880c
   - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: 44ae8a0f42cb24d4ba78c1363a526ca3
+  - enabled: 1
     path: Assets/Scenes/HistoriaClinica.unity
     guid: 3ed7f96be70974100a2da9b4725a82fd
   - enabled: 1
@@ -23,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IngresarDatos.unity
     guid: 21cabfb616aa647e28d59e3be9cb5168
-  - enabled: 1
-    path: Assets/Scenes/Instructions.unity
-    guid: 44ae8a0f42cb24d4ba78c1363a526ca3
   - enabled: 1
     path: Assets/Scenes/modeSelection.unity
     guid: fd6a2a0d4b0ba401f8bddd261989efcf
