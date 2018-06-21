@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 995bf725b6a3e4fbc88cc3fe4d13880c
   - enabled: 1
+    path: Assets/Scenes/HistoriaClinica.unity
+    guid: 3ed7f96be70974100a2da9b4725a82fd
+  - enabled: 1
     path: Assets/Scenes/ClassicMode.unity
     guid: 706283bf15bd047b5b28a696a9f89d47
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ExperimentalMode.unity
     guid: dcf7780ee726e499aa5611e7eda3974a
-  - enabled: 1
-    path: Assets/Scenes/HistoriaClinica.unity
-    guid: 3ed7f96be70974100a2da9b4725a82fd
   - enabled: 1
     path: Assets/Scenes/IngresarDatos.unity
     guid: 21cabfb616aa647e28d59e3be9cb5168
@@ -33,9 +33,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MostrarDatos.unity
     guid: 5d9ee0b8589f64cd4b8d43cc41fe905b
   - enabled: 1
-    path: Assets/Scenes/startSelection.unity
-    guid: 4d1b080257ad243e0a4101a891740f99
-  - enabled: 1
     path: Assets/Scenes/Graphics.unity
     guid: 3c6789662018044db94399f0eaf3da56
+  - enabled: 0
+    path: Assets/Scenes/main.unity
+    guid: 1f7b8c415b21e4147b14e154a4a8a143
   m_configObjects: {}
