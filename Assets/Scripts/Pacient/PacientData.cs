@@ -18,5 +18,10 @@ namespace Pacient
             this.birthDate = birthDate;
             this.gender = gender;
         }
+
+        public override string ToString()
+        {
+            return firstName + " " + lastName;
+        }
     }
 }

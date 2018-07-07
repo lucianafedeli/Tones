@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1051383129720268
 GameObject:
   m_ObjectHideFlags: 1
@@ -1144,7 +1144,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114638139279110516}
+        m_MethodName: DisableWarning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.14117648, g: 0.8431373, b: 0.7411765, a: 1}
@@ -1652,12 +1663,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f92c0e944ff6a04a9538d69a3cac8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreText: {fileID: 114268868070467052}
-  apellidoText: {fileID: 114645833792747882}
-  DNIText: {fileID: 114114650544834382}
-  ErrorDNI: {fileID: 1044841256448922}
-  fechaNacimientoText: {fileID: 114577761096058112}
+  nombreText: {fileID: 114739273347885608}
+  apellidoText: {fileID: 114427799892442926}
+  DNIText: {fileID: 114298302674449996}
+  fechaNacimientoText: {fileID: 114760109095972576}
   FToggle: {fileID: 114968616717964232}
+  OnInvalidDNI:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1044841256448922}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnValidDNI:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1044841256448922}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114645833792747882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1923,7 +1987,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 10
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2406,10 +2470,10 @@ RectTransform:
   m_Father: {fileID: 224220613770292664}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 298.25, y: -202.20833}
+  m_SizeDelta: {x: 596.5, y: 44.916664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224114344116640784
 RectTransform:
@@ -2915,10 +2979,10 @@ RectTransform:
   m_Father: {fileID: 224105200075242232}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 308.25, y: -22.458332}
+  m_SizeDelta: {x: 576.5, y: 44.916664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224943276679720672
 RectTransform:

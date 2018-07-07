@@ -1,22 +1,14 @@
-﻿///—————————————————————–
-///   File: HistoriaClinicaInjector.cs
-///   Author: Luciano Donati
-///   me@lucianodonati.com	www.lucianodonati.com
-///   Last edit: 20-Jun-18
-///   Description: 
-///—————————————————————–
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Managers;
 using Pacient;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class HistoriaClinicaInjector : MonoBehaviour
     {
-        [SerializeField]
-        private PacientRow pacientRowPrefab = null;
+        [SerializeField] private PacientRow pacientRowPrefab = null;
 
         private List<PacientRow> rows = null;
 
@@ -29,23 +21,23 @@ namespace UI
         private void AddPacients()
         {
             Dictionary<ulong, PacientData> pacientsData = DataManager.Instance.GetPacientsData();
-            foreach (var pacientData in pacientsData)
+
+            foreach (KeyValuePair<ulong, PacientData> pacientData in pacientsData)
             {
                 PacientRow newPacient = Instantiate(pacientRowPrefab, transform);
-                newPacient.LoadData(
-                    pacientData.Value.firstName + ' ' + pacientData.Value.lastName + " - " + pacientData.Value.DNI,
-                    DataManager.Instance.GetLatestTest(pacientData.Key)
-                );
+                newPacient.SetPacientData(pacientData.Value);
 
                 rows.Add(newPacient);
             }
+
+            GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value = 1;
         }
 
         public void SortBy(string sortString)
         {
-            foreach (var element in rows)
+            foreach (PacientRow element in rows)
             {
-                if (sortString == "" || element.pacientData.text.Contains(sortString))
+                if (sortString == "" || element.pacientData.text.ToLower().Contains(sortString.ToLower()))
                     element.gameObject.SetActive(true);
                 else
                     element.gameObject.SetActive(false);

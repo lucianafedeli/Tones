@@ -5,6 +5,9 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="DBManager.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="AudioPower.cs" t="Include" />
           <e p="Design Patterns" t="Include">
@@ -40,8 +43,8 @@
             <e p="ValidateDate.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="DatosDePaciente.cs" t="Include" />
             <e p="HistoriaClinicaInjector.cs" t="Include" />
-            <e p="IngresarDatosExtractor.cs" t="Include" />
             <e p="PacientRow.cs" t="Include" />
           </e>
         </e>
