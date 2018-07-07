@@ -7,43 +7,49 @@
 ///—————————————————————–
 
 using System.Collections.Generic;
+using Managers;
+using Pacient;
 using UnityEngine;
-public class HistoriaClinicaInjector : MonoBehaviour
+
+namespace UI
 {
-    [SerializeField]
-    private PacientRow pacientRowPrefab = null;
-
-    private List<PacientRow> rows = null;
-
-    private void Start()
+    public class HistoriaClinicaInjector : MonoBehaviour
     {
-        rows = new List<PacientRow>();
-        AddPacients();
-    }
+        [SerializeField]
+        private PacientRow pacientRowPrefab = null;
 
-    private void AddPacients()
-    {
-        Dictionary<ulong, PacientData> pacientsData = DataManager.Instance.GetPacientsData();
-        foreach (var pacientData in pacientsData)
+        private List<PacientRow> rows = null;
+
+        private void Start()
         {
-            PacientRow newPacient = Instantiate(pacientRowPrefab, transform);
-            newPacient.LoadData(
-                pacientData.Value.firstName + ' ' + pacientData.Value.lastName + " - " + pacientData.Value.DNI,
-                DataManager.Instance.GetLatestTest(pacientData.Key)
+            rows = new List<PacientRow>();
+            AddPacients();
+        }
+
+        private void AddPacients()
+        {
+            Dictionary<ulong, PacientData> pacientsData = DataManager.Instance.GetPacientsData();
+            foreach (var pacientData in pacientsData)
+            {
+                PacientRow newPacient = Instantiate(pacientRowPrefab, transform);
+                newPacient.LoadData(
+                    pacientData.Value.firstName + ' ' + pacientData.Value.lastName + " - " + pacientData.Value.DNI,
+                    DataManager.Instance.GetLatestTest(pacientData.Key)
                 );
 
-            rows.Add(newPacient);
+                rows.Add(newPacient);
+            }
         }
-    }
 
-    public void SortBy(string sortString)
-    {
-        foreach (var element in rows)
+        public void SortBy(string sortString)
         {
-            if (sortString == "" || element.pacientData.text.Contains(sortString))
-                element.gameObject.SetActive(true);
-            else
-                element.gameObject.SetActive(false);
+            foreach (var element in rows)
+            {
+                if (sortString == "" || element.pacientData.text.Contains(sortString))
+                    element.gameObject.SetActive(true);
+                else
+                    element.gameObject.SetActive(false);
+            }
         }
     }
 }

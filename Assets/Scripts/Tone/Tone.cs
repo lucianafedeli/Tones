@@ -1,44 +1,46 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// Esta clase define la informacion necesaria para reproducir un tono y se encarga de llamar al reproductor.
-/// </summary>
-public class Tone
+namespace Tone
 {
-    int frequency;
-    public int Frequency
+    /// <summary>
+    /// Esta clase define la informacion necesaria para reproducir un tono y se encarga de llamar al reproductor.
+    /// </summary>
+    public class Tone
     {
-        get
+        int frequency;
+        public int Frequency
         {
-            return frequency;
+            get
+            {
+                return frequency;
+            }
+
+        }
+
+        float volume;
+        public float Volume
+        {
+            get
+            {
+                return volume;
+            }
+        }
+
+
+        public Tone(int frequency, float volume)
+        {
+            this.frequency = frequency;
+            this.volume = volume;
+        }
+
+        public static float LinearToDecibel(float linear)
+        {
+            return (linear != 0) ? 20f * Mathf.Log10(linear) : -144f;
+        }
+        public static float DecibelToLinear(float dB)
+        {
+            return Mathf.Pow(10.0f, dB / 20.0f);
         }
 
     }
-
-    float volume;
-    public float Volume
-    {
-        get
-        {
-            return volume;
-        }
-    }
-
-
-    public Tone(int frequency, float volume)
-    {
-        this.frequency = frequency;
-        this.volume = volume;
-    }
-
-    public static float LinearToDecibel(float linear)
-    {
-        return (linear != 0) ? 20f * Mathf.Log10(linear) : -144f;
-    }
-    public static float DecibelToLinear(float dB)
-    {
-        return Mathf.Pow(10.0f, dB / 20.0f);
-    }
-
 }

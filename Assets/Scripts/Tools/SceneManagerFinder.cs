@@ -1,19 +1,23 @@
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerFinder : MonoBehaviour
+namespace Tools
 {
-    public void LoadScene(string scene)
+    public class SceneManagerFinder : MonoBehaviour
     {
-        ScenesManager.Instance.LoadScene(scene);
-    }
+        public void LoadScene(string scene)
+        {
+            ScenesManager.Instance.LoadScene(scene);
+        }
 
-    public void LoadPrevious()
-    {
-        if (SceneManager.GetActiveScene().name == "Instructions")
-            ScenesManager.Instance.LoadScene("HistoriaClinica");
-        else
-            ScenesManager.Instance.LoadPrevious();
-    }
+        public void LoadPrevious()
+        {
+            if (SceneManager.GetActiveScene().name == "Instructions")
+                ScenesManager.Instance.LoadScene("HistoriaClinica");
+            else
+                ScenesManager.Instance.LoadPrevious();
+        }
 
+    }
 }

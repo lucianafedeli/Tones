@@ -1,21 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
+using Tone;
 
-[Serializable]
-public class Manual : Session
+namespace Session
 {
-    public Manual(int frequency, float volume) : base(frequency, volume)
+    [Serializable]
+    public class Manual : Session
     {
-        tonePlayEvents.EventStarted();
-        TonePlayer.Instance.PlayTone(tone);
-    }
+        public Manual(int frequency, float volume) : base(frequency, volume)
+        {
+            tonePlayEvents.EventStarted();
+            TonePlayer.Instance.PlayTone(tone);
+        }
 
-    public void StopTone()
-    {
-        tonePlayEvents.EventEnded();
-        TonePlayer.Instance.StopTone();
-        EndSession();
+        public void StopTone()
+        {
+            tonePlayEvents.EventEnded();
+            TonePlayer.Instance.StopTone();
+            EndSession();
+        }
     }
 }

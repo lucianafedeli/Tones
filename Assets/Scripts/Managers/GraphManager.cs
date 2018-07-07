@@ -1,26 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Design_Patterns;
 using UnityEngine;
 
-public class GraphManager : Singleton<GraphManager>
+namespace Managers
 {
-    public void AddSession(Session session)
+    public class GraphManager : Singleton<GraphManager>
     {
+        public void AddSession(Session.Session session)
+        {
 
-        float normalizeTo = session.TonePlayEvents.Pairs[0].Start;
+            float normalizeTo = session.TonePlayEvents.Pairs[0].Start;
 
-        float toneMaxDuration = session.TonePlayEvents.GetLongestDuration();
-        float pacientMaxDuration = session.PacientPushEvents.GetLongestDuration();
-        float sessionDuration = 0;
+            float toneMaxDuration = session.TonePlayEvents.GetLongestDuration();
+            float pacientMaxDuration = session.PacientPushEvents.GetLongestDuration();
+            float sessionDuration = 0;
 
-        if (pacientMaxDuration > toneMaxDuration)
-            sessionDuration = pacientMaxDuration;
-        else
-            sessionDuration = toneMaxDuration; 
+            if (pacientMaxDuration > toneMaxDuration)
+                sessionDuration = pacientMaxDuration;
+            else
+                sessionDuration = toneMaxDuration; 
 
-        Debug.Log("Session Duration: \t\t\t" + sessionDuration);
-        Debug.Log("Tone Event: \t" + session.TonePlayEvents.Normalized(normalizeTo).ToString());
-        Debug.Log("Pacient push Event: \t" + session.PacientPushEvents.Normalized(normalizeTo).ToString());
+            Debug.Log("Session Duration: \t\t\t" + sessionDuration);
+            Debug.Log("Tone Event: \t" + session.TonePlayEvents.Normalized(normalizeTo).ToString());
+            Debug.Log("Pacient push Event: \t" + session.PacientPushEvents.Normalized(normalizeTo).ToString());
 
+        }
     }
 }

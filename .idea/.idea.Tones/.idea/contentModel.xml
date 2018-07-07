@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Unity\Tones" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="AudioPower.cs" t="Include" />
+          <e p="Design Patterns" t="Include">
+            <e p="Singleton.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
+            <e p="DataManager.cs" t="Include" />
+            <e p="GraphManager.cs" t="Include" />
+            <e p="InstructionsManager.cs" t="Include" />
+            <e p="ScenesManager.cs" t="Include" />
+            <e p="TestManager.cs" t="Include" />
+          </e>
+          <e p="Pacient" t="Include">
+            <e p="PacientData.cs" t="Include" />
+          </e>
+          <e p="Session" t="Include">
+            <e p="Assisted.cs" t="Include" />
+            <e p="Experimental.cs" t="Include" />
+            <e p="Manual.cs" t="Include" />
+            <e p="Session.cs" t="Include" />
+          </e>
+          <e p="Tone" t="Include">
+            <e p="Tone.cs" t="Include" />
+            <e p="TonePlayer.cs" t="Include" />
+          </e>
+          <e p="Tools" t="Include">
+            <e p="JsonHelper.cs" t="Include" />
+            <e p="LogoTransition.cs" t="Include" />
+            <e p="PushButton.cs" t="Include" />
+            <e p="SceneManagerFinder.cs" t="Include" />
+            <e p="SliderValueToText.cs" t="Include" />
+            <e p="TimedPairEvent.cs" t="Include" />
+            <e p="ValidateDate.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="HistoriaClinicaInjector.cs" t="Include" />
+            <e p="IngresarDatosExtractor.cs" t="Include" />
+            <e p="PacientRow.cs" t="Include" />
+          </e>
+        </e>
+        <e p="WoLfulus" t="Include">
+          <e p="LineEnding" t="Include">
+            <e p="Editor" t="Include">
+              <e p="Enums.cs" t="Include" />
+              <e p="FileMonitor.cs" t="Include" />
+              <e p="LogEntries.cs" t="Include" />
+              <e p="LogEntry.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+      <e p="Tones.sln" t="IncludeFlat" />
+    </e>
+    <e p="C:\Users\me\.Rider2018.1\system\resharper-host\Local\Transient\ReSharperHost\v12\SolutionCaches\_Tones.-753812236.00" t="ExcludeRecursive" />
+  </component>
+</project>

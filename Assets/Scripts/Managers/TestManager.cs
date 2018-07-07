@@ -1,154 +1,156 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using Design_Patterns;
+using Session;
+using Tools;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class TestManager : Singleton<TestManager>
+namespace Managers
 {
-    #region Buttons
-    [SerializeField]
-    private PushButton pacientButton = null;
-    [SerializeField]
-    private PushButton manualSessionButton = null;
-    #endregion
-
-    #region Volume
-    private static byte startVolume = 10;
-    private static byte maxDb = 80;
-    private static byte onSessionFailedIncrement = 10;
-    private static byte onSessionSuccessDecrement = 5;
-
-    [SerializeField]
-    private byte currentVolume;
-    #endregion
-
-    #region Frequency
-    public static readonly int[] frequencies = { 125, 250, 500, 1000, 2000, 4000, 8000 };
-
-
-    private static byte startFrequencyIndex = 3;
-
-    private byte currentFrequencyIndex;
-    private int CurrentFrequency
+    public class TestManager : Singleton<TestManager>
     {
-        get { return frequencies[currentFrequencyIndex]; }
-    }
-    #endregion
+        #region Buttons
+        [SerializeField]
+        private PushButton pacientButton = null;
+        [SerializeField]
+        private PushButton manualSessionButton = null;
+        #endregion
 
-    #region Sessions
-    private Session currentSession = null;
+        #region Volume
+        private static byte startVolume = 10;
+        private static byte maxDb = 80;
+        private static byte onSessionFailedIncrement = 10;
+        private static byte onSessionSuccessDecrement = 5;
 
-    private Session preLimitFailedSession = null;
-    private Session onLimitSucceedSession = null;
-    private Session postLimitSucceedSession = null;
+        [SerializeField]
+        private byte currentVolume;
+        #endregion
 
-    private static Vector2 timeBetweenSessionsExperimental;
-    private static float timeBetweenSessionsAssisted = 1;
+        #region Frequency
+        public static readonly int[] frequencies = { 125, 250, 500, 1000, 2000, 4000, 8000 };
 
-    public enum SessionType
-    {
-        Classic_Manual, Classic_Assisted, Experimental
-    }
 
-    [SerializeField]
-    SessionType currentSessionType = SessionType.Classic_Manual;
-    #endregion
+        private static byte startFrequencyIndex = 3;
 
-    private void Start()
-    {
-        //DontDestroyOnLoad(this);
+        private byte currentFrequencyIndex;
+        private int CurrentFrequency
+        {
+            get { return frequencies[currentFrequencyIndex]; }
+        }
+        #endregion
 
-        pacientButton.onButtonDown += OnPacientButtonDown;
-        pacientButton.onButtonUp += OnPacientButtonUp;
+        #region Sessions
+        private Session.Session currentSession = null;
+
+        private Session.Session preLimitFailedSession = null;
+        private Session.Session onLimitSucceedSession = null;
+        private Session.Session postLimitSucceedSession = null;
+
+        private static Vector2 timeBetweenSessionsExperimental;
+        private static float timeBetweenSessionsAssisted = 1;
+
+        public enum SessionType
+        {
+            Classic_Manual, Classic_Assisted, Experimental
+        }
+
+        [SerializeField]
+        SessionType currentSessionType = SessionType.Classic_Manual;
+        #endregion
+
+        private void Start()
+        {
+            //DontDestroyOnLoad(this);
+
+            pacientButton.onButtonDown += OnPacientButtonDown;
+            pacientButton.onButtonUp += OnPacientButtonUp;
 
 #if UNITY_EDITOR
-        pacientButton.SpaceBarPushEnabled = true;
+            pacientButton.SpaceBarPushEnabled = true;
 #endif
 
-        manualSessionButton.onButtonDown += StartTest;
-    }
-
-    void Init()
-    {
-        currentVolume = startVolume;
-        currentFrequencyIndex = startFrequencyIndex;
-    }
-
-    void OnPacientButtonDown()
-    {
-        currentSession.PacientButtonDown();
-    }
-
-    void OnPacientButtonUp()
-    {
-        currentSession.PacientButtonUp();
-    }
-
-    public void StartTest()
-    {
-        Init();
-
-        switch (currentSessionType)
-        {
-            case SessionType.Classic_Manual:
-                Debug.Log("Manual Classic test Started.");
-                currentSession = new Manual(CurrentFrequency, currentVolume);
-                manualSessionButton.onButtonUp += ((Manual)currentSession).StopTone;
-                break;
-            case SessionType.Classic_Assisted:
-                Debug.Log("Assisted Classic test Started.");
-                currentSession = new Assisted(CurrentFrequency, currentVolume, timeBetweenSessionsAssisted);
-                break;
-            case SessionType.Experimental:
-                Debug.Log("Experimental test Started.");
-                currentSession = new Experimental(CurrentFrequency, currentVolume);
-                break;
+            manualSessionButton.onButtonDown += StartTest;
         }
-    }
 
-    public void SessionEnd(bool sessionSucceded)
-    {
-        if (sessionSucceded)
+        void Init()
         {
-            StartCoroutine(WaitForPacient());
+            currentVolume = startVolume;
+            currentFrequencyIndex = startFrequencyIndex;
         }
-        else if (currentSessionType != SessionType.Classic_Manual)
-        {
-            preLimitFailedSession = currentSession;
 
-            if (currentVolume < maxDb)
-            {
-                currentVolume += onSessionFailedIncrement;
-                if (currentVolume > maxDb)
-                    currentVolume = maxDb;
-                Debug.Log("Vol: " + currentVolume + "dB (+" + onSessionFailedIncrement + ')');
-            }
+        void OnPacientButtonDown()
+        {
+            currentSession.PacientButtonDown();
         }
-    }
 
-    IEnumerator WaitForPacient()
-    {
-        yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
-
-        if (currentSessionType != SessionType.Classic_Manual)
+        void OnPacientButtonUp()
         {
-            if (null == postLimitSucceedSession)
+            currentSession.PacientButtonUp();
+        }
+
+        public void StartTest()
+        {
+            Init();
+
+            switch (currentSessionType)
             {
-                postLimitSucceedSession = currentSession;
-            }
-            else
-            {
-                onLimitSucceedSession = currentSession;
-            }
-            if (currentVolume > 0)
-            {
-                currentVolume -= onSessionSuccessDecrement;
-                Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');
+                case SessionType.Classic_Manual:
+                    Debug.Log("Manual Classic test Started.");
+                    currentSession = new Manual(CurrentFrequency, currentVolume);
+                    manualSessionButton.onButtonUp += ((Manual)currentSession).StopTone;
+                    break;
+                case SessionType.Classic_Assisted:
+                    Debug.Log("Assisted Classic test Started.");
+                    currentSession = new Assisted(CurrentFrequency, currentVolume, timeBetweenSessionsAssisted);
+                    break;
+                case SessionType.Experimental:
+                    Debug.Log("Experimental test Started.");
+                    currentSession = new Experimental(CurrentFrequency, currentVolume);
+                    break;
             }
         }
 
-        GraphManager.Instance.AddSession(currentSession);
+        public void SessionEnd(bool sessionSucceded)
+        {
+            if (sessionSucceded)
+            {
+                StartCoroutine(WaitForPacient());
+            }
+            else if (currentSessionType != SessionType.Classic_Manual)
+            {
+                preLimitFailedSession = currentSession;
+
+                if (currentVolume < maxDb)
+                {
+                    currentVolume += onSessionFailedIncrement;
+                    if (currentVolume > maxDb)
+                        currentVolume = maxDb;
+                    Debug.Log("Vol: " + currentVolume + "dB (+" + onSessionFailedIncrement + ')');
+                }
+            }
+        }
+
+        IEnumerator WaitForPacient()
+        {
+            yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
+
+            if (currentSessionType != SessionType.Classic_Manual)
+            {
+                if (null == postLimitSucceedSession)
+                {
+                    postLimitSucceedSession = currentSession;
+                }
+                else
+                {
+                    onLimitSucceedSession = currentSession;
+                }
+                if (currentVolume > 0)
+                {
+                    currentVolume -= onSessionSuccessDecrement;
+                    Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');
+                }
+            }
+
+            GraphManager.Instance.AddSession(currentSession);
+        }
     }
 }

@@ -1,78 +1,86 @@
 ﻿using System;
+using Managers;
+using Tone;
+using Tools;
 using UnityEngine;
 
-/// <summary>
-/// Esta clase se encarga de definir la duracion total de las partes de una prueba 
-/// dada una frecuencia y un volumen.
-/// Es la base de las sesiones clasicas y experimentales.
-/// </summary>
-[Serializable]
-public abstract class Session : MonoBehaviour
+namespace Session
 {
-    protected static TestManager testManager;
-
-    protected Tone tone = null;
-
-    protected byte frequencyIndex = 3;
-
-    [SerializeField]
-    private bool succeded = false;
-    private bool isPacientPushOngoing = false;
-
-    protected TimedPairEvents tonePlayEvents = new TimedPairEvents();    public TimedPairEvents TonePlayEvents
+    /// <summary>
+    /// Esta clase se encarga de definir la duracion total de las partes de una prueba 
+    /// dada una frecuencia y un volumen.
+    /// Es la base de las sesiones clasicas y experimentales.
+    /// </summary>
+    [Serializable]
+    public abstract class Session : MonoBehaviour
     {
-        get
+        protected static TestManager testManager;
+
+        protected Tone.Tone tone = null;
+
+        protected byte frequencyIndex = 3;
+
+        [SerializeField]
+        private bool succeded = false;
+        private bool isPacientPushOngoing = false;
+
+        protected TimedPairEvents tonePlayEvents = new TimedPairEvents();
+        public TimedPairEvents TonePlayEvents
         {
-            if(succeded)
-                return tonePlayEvents;
-            else
-                return null;
+            get
+            {
+                if(succeded)
+                    return tonePlayEvents;
+                else
+                    return null;
+            }
         }
-    }
 
-    protected TimedPairEvents pacientPushEvents = new TimedPairEvents();    public TimedPairEvents PacientPushEvents
-    {
-        get
+        protected TimedPairEvents pacientPushEvents = new TimedPairEvents();
+        public TimedPairEvents PacientPushEvents
         {
-            if(succeded)
-                return pacientPushEvents;
-            else
-                return null;
+            get
+            {
+                if(succeded)
+                    return pacientPushEvents;
+                else
+                    return null;
+            }
         }
-    }
 
-    public Session(int frequency, float volume)
-    {
-        tonePlayEvents.EventStarted();
-        tone = new Tone(frequency, volume);
-    }
+        public Session(int frequency, float volume)
+        {
+            tonePlayEvents.EventStarted();
+            tone = new Tone.Tone(frequency, volume);
+        }
 
-    public void PacientButtonDown()
-    {
-        isPacientPushOngoing = true;
-        pacientPushEvents.EventStarted();
-        if(TonePlayer.Instance.CurrentlyPlaying)
-            succeded = true;
-    }
+        public void PacientButtonDown()
+        {
+            isPacientPushOngoing = true;
+            pacientPushEvents.EventStarted();
+            if(TonePlayer.Instance.CurrentlyPlaying)
+                succeded = true;
+        }
 
-    public void PacientButtonUp()
-    {
-        isPacientPushOngoing = false;
-        pacientPushEvents.EventEnded();
-    }
+        public void PacientButtonUp()
+        {
+            isPacientPushOngoing = false;
+            pacientPushEvents.EventEnded();
+        }
 
-    public bool IsPacientButtonEventOngoing()
-    {
-        return isPacientPushOngoing;
-    }
+        public bool IsPacientButtonEventOngoing()
+        {
+            return isPacientPushOngoing;
+        }
 
-    public void EndSession()
-    {
-        TonePlayer.Instance.StopTone();
-        if(null == testManager)
-            testManager = FindObjectOfType<TestManager>();
-        testManager.SessionEnd(succeded);
-    }
+        public void EndSession()
+        {
+            TonePlayer.Instance.StopTone();
+            if(null == testManager)
+                testManager = FindObjectOfType<TestManager>();
+            testManager.SessionEnd(succeded);
+        }
 
+    }
 }
 

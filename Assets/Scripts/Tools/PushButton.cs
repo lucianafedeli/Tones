@@ -1,54 +1,54 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PushButton : MonoBehaviour
-#if UNITY_EDITOR
-    , IPointerDownHandler, IPointerUpHandler
-#endif
+namespace Tools
 {
-    public delegate void OnButtonEvent();
-    public OnButtonEvent onButtonDown;
-    public OnButtonEvent onButtonUp;
+    public class PushButton : MonoBehaviour
+#if UNITY_EDITOR
+        , IPointerDownHandler, IPointerUpHandler
+#endif
+    {
+        public delegate void OnButtonEvent();
+        public OnButtonEvent onButtonDown;
+        public OnButtonEvent onButtonUp;
 
 #if UNITY_EDITOR
-    public bool SpaceBarPushEnabled = false;
+        public bool SpaceBarPushEnabled = false;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        PushBegin();
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        PushRelease();
-    }
-
-    private void Update()
-    {
-        if(SpaceBarPushEnabled)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            PushBegin();
+        }
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            PushRelease();
+        }
+
+        private void Update()
+        {
+            if(SpaceBarPushEnabled)
             {
-                PushBegin();
-            }
-            if(Input.GetKeyUp(KeyCode.Space))
-            {
-                PushRelease();
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    PushBegin();
+                }
+                if(Input.GetKeyUp(KeyCode.Space))
+                {
+                    PushRelease();
+                }
             }
         }
-    }
 #endif
 
-    private void PushBegin()
-    {
-        onButtonDown();
-    }
+        private void PushBegin()
+        {
+            onButtonDown();
+        }
 
-    private void PushRelease()
-    {
-        onButtonUp();
-    }
+        private void PushRelease()
+        {
+            onButtonUp();
+        }
 
+    }
 }

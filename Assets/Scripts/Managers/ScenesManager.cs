@@ -1,28 +1,32 @@
+using Design_Patterns;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : Singleton<ScenesManager>
+namespace Managers
 {
-    private string previousScene = "Intro";
-
-    //private void Start()
-    //{
-    //    DontDestroyOnLoad(this);
-    //}
-
-    public void LoadPrevious()
+    public class ScenesManager : Singleton<ScenesManager>
     {
-        if (previousScene != string.Empty)
-            LoadScene(previousScene);
-    }
+        private string previousScene = "Intro";
 
-    public void LoadScene(string scene)
-    {
-        if (previousScene == "Intro" && scene == "Instructions" || PlayerPrefs.GetInt("DontShowInstructions", 0) == 1)
-            scene = "HistoriaClinica";
+        //private void Start()
+        //{
+        //    DontDestroyOnLoad(this);
+        //}
 
-        previousScene = SceneManager.GetActiveScene().name;
+        public void LoadPrevious()
+        {
+            if (previousScene != string.Empty)
+                LoadScene(previousScene);
+        }
 
-        SceneManager.LoadScene(scene);
+        public void LoadScene(string scene)
+        {
+            if (previousScene == "Intro" && scene == "Instructions" || PlayerPrefs.GetInt("DontShowInstructions", 0) == 1)
+                scene = "HistoriaClinica";
+
+            previousScene = SceneManager.GetActiveScene().name;
+
+            SceneManager.LoadScene(scene);
+        }
     }
 }

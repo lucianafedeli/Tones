@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
-public class SliderValueToText : MonoBehaviour
+namespace Tools
 {
-
-    Text theText = null;
-
-    public void ShowNumberAsText(float number)
+    [RequireComponent(typeof(Text))]
+    public class SliderValueToText : MonoBehaviour
     {
-        if (null == theText)
-            theText = GetComponent<Text>();
-        theText.text = string.Empty + number.ToString("0");
+
+        Text theText = null;
+
+        public void ShowNumberAsText(float number)
+        {
+            if (null == theText)
+                theText = GetComponent<Text>();
+            theText.text = string.Empty + number.ToString("0");
+        }
     }
 }
