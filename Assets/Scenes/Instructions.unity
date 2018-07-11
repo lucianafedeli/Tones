@@ -735,10 +735,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Existen 2 modos posibles para realizar la audiometr\xEDa: 'Modo Cl\xE1sico'
-    y 'Modo Experimental'. Dentro del 'Modo Cl\xE1sico' se encuentran los modos 'Manual'
-    y 'Asistido', que pueden ser intercambiados.\nCada modo tiene configuraciones
-    por defecto, que pueden ser personalizadas para cada examen."
+  m_Text: "- Seleccionar el modo de operaci\xF3n: 'Manual', 'Asistido' y 'Experimental'\n-
+    Configurar los par\xE1metros y valores correspondientes\n- Realizar el test de
+    Carhartt, opcionalmente"
 --- !u!222 &680328135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1071,9 +1070,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Indicar al paciente c\xF3mo posicionarse, explicarle que escuchar\xE1 sonidos,
-    y que al escucharlos debe mantener presionado el pulsador durante el tiempo que
-    el sonido est\xE9 presente.\nLuego, colocar auriculares y entregar pulsador."
+  m_Text: "- Indicar al paciente en qu\xE9 consiste el estudio \n\n- Colocar auriculares
+    y entregar pulsador"
 --- !u!222 &845330880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1216,9 +1214,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Paso opcional.\nEs posible comenzar el estudio registrando los datos personales
-    del paciente, para lo cual debe dirigirse a la seccion 'Historia Cl\xEDnica'.
-    Caso contrario, ir a la seccion 'Nueva audiometr\xEDa'."
+  m_Text: "- Para comenzar el estudio se registran los datos personales del paciente\n\n-
+    Puede a\xF1adirse un nuevo examen a un paciente ya registrado"
 --- !u!222 &1091349812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1658,10 +1655,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "En los modos 'Manual' y 'Asistido', se oprimen manualmente los botones
-    de Play y la opci\xF3n de finalizar la prueba, redirige al audiograma.\nEn el
-    modo 'Experimental', luego de presionado el bot\xF3n Play, la prueba finalizar\xE1
-    sola, habilitando la opci\xF3n de visualizar el audiograma."
+  m_Text: "- Modo Manual: se controla manualmente la reproducci\xF3n\n- Modo Asistido:
+    opci\xF3n de asistencia para iniciar autom\xE1ticamente la reproducci\xF3n del
+    tono\n- Modo Experimental: s\xF3lo se presiona play al inicio de la prueba, luego,
+    no es posible ninguna intervenci\xF3n\n- Test de Carhartt: se emite el tono durante
+    un minuto"
 --- !u!222 &1780839226
 CanvasRenderer:
   m_ObjectHideFlags: 0
