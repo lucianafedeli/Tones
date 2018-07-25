@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Design_Patterns;
+﻿using Design_Patterns;
 using Pacient;
+using System.Collections.Generic;
+using System.IO;
 using Tools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +12,11 @@ namespace Managers
     {
         // NOTE: Podrias guardar el dictionary en vez de la clase asi no duplicas DNI tontito.
 
-        [SerializeField] private bool pacientDataHasBeenLoaded = false;
+        [SerializeField]
+        private bool pacientDataHasBeenLoaded = false;
 
-        [SerializeField] private ulong pacientNumber = 1;
+        [SerializeField]
+        private ulong pacientNumber = 1;
 
         public ulong PacientNumber
         {
@@ -26,7 +27,9 @@ namespace Managers
         public Dictionary<ulong, PacientData> PacientsData { get; private set; }
 
         private Button editCurrentPacientButton = null;
+        private Button startStudyForCurrentPacientButton = null;
 
+        [SerializeField]
         private PacientData currentPacient = null;
 
         public PacientData CurrentPacient
@@ -37,8 +40,10 @@ namespace Managers
                 currentPacient = value;
                 if (null == editCurrentPacientButton)
                     editCurrentPacientButton = GameObject.Find("ButtonEditUser").GetComponent<Button>();
+                if (null == startStudyForCurrentPacientButton)
+                    startStudyForCurrentPacientButton = GameObject.Find("ButtonNewTest").GetComponent<Button>();
 
-                editCurrentPacientButton.interactable = null != currentPacient;
+                startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPacient;
             }
         }
 
@@ -66,7 +71,7 @@ namespace Managers
                 if (null == dataArray)
                 {
                     PacientData singlePacient = JsonUtility.FromJson<PacientData>(dataAsJson);
-                    PacientsData = new Dictionary<ulong, PacientData> {{singlePacient.ID, singlePacient}};
+                    PacientsData = new Dictionary<ulong, PacientData> { { singlePacient.ID, singlePacient } };
                 }
                 else
                 {

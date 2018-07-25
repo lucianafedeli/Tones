@@ -7,7 +7,6 @@ namespace Managers
     {
         public void AddSession(Session.Session session)
         {
-
             float normalizeTo = session.TonePlayEvents.Pairs[0].Start;
 
             float toneMaxDuration = session.TonePlayEvents.GetLongestDuration();
@@ -17,7 +16,7 @@ namespace Managers
             if (pacientMaxDuration > toneMaxDuration)
                 sessionDuration = pacientMaxDuration;
             else
-                sessionDuration = toneMaxDuration; 
+                sessionDuration = toneMaxDuration;
 
             Debug.Log("Session Duration: \t\t\t" + sessionDuration);
             Debug.Log("Tone Event: \t" + session.TonePlayEvents.Normalized(normalizeTo).ToString());

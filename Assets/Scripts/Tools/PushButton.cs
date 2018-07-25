@@ -1,54 +1,38 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace Tools
 {
     public class PushButton : MonoBehaviour
-#if UNITY_EDITOR
-        , IPointerDownHandler, IPointerUpHandler
-#endif
     {
-        public delegate void OnButtonEvent();
-        public OnButtonEvent onButtonDown;
-        public OnButtonEvent onButtonUp;
+        [SerializeField]
+        KeyCode key;
 
-#if UNITY_EDITOR
-        public bool SpaceBarPushEnabled = false;
+        [SerializeField]
+        public UnityEvent onButtonDown;
+        [SerializeField]
+        public UnityEvent onButtonUp;
 
-        public void OnPointerDown(PointerEventData eventData)
+
+        public void OnButtonDown()
         {
-            PushBegin();
+            onButtonDown.Invoke();
         }
-        public void OnPointerUp(PointerEventData eventData)
+        public void OnButtonUp()
         {
-            PushRelease();
+            onButtonUp.Invoke();
         }
 
         private void Update()
         {
-            if(SpaceBarPushEnabled)
+            if (Input.GetKeyDown(key))
             {
-                if(Input.GetKeyDown(KeyCode.Space))
-                {
-                    PushBegin();
-                }
-                if(Input.GetKeyUp(KeyCode.Space))
-                {
-                    PushRelease();
-                }
+                OnButtonDown();
+            }
+            if (Input.GetKeyUp(key))
+            {
+                OnButtonUp();
             }
         }
-#endif
-
-        private void PushBegin()
-        {
-            onButtonDown();
-        }
-
-        private void PushRelease()
-        {
-            onButtonUp();
-        }
-
     }
 }

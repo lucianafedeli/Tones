@@ -8,11 +8,6 @@ namespace Managers
     {
         private string previousScene = "Intro";
 
-        //private void Start()
-        //{
-        //    DontDestroyOnLoad(this);
-        //}
-
         public void LoadPrevious()
         {
             if (previousScene != string.Empty)
@@ -21,7 +16,7 @@ namespace Managers
 
         public void LoadScene(string scene)
         {
-            if (previousScene == "Intro" && scene == "Instructions" || PlayerPrefs.GetInt("DontShowInstructions", 0) == 1)
+            if (previousScene == "Intro" && scene == "Instructions" && PlayerPrefs.GetInt("DontShowInstructions", 0) == 0)
                 scene = "HistoriaClinica";
 
             previousScene = SceneManager.GetActiveScene().name;

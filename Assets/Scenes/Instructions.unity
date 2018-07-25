@@ -653,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f25df61c08949ffa9a8ad6da017c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontShowAgainToggle: {fileID: 1457822543}
   timeBetweenInstructions: 5
   instructionsAnim: {fileID: 2142482045}
 --- !u!4 &647423261
@@ -1255,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -6.25, y: 9.800003}
+  m_AnchoredPosition: {x: -6.25, y: 9.799988}
   m_SizeDelta: {x: 106.6, y: 46.16}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1457822543
@@ -1302,7 +1303,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 647423260}
         m_MethodName: DontShowInstructions
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

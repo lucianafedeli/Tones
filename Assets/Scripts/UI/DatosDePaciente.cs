@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Managers;
+﻿using Managers;
 using Pacient;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,16 +9,16 @@ namespace UI
 {
     public class DatosDePaciente : MonoBehaviour
     {
-        [SerializeField] private InputField nombreText          = null;
-        [SerializeField] private InputField apellidoText        = null;
-        [SerializeField] private InputField DNIText             = null;
+        [SerializeField] private InputField nombreText = null;
+        [SerializeField] private InputField apellidoText = null;
+        [SerializeField] private InputField DNIText = null;
         [SerializeField] private InputField fechaNacimientoText = null;
-        [SerializeField] private Toggle     FToggle             = null;
+        [SerializeField] private Toggle FToggle = null;
 
         [SerializeField] private UnityEvent OnInvalidDNI;
         [SerializeField] private UnityEvent OnValidDNI;
 
-        private bool        validDNI         = false;
+        private bool validDNI = false;
         private PacientData currentlyEditing = null;
 
         private void Start()
@@ -31,11 +31,11 @@ namespace UI
         {
             currentlyEditing = data;
 
-            nombreText.text          = data.firstName;
-            apellidoText.text        = data.lastName;
-            DNIText.text             = data.DNI;
+            nombreText.text = data.firstName;
+            apellidoText.text = data.lastName;
+            DNIText.text = data.DNI;
             fechaNacimientoText.text = data.birthDate;
-            FToggle.isOn             = data.gender == 'F';
+            FToggle.isOn = data.gender == 'F';
         }
 
         public void DeletePacient()
@@ -45,8 +45,8 @@ namespace UI
 
         public void ExtractData()
         {
-            if (nombreText.text          != string.Empty && apellidoText.text != string.Empty &&
-                DNIText.text             != string.Empty &&
+            if (nombreText.text != string.Empty && apellidoText.text != string.Empty &&
+                DNIText.text != string.Empty &&
                 fechaNacimientoText.text != string.Empty)
             {
                 if (validDNI)
@@ -69,12 +69,15 @@ namespace UI
 
             foreach (KeyValuePair<ulong, PacientData> pacient in DataManager.Instance.PacientsData)
             {
-                if (pacient.Value.DNI == DNI)
+                if (null == DataManager.Instance.CurrentPacient || DataManager.Instance.CurrentPacient.DNI != DNI)
                 {
-                    validDNI = false;
-                    if (null != OnInvalidDNI)
-                        OnInvalidDNI.Invoke();
-                    return;
+                    if (pacient.Value.DNI == DNI)
+                    {
+                        validDNI = false;
+                        if (null != OnInvalidDNI)
+                            OnInvalidDNI.Invoke();
+                        return;
+                    }
                 }
             }
 

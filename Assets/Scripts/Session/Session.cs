@@ -1,5 +1,5 @@
-﻿using System;
-using Managers;
+﻿using Managers;
+using System;
 using Tone;
 using Tools;
 using UnityEngine;
@@ -29,7 +29,7 @@ namespace Session
         {
             get
             {
-                if(succeded)
+                if (succeded)
                     return tonePlayEvents;
                 else
                     return null;
@@ -41,7 +41,7 @@ namespace Session
         {
             get
             {
-                if(succeded)
+                if (succeded)
                     return pacientPushEvents;
                 else
                     return null;
@@ -50,15 +50,19 @@ namespace Session
 
         public Session(int frequency, float volume)
         {
-            tonePlayEvents.EventStarted();
             tone = new Tone.Tone(frequency, volume);
+        }
+
+        public void StartSession()
+        {
+            tonePlayEvents.EventStarted();
         }
 
         public void PacientButtonDown()
         {
             isPacientPushOngoing = true;
             pacientPushEvents.EventStarted();
-            if(TonePlayer.Instance.CurrentlyPlaying)
+            if (TonePlayer.Instance.CurrentlyPlaying)
                 succeded = true;
         }
 
@@ -76,7 +80,7 @@ namespace Session
         public void EndSession()
         {
             TonePlayer.Instance.StopTone();
-            if(null == testManager)
+            if (null == testManager)
                 testManager = FindObjectOfType<TestManager>();
             testManager.SessionEnd(succeded);
         }

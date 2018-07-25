@@ -8,7 +8,11 @@ namespace Session
     {
         public Manual(int frequency, float volume) : base(frequency, volume)
         {
-            tonePlayEvents.EventStarted();
+        }
+
+        public void StartTone()
+        {
+            StartSession();
             TonePlayer.Instance.PlayTone(tone);
         }
 
