@@ -16,7 +16,7 @@ namespace Managers
 
         public void LoadScene(string scene)
         {
-            if (previousScene == "Intro" && scene == "Instructions" && PlayerPrefs.GetInt("DontShowInstructions", 0) == 0)
+            if (previousScene == "Intro" && scene == "Instructions" || PlayerPrefs.GetInt("DontShowInstructions", 0) == 1)
                 scene = "HistoriaClinica";
 
             previousScene = SceneManager.GetActiveScene().name;
