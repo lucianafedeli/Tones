@@ -736,9 +736,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- Seleccionar el modo de operaci\xF3n: 'Manual', 'Asistido' y 'Experimental'\n-
-    Configurar los par\xE1metros y valores correspondientes\n- Realizar el test de
-    Carhartt, opcionalmente"
+  m_Text: "Seleccionar el modo de operaci\xF3n: 'Manual', 'Asistido' o 'Experimental',
+    y configurar los par\xE1metros y valores correspondientes. Opcionalmente, realizar
+    el test de Carhartt."
 --- !u!222 &680328135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1036,8 +1036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.400013, y: -3.699997}
-  m_SizeDelta: {x: 578.4, y: 233.6}
+  m_AnchoredPosition: {x: 12, y: -6}
+  m_SizeDelta: {x: 616.2, y: 233.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845330879
 MonoBehaviour:
@@ -1071,8 +1071,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- Indicar al paciente en qu\xE9 consiste el estudio \n\n- Colocar auriculares
-    y entregar pulsador"
+  m_Text: "Indicar al paciente en qu\xE9 consiste el estudio. Luego, colocar auriculares
+    y entregar pulsador."
 --- !u!222 &845330880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1215,8 +1215,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- Para comenzar el estudio se registran los datos personales del paciente\n\n-
-    Puede a\xF1adirse un nuevo examen a un paciente ya registrado"
+  m_Text: "Para comenzar el estudio, almacenar los datos personales del paciente o
+    a\xF1adir un nuevo examen a un paciente ya registrado."
 --- !u!222 &1091349812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1621,8 +1621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.400013, y: -3.699997}
-  m_SizeDelta: {x: 578.4, y: 233.6}
+  m_AnchoredPosition: {x: 2.3, y: -1.6}
+  m_SizeDelta: {x: 602.2, y: 243.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1780839225
 MonoBehaviour:
