@@ -591,6 +591,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167110056}
+--- !u!1 &211285462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 211285464}
+  - component: {fileID: 211285463}
+  m_Layer: 0
+  m_Name: Assisted Test Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &211285463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211285462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4270af4a7475564894a61a10d6b5602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentVolume: 0
+--- !u!4 &211285464
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211285462}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &238994239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,6 +1505,7 @@ GameObject:
   - component: {fileID: 628543916}
   - component: {fileID: 628543915}
   - component: {fileID: 628543917}
+  - component: {fileID: 628543918}
   m_Layer: 5
   m_Name: PanelInformativo
   m_TagString: Untagged
@@ -1547,6 +1589,23 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &628543918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 628543913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fff8d5956eea3545a3165aefa9f56c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqText: {fileID: 1645604808}
+  freqDown: {fileID: 1194606049}
+  freqUp: {fileID: 1137130795}
+  dBText: {fileID: 408815983}
+  dBDown: {fileID: 369256809}
+  dBUp: {fileID: 1352615026}
 --- !u!1 &629592084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1885,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1137130796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 628543918}
+        m_MethodName: IncreaseFrequency
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1137130796
@@ -2062,7 +2132,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1194606050}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 628543918}
+        m_MethodName: DecreaseFrequency
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1194606050
@@ -2407,6 +2488,7 @@ GameObject:
   - component: {fileID: 1249070398}
   - component: {fileID: 1249070401}
   - component: {fileID: 1249070400}
+  - component: {fileID: 1249070402}
   m_Layer: 5
   m_Name: PanelModo
   m_TagString: Untagged
@@ -2559,6 +2641,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1249070402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1249070396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc49d9c120c52d409c64e34f613a4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GOs:
+  - {fileID: 1320981016}
+  - {fileID: 211285462}
 --- !u!1 &1257204434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2801,7 @@ GameObject:
   - component: {fileID: 1320981018}
   - component: {fileID: 1320981017}
   m_Layer: 0
-  m_Name: Test Manager
+  m_Name: Manual Test Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2719,13 +2815,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1320981016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06d77481e881e4e3f900989efac99e49, type: 3}
+  m_Script: {fileID: 11500000, guid: 3be3938c8931a8c4c9fe6aa6ffeaec98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentVolume: 0
   pacientButton: {fileID: 1513874139}
   manualSessionButton: {fileID: 390486358}
-  currentVolume: 0
-  sessionType: 0
+  ledLight: {fileID: 1224364022}
 --- !u!4 &1320981018
 Transform:
   m_ObjectHideFlags: 0
@@ -3051,7 +3147,7 @@ MonoBehaviour:
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1320981017}
+      - m_Target: {fileID: 0}
         m_MethodName: OnPacientButtonDown
         m_Mode: 1
         m_Arguments:
@@ -3067,7 +3163,7 @@ MonoBehaviour:
   onButtonUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1320981017}
+      - m_Target: {fileID: 0}
         m_MethodName: OnPacientButtonUp
         m_Mode: 1
         m_Arguments:

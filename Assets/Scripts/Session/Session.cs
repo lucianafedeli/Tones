@@ -1,10 +1,9 @@
-﻿using Managers;
-using System;
-using Tone;
+﻿using System;
+using Tones.Managers;
 using Tools;
 using UnityEngine;
 
-namespace Session
+namespace Tones.Session
 {
     /// <summary>
     /// Esta clase se encarga de definir la duracion total de las partes de una prueba 
@@ -12,11 +11,11 @@ namespace Session
     /// Es la base de las sesiones clasicas y experimentales.
     /// </summary>
     [Serializable]
-    public abstract class Session : MonoBehaviour
+    public abstract class Session
     {
-        protected static TestManager testManager;
+        protected TestManager testManager;
 
-        protected Tone.Tone tone = null;
+        protected Tone tone = null;
 
         protected byte frequencyIndex = 3;
 
@@ -48,9 +47,10 @@ namespace Session
             }
         }
 
-        public Session(int frequency, float volume)
+        public Session(int frequency, float volume, TestManager manager)
         {
-            tone = new Tone.Tone(frequency, volume);
+            tone = new Tone(frequency, volume);
+            testManager = manager;
         }
 
         public void StartSession()
@@ -80,8 +80,6 @@ namespace Session
         public void EndSession()
         {
             TonePlayer.Instance.StopTone();
-            if (null == testManager)
-                testManager = FindObjectOfType<TestManager>();
             testManager.SessionEnd(succeded);
         }
 

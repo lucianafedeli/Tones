@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace Tone
+namespace Tones.Session
 {
     /// <summary>
     /// Esta clase define la informacion necesaria para reproducir un tono y se encarga de llamar al reproductor.
     /// </summary>
     public class Tone
     {
-        int frequency;
+        private int frequency;
         public int Frequency
         {
             get
@@ -26,7 +26,6 @@ namespace Tone
             }
         }
 
-
         public Tone(int frequency, float volume)
         {
             this.frequency = frequency;
@@ -37,10 +36,10 @@ namespace Tone
         {
             return (linear != 0) ? 20f * Mathf.Log10(linear) : -144f;
         }
+
         public static float DecibelToLinear(float dB)
         {
             return Mathf.Pow(10.0f, dB / 20.0f);
         }
-
     }
 }

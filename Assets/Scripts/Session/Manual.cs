@@ -1,13 +1,14 @@
 ﻿using System;
-using Tone;
+using Tones.Managers;
 
-namespace Session
+namespace Tones.Session
 {
     [Serializable]
     public class Manual : Session
     {
-        public Manual(int frequency, float volume) : base(frequency, volume)
+        public Manual(int frequency, float volume, TestManager manager) : base(frequency, volume, manager)
         {
+
         }
 
         public void StartTone()

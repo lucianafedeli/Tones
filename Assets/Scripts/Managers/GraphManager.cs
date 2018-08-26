@@ -1,7 +1,7 @@
 ﻿using Design_Patterns;
 using UnityEngine;
 
-namespace Managers
+namespace Tones.Managers
 {
     public class GraphManager : Singleton<GraphManager>
     {

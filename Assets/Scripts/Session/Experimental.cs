@@ -1,6 +1,7 @@
+using Tones.Managers;
 using UnityEngine;
 
-namespace Session
+namespace Tones.Session
 {
     /// <summary>
     /// Esta es la clase que define el modo experimental de las sesiones.
@@ -21,7 +22,7 @@ namespace Session
         private static float shortToneDuration;
         private static float longToneDuration;
 
-        public Experimental(int frequency, float volume) : base(frequency, volume)
+        public Experimental(int frequency, float volume, TestManager manager) : base(frequency, volume, manager)
         {
 
         }
