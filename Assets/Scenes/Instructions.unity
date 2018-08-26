@@ -1656,11 +1656,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- Modo Manual: se controla manualmente la reproducci\xF3n\n- Modo Asistido:
-    opci\xF3n de asistencia para iniciar autom\xE1ticamente la reproducci\xF3n del
-    tono\n- Modo Experimental: s\xF3lo se presiona play al inicio de la prueba, luego,
-    no es posible ninguna intervenci\xF3n\n- Test de Carhartt: se emite el tono durante
-    un minuto"
+  m_Text: "- <b>Modo Manual:</b> se controla manualmente la reproducci\xF3n\n- <b>Modo
+    Asistido:</b> opci\xF3n de asistencia para iniciar autom\xE1ticamente la reproducci\xF3n
+    del tono\n- <b>Modo Experimental:</b> s\xF3lo se presiona play al inicio de la
+    prueba, luego, no es posible ninguna intervenci\xF3n\n- <b>Test de Carhartt:</b>
+    se emite el tono durante un minuto"
 --- !u!222 &1780839226
 CanvasRenderer:
   m_ObjectHideFlags: 0
