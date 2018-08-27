@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 152121889}
   - component: {fileID: 152121888}
   m_Layer: 5
-  m_Name: Down
+  m_Name: DownVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 152121889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032890578}
+        m_MethodName: DecreaseVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &152121889
@@ -2133,7 +2144,7 @@ GameObject:
   - component: {fileID: 1706319075}
   - component: {fileID: 1706319074}
   m_Layer: 5
-  m_Name: Up
+  m_Name: UpVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2195,7 +2206,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1706319075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032890578}
+        m_MethodName: IncreaseVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1706319075
@@ -2301,7 +2323,7 @@ GameObject:
   - component: {fileID: 1718714168}
   - component: {fileID: 1718714167}
   m_Layer: 5
-  m_Name: Up
+  m_Name: UpFrec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2363,7 +2385,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1718714168}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032890578}
+        m_MethodName: IncreaseFrequency
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1718714168
@@ -2592,7 +2625,7 @@ GameObject:
   - component: {fileID: 1877901233}
   - component: {fileID: 1877901232}
   m_Layer: 5
-  m_Name: Down
+  m_Name: DownFrec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2654,7 +2687,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1877901233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2032890578}
+        m_MethodName: DecreaseFrequency
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1877901233
@@ -2992,6 +3036,7 @@ GameObject:
   - component: {fileID: 2032890577}
   - component: {fileID: 2032890576}
   - component: {fileID: 2032890575}
+  - component: {fileID: 2032890578}
   m_Layer: 5
   m_Name: PanelInformativo
   m_TagString: Untagged
@@ -3075,6 +3120,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2032890573}
+--- !u!114 &2032890578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032890573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fff8d5956eea3545a3165aefa9f56c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqText: {fileID: 146881589}
+  freqDown: {fileID: 1877901232}
+  freqUp: {fileID: 1718714167}
+  dBText: {fileID: 568601514}
+  dBDown: {fileID: 152121888}
+  dBUp: {fileID: 1706319074}
 --- !u!1 &2131037711
 GameObject:
   m_ObjectHideFlags: 0

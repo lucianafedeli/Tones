@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 369256810}
   - component: {fileID: 369256809}
   m_Layer: 5
-  m_Name: Down
+  m_Name: DownVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,7 +1215,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 369256810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 628543918}
+        m_MethodName: DecreaseVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &369256810
@@ -1823,7 +1834,7 @@ GameObject:
   - component: {fileID: 1137130796}
   - component: {fileID: 1137130795}
   m_Layer: 5
-  m_Name: Up
+  m_Name: UpFrec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2070,7 +2081,7 @@ GameObject:
   - component: {fileID: 1194606050}
   - component: {fileID: 1194606049}
   m_Layer: 5
-  m_Name: Down
+  m_Name: DownFrec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2849,7 +2860,7 @@ GameObject:
   - component: {fileID: 1352615027}
   - component: {fileID: 1352615026}
   m_Layer: 5
-  m_Name: Up
+  m_Name: UpVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2911,7 +2922,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352615027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 628543918}
+        m_MethodName: IncreaseVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1352615027
@@ -3202,7 +3224,7 @@ GameObject:
   - component: {fileID: 1604489476}
   - component: {fileID: 1604489475}
   m_Layer: 5
-  m_Name: PanelVolumen
+  m_Name: PanelFrecuencia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
