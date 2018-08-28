@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
-  m_EffectDistance: {x: 1.77, y: -2.28}
+  m_EffectDistance: {x: 1.77, y: -2.85}
   m_UseGraphicAlpha: 1
 --- !u!114 &96042490
 MonoBehaviour:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
-  m_EffectDistance: {x: 1.77, y: -2.28}
+  m_EffectDistance: {x: 1.77, y: -2.85}
   m_UseGraphicAlpha: 1
 --- !u!114 &107817234
 MonoBehaviour:
@@ -730,6 +730,7 @@ GameObject:
   - component: {fileID: 265997659}
   - component: {fileID: 265997658}
   - component: {fileID: 265997661}
+  - component: {fileID: 265997662}
   m_Layer: 5
   m_Name: ButtonAssisted
   m_TagString: Untagged
@@ -869,6 +870,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &265997662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265997656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
+  m_EffectDistance: {x: 1.77, y: -2.28}
+  m_UseGraphicAlpha: 1
 --- !u!1 &301040933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,7 +2815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
-  m_EffectDistance: {x: 1.77, y: -2.28}
+  m_EffectDistance: {x: 1.19, y: -1.56}
   m_UseGraphicAlpha: 1
 --- !u!1 &1320981016
 GameObject:
@@ -3741,7 +3756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
-  m_EffectDistance: {x: 1.77, y: -2.28}
+  m_EffectDistance: {x: 1.19, y: -1.56}
   m_UseGraphicAlpha: 1
 --- !u!1 &2045979424
 GameObject:
