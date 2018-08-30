@@ -5,14 +5,15 @@ using UnityEngine.UI;
 public class ToneSettingsManager : MonoBehaviour
 {
     [SerializeField]
-    Text freqText;
+    Text freqText= null;
     [SerializeField]
-    Button freqDown, freqUp;
+    Button freqDown= null, freqUp= null;
 
     [SerializeField]
-    Text dBText;
+    Text dBText= null;
     [SerializeField]
-    Button dBDown, dBUp;
+    Button dBDown= null, dBUp= null;
+
     const int dbMin = 0, dbMax = 100;
     const int dbDelta = 5;
 
