@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Tones.Managers
@@ -12,8 +11,6 @@ namespace Tones.Managers
         #region Volume
         protected readonly byte startVolume = 10;
         protected readonly byte maxDb = 80;
-        protected readonly byte onSessionFailedIncrement = 10;
-        protected readonly byte onSessionSuccessDecrement = 5;
 
         [SerializeField]
         protected byte currentVolume;
@@ -21,7 +18,6 @@ namespace Tones.Managers
 
         #region Frequency
         public static readonly int[] frequencies = { 125, 250, 500, 1000, 2000, 4000, 8000 };
-
 
         protected readonly byte startFrequencyIndex = 3;
 
@@ -38,11 +34,7 @@ namespace Tones.Managers
         protected Session.Session preLimitFailedSession = null;
         protected Session.Session onLimitSucceedSession = null;
         protected Session.Session postLimitSucceedSession = null;
-
-        private Vector2 timeBetweenSessionsExperimental;
-        protected float timeBetweenSessionsAssisted = 1;
         #endregion
-
 
         private void Init()
         {
@@ -50,6 +42,18 @@ namespace Tones.Managers
             currentFrequencyIndex = startFrequencyIndex;
 
             OngoingTest = true;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                OnPacientButtonDown();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                OnPacientButtonUp();
+            }
         }
 
         public void OnPacientButtonDown()
@@ -70,44 +74,27 @@ namespace Tones.Managers
         public virtual void SessionEnd(bool sessionSucceded)
         {
             OngoingTest = false;
-
-            if (sessionSucceded)
-            {
-                StartCoroutine(WaitForPacient());
-            }
-            else
-            {
-                preLimitFailedSession = currentSession;
-
-                if (currentVolume < maxDb)
-                {
-                    currentVolume += onSessionFailedIncrement;
-                    if (currentVolume > maxDb)
-                        currentVolume = maxDb;
-                    Debug.Log("Vol: " + currentVolume + "dB (+" + onSessionFailedIncrement + ')');
-                }
-            }
         }
 
-        protected virtual IEnumerator WaitForPacient()
-        {
-            yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
+        //protected virtual IEnumerator WaitForPacient()
+        //{
+        //    yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
 
-            if (null == postLimitSucceedSession)
-            {
-                postLimitSucceedSession = currentSession;
-            }
-            else
-            {
-                onLimitSucceedSession = currentSession;
-            }
-            if (currentVolume > 0)
-            {
-                currentVolume -= onSessionSuccessDecrement;
-                Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');
-            }
+        //    if (null == postLimitSucceedSession)
+        //    {
+        //        postLimitSucceedSession = currentSession;
+        //    }
+        //    else
+        //    {
+        //        onLimitSucceedSession = currentSession;
+        //    }
+        //    if (currentVolume > 0)
+        //    {
+        //        currentVolume -= onSessionSuccessDecrement;
+        //        Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');
+        //    }
 
-            GraphManager.Instance.AddSession(currentSession);
-        }
+        //    GraphManager.Instance.AddSession(currentSession);
+        //}
     }
 }

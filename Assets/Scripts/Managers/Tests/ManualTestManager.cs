@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Tones.Session;
+﻿using Tones.Session;
 using Tones.Tools;
 using UnityEngine;
 
@@ -21,6 +20,7 @@ namespace Tones.Managers
         {
             manualSessionButton.onButtonDown.AddListener(ManualButtonDown);
             manualSessionButton.onButtonUp.AddListener(ManualButtonUp);
+
         }
 
         private void ManualButtonDown()
@@ -28,22 +28,23 @@ namespace Tones.Managers
             //manualSessionButton.onButtonDown.RemoveListener(ManualButtonDown);
             if (!OngoingTest)
                 StartTest();
+
+            (currentSession as Manual).StartTone();
         }
 
         private void ManualButtonUp()
         {
-
+            (currentSession as Manual).StopTone();
         }
 
         public override void StartTest()
         {
             base.StartTest();
             Debug.Log("Manual Classic test Started.");
-            Manual manualSession = new Manual(CurrentFrequency, currentVolume, this);
-            currentSession = manualSession;
+            currentSession = new Manual(CurrentFrequency, currentVolume, this);
 
-            manualSessionButton.onButtonUp.AddListener(manualSession.StopTone);
-            manualSessionButton.onButtonDown.AddListener(manualSession.StartTone);
+            pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
+            pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
         }
 
         public override void SessionEnd(bool sessionSucceded)
@@ -52,15 +53,9 @@ namespace Tones.Managers
 
             if (sessionSucceded)
             {
-                StartCoroutine(WaitForPacient());
+                GraphManager.Instance.AddSession(currentSession as Manual);
+                currentSession = null;
             }
-        }
-
-        protected override IEnumerator WaitForPacient()
-        {
-            yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
-
-            GraphManager.Instance.AddSession(currentSession);
         }
     }
 }

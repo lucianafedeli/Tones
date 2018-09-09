@@ -8,6 +8,7 @@ namespace Pacient
         public ulong ID;
         public string firstName, lastName, DNI, birthDate;
         public char gender;
+        public bool enabled;
 
         public PacientData(ulong ID, string firstName, string lastName, string DNI, string birthDate, char gender)
         {
@@ -17,6 +18,7 @@ namespace Pacient
             this.DNI = DNI;
             this.birthDate = birthDate;
             this.gender = gender;
+            this.enabled = true;
         }
 
         public override string ToString()

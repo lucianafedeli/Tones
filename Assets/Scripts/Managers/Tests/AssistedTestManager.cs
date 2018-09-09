@@ -5,6 +5,7 @@ namespace Tones.Managers
 {
     public class AssistedTestManager : TestManager
     {
+        private float timeBetweenSessionsAssisted = 5;
 
         public override void StartTest()
         {

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Managers;
+﻿using Managers;
 using Pacient;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,15 +22,21 @@ namespace UI
         {
             Dictionary<ulong, PacientData> pacientsData = DataManager.Instance.GetPacientsData();
 
-            foreach (KeyValuePair<ulong, PacientData> pacientData in pacientsData)
+            if (null != pacientsData)
             {
-                PacientRow newPacient = Instantiate(pacientRowPrefab, transform);
-                newPacient.SetPacientData(pacientData.Value);
+                foreach (KeyValuePair<ulong, PacientData> pacientData in pacientsData)
+                {
+                    if (pacientData.Value.enabled)
+                    {
+                        PacientRow newPacient = Instantiate(pacientRowPrefab, transform);
+                        newPacient.SetPacientData(pacientData.Value);
 
-                rows.Add(newPacient);
+                        rows.Add(newPacient);
+                    }
+                }
+
+                //GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value = 1;
             }
-
-            GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value = 1;
         }
 
         public void SortBy(string sortString)

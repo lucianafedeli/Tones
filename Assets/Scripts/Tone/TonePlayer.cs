@@ -54,12 +54,12 @@ namespace Tones.Session
         {
             if (!CurrentlyPlaying)
             {
-
                 currentFrequency = tone.Frequency;
 
                 theSineClip = AudioClip.Create("CurrentTone", sampleRate * 2, 1, sampleRate, false, OnAudioRead);
                 //AudioSettings.speakerMode = AudioSpeakerMode.Mono;
                 toneSource.clip = theSineClip;
+                toneSource.loop = true;
 
                 toneSource.volume = tone.Volume;
 

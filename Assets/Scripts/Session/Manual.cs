@@ -8,12 +8,12 @@ namespace Tones.Session
     {
         public Manual(int frequency, float volume, TestManager manager) : base(frequency, volume, manager)
         {
-
+            StartSession();
         }
 
         public void StartTone()
         {
-            StartSession();
+            tonePlayEvents.EventStarted();
             TonePlayer.Instance.PlayTone(tone);
         }
 
@@ -21,7 +21,6 @@ namespace Tones.Session
         {
             tonePlayEvents.EventEnded();
             TonePlayer.Instance.StopTone();
-            EndSession();
         }
     }
 }
