@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tones.Tools
@@ -6,12 +7,12 @@ namespace Tones.Tools
     public class PushButton : MonoBehaviour
     {
         [SerializeField]
-        KeyCode key;
+        private KeyCode key;
 
-        [SerializeField]
-        public UnityEvent onButtonDown;
-        [SerializeField]
-        public UnityEvent onButtonUp;
+        [NonSerialized]
+        public UnityEvent onButtonDown = new UnityEvent();
+        [NonSerialized]
+        public UnityEvent onButtonUp = new UnityEvent();
 
 
         public void OnButtonDown()

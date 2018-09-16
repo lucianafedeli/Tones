@@ -6,7 +6,7 @@ namespace Tones.Session
     [Serializable]
     public class Manual : Session
     {
-        public Manual(int frequency, float volume, TestManager manager) : base(frequency, volume, manager)
+        public Manual(int frequency, float volume, TestManager manager, bool isLeftEar) : base(frequency, volume, manager, isLeftEar)
         {
             StartSession();
         }

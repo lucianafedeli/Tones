@@ -8,6 +8,8 @@ namespace Tones.Managers
         [NonSerialized]
         public bool OngoingTest = false;
 
+        protected bool isLeftEar = true;
+
         #region Volume
         protected readonly byte startVolume = 10;
         protected readonly byte maxDb = 80;
@@ -42,18 +44,6 @@ namespace Tones.Managers
             currentFrequencyIndex = startFrequencyIndex;
 
             OngoingTest = true;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnPacientButtonDown();
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                OnPacientButtonUp();
-            }
         }
 
         public void OnPacientButtonDown()

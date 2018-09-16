@@ -26,7 +26,10 @@ namespace Tones.Managers
 
         public void AddSession(Session.Manual session)
         {
-
+            if (session.IsLeftEar)
+            {
+                // Pintamos con azul
+            }
         }
     }
 }

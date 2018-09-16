@@ -22,7 +22,7 @@ namespace Tones.Session
         private static float shortToneDuration;
         private static float longToneDuration;
 
-        public Experimental(int frequency, float volume, TestManager manager) : base(frequency, volume, manager)
+        public Experimental(int frequency, float volume, TestManager manager, bool isLeftEar) : base(frequency, volume, manager,isLeftEar)
         {
 
         }

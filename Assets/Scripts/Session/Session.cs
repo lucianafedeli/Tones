@@ -19,6 +19,8 @@ namespace Tones.Session
 
         protected byte frequencyIndex = 3;
 
+
+
         [SerializeField]
         private bool succeded = false;
         private bool isPacientPushOngoing = false;
@@ -47,7 +49,15 @@ namespace Tones.Session
             }
         }
 
-        public Session(int frequency, float volume, TestManager manager)
+        private bool isLeftEar;
+        public bool IsLeftEar
+        {
+            get { return isLeftEar; }
+            set { isLeftEar = value; }
+        }
+
+
+        public Session(int frequency, float volume, TestManager manager, bool isLeftEar)
         {
             tone = new Tone(frequency, volume);
             testManager = manager;
