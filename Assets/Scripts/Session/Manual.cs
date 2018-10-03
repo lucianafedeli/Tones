@@ -1,12 +1,12 @@
 ﻿using System;
 using Tones.Managers;
 
-namespace Tones.Session
+namespace Tones.Sessions
 {
     [Serializable]
     public class Manual : Session
     {
-        public Manual(int frequency, float volume, TestManager manager, bool isLeftEar) : base(frequency, volume, manager, isLeftEar)
+        public Manual(int frequency, float volume, TestManager manager, Tone.EarSide isLeftEar) : base(frequency, volume, manager, isLeftEar)
         {
             StartSession();
         }

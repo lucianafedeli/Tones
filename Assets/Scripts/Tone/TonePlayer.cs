@@ -1,32 +1,14 @@
 using Design_Patterns;
 using UnityEngine;
 
-namespace Tones.Session
+namespace Tones.Sessions
 {
     [RequireComponent(typeof(AudioSource))]
     public class TonePlayer : Singleton<TonePlayer>
     {
-        public enum Ear
-        {
-            Left = -1, Right = 1
-        }
-
-        public int sampleRate = 44100;
+       public int sampleRate = 44100;
 
         public int position = 0;
-
-        public Ear CurrentEar
-        {
-            get
-            {
-                return currentEar;
-            }
-            set
-            {
-                currentEar = value;
-                toneSource.panStereo = (int)currentEar;
-            }
-        }
 
         public bool CurrentlyPlaying
         {
@@ -40,14 +22,12 @@ namespace Tones.Session
 
         private int currentFrequency = 0;
 
-        private Ear currentEar = Ear.Left;
 
         private void Start()
         {
             if (null == toneSource)
                 toneSource = GetComponent<AudioSource>();
 
-            toneSource.panStereo = (int)currentEar;
         }
 
         public void PlayTone(Tone tone)
@@ -58,9 +38,10 @@ namespace Tones.Session
 
                 theSineClip = AudioClip.Create("CurrentTone", sampleRate * 2, 1, sampleRate, false, OnAudioRead);
                 //AudioSettings.speakerMode = AudioSpeakerMode.Mono;
+
                 toneSource.clip = theSineClip;
                 toneSource.loop = true;
-
+                toneSource.panStereo = (int)tone.Ear;
                 toneSource.volume = tone.Volume;
 
                 {
@@ -100,13 +81,13 @@ namespace Tones.Session
             }
         }
 
-        public void ToggleEar()
-        {
-            if (CurrentEar == Ear.Left)
-                CurrentEar = Ear.Right;
-            else
-                CurrentEar = Ear.Left;
-            //return CurrentEar;
-        }
+        //public void ToggleEar()
+        //{
+        //    if (CurrentEar == Ear.Left)
+        //        CurrentEar = Ear.Right;
+        //    else
+        //        CurrentEar = Ear.Left;
+        //    //return CurrentEar;
+        //}
     }
 }

@@ -1,4 +1,4 @@
-﻿using Tones.Session;
+﻿using Tones.Sessions;
 using UnityEngine;
 
 namespace Tones.Managers
@@ -7,11 +7,15 @@ namespace Tones.Managers
     {
         private float timeBetweenSessionsAssisted = 5;
 
+        protected Sessions.Session preLimitFailedSession = null;
+        protected Sessions.Session onLimitSucceedSession = null;
+        protected Sessions.Session postLimitSucceedSession = null;
+
         public override void StartTest()
         {
             base.StartTest();
             Debug.Log("Assisted Classic test Started.");
-            currentSession = new Assisted(CurrentFrequency, currentVolume, timeBetweenSessionsAssisted, this, isLeftEar);
+            currentSession = new Assisted(CurrentFrequency, currentVolume, timeBetweenSessionsAssisted, this, ear);
         }
     }
 }

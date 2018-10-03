@@ -1,5 +1,5 @@
 ﻿using Design_Patterns;
-using UnityEngine;
+using Tones.Sessions;
 
 namespace Tones.Managers
 {
@@ -24,7 +24,7 @@ namespace Tones.Managers
 
         //}
 
-        public void AddSession(Session.Manual session)
+        public void GraphSession(Session session)
         {
             if (session.IsLeftEar)
             {

@@ -1,4 +1,4 @@
-﻿using Tones.Session;
+﻿using Tones.Sessions;
 using Tones.Tools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +12,10 @@ namespace Tones.Managers
         private PushButton pacientButton = null;
         [SerializeField]
         private PushButton manualSessionButton = null;
+
         [SerializeField]
-        private Button stopSessionButton = null;
-        [SerializeField]
-        private Button graphButton = null;
-        [SerializeField]
-        private Button earToggle = null;
+        private Button[] interactableDuringSession = null;
+        private bool[] previousState = null;
 
         [SerializeField]
         private Animator ledLight = null;
@@ -27,6 +25,8 @@ namespace Tones.Managers
         {
             manualSessionButton.onButtonDown.AddListener(ManualButtonDown);
             manualSessionButton.onButtonUp.AddListener(ManualButtonUp);
+
+            previousState = new bool[interactableDuringSession.Length];
         }
 
         private void ManualButtonDown()
@@ -41,18 +41,21 @@ namespace Tones.Managers
         private void ManualButtonUp()
         {
             (currentSession as Manual).StopTone();
+
+            SessionEnd();
         }
 
         public override void StartTest()
         {
             base.StartTest();
             Debug.Log("Manual Classic test Started.");
-            currentSession = new Manual(CurrentFrequency, currentVolume, this, isLeftEar);
+            currentSession = new Manual(CurrentFrequency, currentVolume, this, ear);
 
-            stopSessionButton.gameObject.SetActive(true);
-            stopSessionButton.interactable = true;
-            graphButton.gameObject.SetActive(false);
-            earToggle.interactable = false;
+            for (int i = 0; i < interactableDuringSession.Length; i++)
+            {
+                previousState[i] = interactableDuringSession[i].interactable;
+                interactableDuringSession[i].interactable = false;
+            }
 
             pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
             pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
@@ -62,13 +65,13 @@ namespace Tones.Managers
 
         public void SessionEnd()
         {
-            graphButton.gameObject.SetActive(true);
-            earToggle.interactable = true;
-            stopSessionButton.gameObject.SetActive(false);
             pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
             pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
             pacientButton.onButtonDown.RemoveListener(LedOn);
             pacientButton.onButtonUp.RemoveListener(LedOff);
+
+            for (int i = 0; i < interactableDuringSession.Length; i++)
+                interactableDuringSession[i].interactable = previousState[i];
 
             currentSession.EndSession();
         }
@@ -85,18 +88,19 @@ namespace Tones.Managers
 
         public override void SessionEnd(bool sessionSucceded)
         {
-            OngoingTest = false;
+            base.SessionEnd(sessionSucceded);
 
-            if (sessionSucceded)
-            {
-                GraphManager.Instance.AddSession(currentSession as Manual);
-            }
             currentSession = null;
         }
 
-        public void ToggleLeft()
+        public void ShowGraph()
         {
-            isLeftEar = !isLeftEar;
+            if (null != succesfulSessions)
+            {
+                // TODO: Connect with user and persist data
+                foreach (var session in succesfulSessions)
+                    GraphManager.Instance.GraphSession(session.Value);
+            }
         }
     }
 }
