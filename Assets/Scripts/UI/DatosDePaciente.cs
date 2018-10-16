@@ -18,7 +18,7 @@ namespace UI
         [SerializeField] private UnityEvent OnInvalidDNI;
         [SerializeField] private UnityEvent OnValidDNI;
 
-        private bool validDNI = false;
+        private bool validDNI = true;
         private PacientData currentlyEditing = null;
 
         private void Start()
@@ -67,16 +67,19 @@ namespace UI
             if (DNI.Length != 8)
                 return;
 
-            foreach (KeyValuePair<ulong, PacientData> pacient in DataManager.Instance.PacientsData)
+            if (null != DataManager.Instance.PacientsData)
             {
-                if (null == DataManager.Instance.CurrentPacient || DataManager.Instance.CurrentPacient.DNI != DNI)
+                foreach (KeyValuePair<ulong, PacientData> pacient in DataManager.Instance.PacientsData)
                 {
-                    if (pacient.Value.DNI == DNI)
+                    if (null == DataManager.Instance.CurrentPacient || DataManager.Instance.CurrentPacient.DNI != DNI)
                     {
-                        validDNI = false;
-                        if (null != OnInvalidDNI)
-                            OnInvalidDNI.Invoke();
-                        return;
+                        if (pacient.Value.DNI == DNI)
+                        {
+                            validDNI = false;
+                            if (null != OnInvalidDNI)
+                                OnInvalidDNI.Invoke();
+                            return;
+                        }
                     }
                 }
             }

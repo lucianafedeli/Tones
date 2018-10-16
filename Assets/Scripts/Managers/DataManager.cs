@@ -28,22 +28,27 @@ namespace Managers
 
         private Button editCurrentPacientButton = null;
         private Button startStudyForCurrentPacientButton = null;
+        private Button createNewPatientButton = null;
 
         [SerializeField]
-        private PacientData currentPacient = null;
+        private PacientData currentPatient = null;
 
         public PacientData CurrentPacient
         {
-            get { return currentPacient; }
+            get { return currentPatient; }
             set
             {
-                currentPacient = value;
+                currentPatient = value;
+
                 if (null == editCurrentPacientButton)
                     editCurrentPacientButton = GameObject.Find("ButtonEditUser").GetComponent<Button>();
                 if (null == startStudyForCurrentPacientButton)
                     startStudyForCurrentPacientButton = GameObject.Find("ButtonNewTest").GetComponent<Button>();
+                if (null == createNewPatientButton)
+                    createNewPatientButton = GameObject.Find("ButtonNewUser").GetComponent<Button>();
 
-                startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPacient;
+                startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPatient;
+                createNewPatientButton.interactable = null == currentPatient;
             }
         }
 
@@ -103,26 +108,26 @@ namespace Managers
             if (null == PacientsData)
                 PacientsData = new Dictionary<ulong, PacientData>();
 
-            if (data.ID == currentPacient.ID)
+            if (null != currentPatient && data.ID == currentPatient.ID)
                 PacientsData[data.ID] = data;
             else if (!PacientsData.ContainsKey(data.ID))
                 PacientsData.Add(pacientNumber, data);
             else
                 Debug.LogError("ID already exists. This should never happen!");
 
-            currentPacient = null;
+            currentPatient = null;
 
             SavePacientData();
         }
 
-        public string GetLatestTest(ulong id)
+        public string GetLatestTest(ulong ID)
         {
-            return "24/01/1991";
+            return "24/01/1991"; // TODO
         }
 
         public void RemovePacient(ulong ID)
         {
-            PacientsData.Remove(ID);
+            PacientsData[ID].enabled = false;
             SavePacientData();
         }
 

@@ -3,7 +3,7 @@ using Tones.Managers;
 using Tools;
 using UnityEngine;
 
-namespace Tones.Session
+namespace Tones.Sessions
 {
     /// <summary>
     /// Esta clase se encarga de definir la duracion total de las partes de una prueba 
@@ -18,6 +18,8 @@ namespace Tones.Session
         protected Tone tone = null;
 
         protected byte frequencyIndex = 3;
+
+
 
         [SerializeField]
         private bool succeded = false;
@@ -47,9 +49,17 @@ namespace Tones.Session
             }
         }
 
-        public Session(int frequency, float volume, TestManager manager)
+        private bool isLeftEar;
+        public bool IsLeftEar
         {
-            tone = new Tone(frequency, volume);
+            get { return isLeftEar; }
+            set { isLeftEar = value; }
+        }
+
+
+        public Session(int frequency, float volume, TestManager manager, Tone.EarSide ear)
+        {
+            tone = new Tone(frequency, volume, ear);
             testManager = manager;
         }
 

@@ -1,4 +1,4 @@
-﻿using Tones.Session;
+﻿using Tones.Sessions;
 using UnityEngine;
 
 namespace Tones.Managers
@@ -10,7 +10,7 @@ namespace Tones.Managers
         {
             base.StartTest();
             Debug.Log("Experimental test Started.");
-            currentSession = new Experimental(CurrentFrequency, currentVolume, this);
+            currentSession = new Experimental(CurrentFrequency, currentVolume, this, ear);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tones.Session
+namespace Tones.Sessions
 {
     /// <summary>
     /// Esta clase define la informacion necesaria para reproducir un tono y se encarga de llamar al reproductor.
@@ -17,7 +17,7 @@ namespace Tones.Session
 
         }
 
-        float volume;
+        private float volume;
         public float Volume
         {
             get
@@ -26,10 +26,23 @@ namespace Tones.Session
             }
         }
 
-        public Tone(int frequency, float volume)
+        public enum EarSide
+        {
+            Left = -1, Right = 1
+        }
+
+        private EarSide ear;
+        public EarSide Ear
+        {
+            get { return ear; }
+        }
+
+
+        public Tone(int frequency, float volume, EarSide ear)
         {
             this.frequency = frequency;
             this.volume = volume;
+            this.ear = ear;
         }
 
         public static float LinearToDecibel(float linear)

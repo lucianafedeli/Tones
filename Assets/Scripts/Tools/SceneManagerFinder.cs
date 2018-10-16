@@ -11,6 +11,10 @@ namespace Tools
             ScenesManager.Instance.LoadScene(scene);
         }
 
+        private void Start()
+        {
+            PlayerPrefs.DeleteAll();
+        }
         public void LoadPrevious()
         {
             if (SceneManager.GetActiveScene().name == "Instructions")
