@@ -1,4 +1,5 @@
-﻿using Tones.Sessions;
+﻿using Managers;
+using Tones.Sessions;
 using Tones.Tools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,11 +19,17 @@ namespace Tones.Managers
         private bool[] previousState = null;
 
         [SerializeField]
+        private Text pacientName = null;
+
+        [SerializeField]
         private Animator ledLight = null;
         #endregion
 
+
         private void Start()
         {
+            pacientName.text = DataManager.Instance.CurrentPacient.ToString();
+
             manualSessionButton.onButtonDown.AddListener(ManualButtonDown);
             manualSessionButton.onButtonUp.AddListener(ManualButtonUp);
 
