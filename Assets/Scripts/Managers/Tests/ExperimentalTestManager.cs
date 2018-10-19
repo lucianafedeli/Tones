@@ -10,7 +10,7 @@ namespace Tones.Managers
         {
             base.StartTest();
             Debug.Log("Experimental test Started.");
-            currentSession = new Experimental(CurrentFrequency, currentVolume, this, ear);
+            currentSession = new Experimental(currentFrequencyIndex, currentVolume, this, ear);
         }
     }
 }

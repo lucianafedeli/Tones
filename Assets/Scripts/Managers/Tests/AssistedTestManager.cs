@@ -15,7 +15,7 @@ namespace Tones.Managers
         {
             base.StartTest();
             Debug.Log("Assisted Classic test Started.");
-            currentSession = new Assisted(CurrentFrequency, currentVolume, timeBetweenSessionsAssisted, this, ear);
+            currentSession = new Assisted(currentFrequencyIndex, currentVolume, timeBetweenSessionsAssisted, this, ear);
         }
     }
 }

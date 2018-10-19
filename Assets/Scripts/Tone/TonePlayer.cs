@@ -1,4 +1,5 @@
 using Design_Patterns;
+using Tones.Managers;
 using UnityEngine;
 
 namespace Tones.Sessions
@@ -6,7 +7,7 @@ namespace Tones.Sessions
     [RequireComponent(typeof(AudioSource))]
     public class TonePlayer : Singleton<TonePlayer>
     {
-       public int sampleRate = 44100;
+        public int sampleRate = 44100;
 
         public int position = 0;
 
@@ -26,15 +27,16 @@ namespace Tones.Sessions
         private void Start()
         {
             if (null == toneSource)
+            {
                 toneSource = GetComponent<AudioSource>();
-
+            }
         }
 
         public void PlayTone(Tone tone)
         {
             if (!CurrentlyPlaying)
             {
-                currentFrequency = tone.Frequency;
+                currentFrequency = TestManager.frequencies[tone.FrequencyIndex];
 
                 theSineClip = AudioClip.Create("CurrentTone", sampleRate * 2, 1, sampleRate, false, OnAudioRead);
                 //AudioSettings.speakerMode = AudioSpeakerMode.Mono;

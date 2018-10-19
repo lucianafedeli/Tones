@@ -7,12 +7,12 @@ namespace Tones.Sessions
     /// </summary>
     public class Tone
     {
-        private int frequency;
-        public int Frequency
+        private int frequencyIndex;
+        public int FrequencyIndex
         {
             get
             {
-                return frequency;
+                return frequencyIndex;
             }
 
         }
@@ -38,9 +38,9 @@ namespace Tones.Sessions
         }
 
 
-        public Tone(int frequency, float volume, EarSide ear)
+        public Tone(int frequencyIndex, float volume, EarSide ear)
         {
-            this.frequency = frequency;
+            this.frequencyIndex = frequencyIndex;
             this.volume = volume;
             this.ear = ear;
         }

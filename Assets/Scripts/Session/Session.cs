@@ -15,11 +15,14 @@ namespace Tones.Sessions
     {
         protected TestManager testManager;
 
-        protected Tone tone = null;
+        protected Tone tone;
+        public Tone Tone
+        {
+            get { return tone; }
+            set { tone = value; }
+        }
 
         protected byte frequencyIndex = 3;
-
-
 
         [SerializeField]
         private bool succeded = false;
@@ -31,9 +34,13 @@ namespace Tones.Sessions
             get
             {
                 if (succeded)
+                {
                     return tonePlayEvents;
+                }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -43,9 +50,13 @@ namespace Tones.Sessions
             get
             {
                 if (succeded)
+                {
                     return pacientPushEvents;
+                }
                 else
+                {
                     return null;
+                }
             }
         }
 
@@ -57,9 +68,10 @@ namespace Tones.Sessions
         }
 
 
-        public Session(int frequency, float volume, TestManager manager, Tone.EarSide ear)
+        public Session(int frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
         {
-            tone = new Tone(frequency, volume, ear);
+            tone = new Tone(frequencyIndex, volume, ear);
+            isLeftEar = ear == Tone.EarSide.Left;
             testManager = manager;
         }
 
@@ -73,7 +85,9 @@ namespace Tones.Sessions
             isPacientPushOngoing = true;
             pacientPushEvents.EventStarted();
             if (TonePlayer.Instance.CurrentlyPlaying)
+            {
                 succeded = true;
+            }
         }
 
         public void PacientButtonUp()

@@ -40,9 +40,9 @@ namespace Tones.Managers
         {
             //manualSessionButton.onButtonDown.RemoveListener(ManualButtonDown);
             if (!OngoingTest)
+            {
                 StartTest();
-
-            (currentSession as Manual).StartTone();
+            } (currentSession as Manual).StartTone();
         }
 
         private void ManualButtonUp()
@@ -56,7 +56,7 @@ namespace Tones.Managers
         {
             base.StartTest();
             Debug.Log("Manual Classic test Started.");
-            currentSession = new Manual(CurrentFrequency, currentVolume, this, ear);
+            currentSession = new Manual(currentFrequencyIndex, currentVolume, this, ear);
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {
@@ -78,7 +78,9 @@ namespace Tones.Managers
             pacientButton.onButtonUp.RemoveListener(LedOff);
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
+            {
                 interactableDuringSession[i].interactable = previousState[i];
+            }
 
             currentSession.EndSession();
         }
@@ -106,7 +108,9 @@ namespace Tones.Managers
             {
                 // TODO: Connect with user and persist data
                 foreach (var session in succesfulSessions)
+                {
                     GraphManager.Instance.GraphSession(session.Value);
+                }
             }
         }
     }
