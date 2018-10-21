@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Graphics.unity
     guid: 3c6789662018044db94399f0eaf3da56
+  - enabled: 1
+    path: Assets/Scenes/CarharttMode.unity
+    guid: e803d92a962864ad2852449d29557cd4
   m_configObjects: {}
