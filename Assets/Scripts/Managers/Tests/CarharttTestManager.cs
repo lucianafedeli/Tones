@@ -10,8 +10,6 @@ namespace Tones.Managers
     {
         [SerializeField]
         private PushButton pacientButton = null;
-        [SerializeField]
-        private PushButton manualSessionButton = null;
 
         [SerializeField]
         private Button[] interactableDuringSession = null;
@@ -23,49 +21,40 @@ namespace Tones.Managers
         [SerializeField]
         private Animator ledLight = null;
 
+        [SerializeField]
+        private float carharttDuration = 60;
 
         private void Start()
         {
-            pacientName.text = DataManager.Instance.CurrentPacient.ToString();
-
-            manualSessionButton.onButtonDown.AddListener(ManualButtonDown);
-            manualSessionButton.onButtonUp.AddListener(ManualButtonUp);
-
             previousState = new bool[interactableDuringSession.Length];
-        }
 
-        private void ManualButtonDown()
-        {
-            //manualSessionButton.onButtonDown.RemoveListener(ManualButtonDown);
-            if (!OngoingTest)
+            if (null != DataManager.Instance.CurrentPacient)
             {
-                StartTest();
-            } (currentSession as Manual).StartTone();
-        }
-
-        private void ManualButtonUp()
-        {
-            (currentSession as Manual).StopTone();
-
-            SessionEnd();
+                pacientName.text = DataManager.Instance.CurrentPacient.ToString();
+            }
         }
 
         public override void StartTest()
         {
-            base.StartTest();
-            Debug.Log("Manual Classic test Started.");
-            currentSession = new Manual(currentFrequencyIndex, currentVolume, this, ear);
-
-            for (int i = 0; i < interactableDuringSession.Length; i++)
+            if (!OngoingTest)
             {
-                previousState[i] = interactableDuringSession[i].interactable;
-                interactableDuringSession[i].interactable = false;
-            }
+                base.StartTest();
+                Debug.Log("Carhartt test Started.");
+                currentSession = new Carhartt(currentFrequencyIndex, currentVolume, this, ear);
 
-            pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
-            pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
-            pacientButton.onButtonDown.AddListener(LedOn);
-            pacientButton.onButtonUp.AddListener(LedOff);
+                for (int i = 0; i < interactableDuringSession.Length; i++)
+                {
+                    previousState[i] = interactableDuringSession[i].interactable;
+                    interactableDuringSession[i].interactable = false;
+                }
+
+                pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
+                pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
+                pacientButton.onButtonDown.AddListener(LedOn);
+                pacientButton.onButtonUp.AddListener(LedOff);
+
+                Invoke("SessionEnd", carharttDuration);
+            }
         }
 
         public void SessionEnd()

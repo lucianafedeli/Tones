@@ -68,7 +68,7 @@ namespace Tones.Sessions
         }
 
 
-        public Session(int frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
+        public Session(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
         {
             tone = new Tone(frequencyIndex, volume, ear);
             isLeftEar = ear == Tone.EarSide.Left;

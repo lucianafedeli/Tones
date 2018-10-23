@@ -4,9 +4,9 @@ namespace Tones.Sessions
 {
     public class Assisted : Session
     {
-        private static float toneDuration = 2.5f;
+        private static float toneDuration = 1;
 
-        public Assisted(int frequency, float volume, float prePlayDelay, TestManager manager, Tone.EarSide isLeftEar) : base(frequency, volume, manager, isLeftEar)
+        public Assisted(byte frequencyIndex, float volume, float prePlayDelay, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, volume, manager, isLeftEar)
         {
         }
     }
