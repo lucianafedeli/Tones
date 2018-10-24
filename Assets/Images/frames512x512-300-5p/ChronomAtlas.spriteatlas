@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ChronomAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 4befab5c4ccf74872abcad96e3f5e768, type: 3}
+    - {fileID: 2800000, guid: 77931912b2b844328b79f611397fc5bf, type: 3}
+    - {fileID: 2800000, guid: 2903dbcdb0443417d91128bee542a5bb, type: 3}
+    - {fileID: 2800000, guid: 190f19541e9d94e43a9af0da316cac41, type: 3}
+    - {fileID: 2800000, guid: d8267e7a27aef4b50b9db2ed626da5d0, type: 3}
+    - {fileID: 2800000, guid: cdc0c6f5d2eee4e96961c8c6b90d9c15, type: 3}
+    - {fileID: 2800000, guid: 70feb7caeb4b040f097302505d3c6666, type: 3}
+    - {fileID: 2800000, guid: 15e5e247b84b44693b6f5ec1f987d571, type: 3}
+    - {fileID: 2800000, guid: 748a7a452addc43eea18243dec531d60, type: 3}
+    - {fileID: 2800000, guid: 66c8635d0db0a4d40a14528a50733fcc, type: 3}
+    - {fileID: 2800000, guid: 6dd2bb3a967a7421cb93ac87984712b2, type: 3}
+    - {fileID: 2800000, guid: 2cfc8136b5459453fa56d5e772b5996a, type: 3}
+    - {fileID: 2800000, guid: c3cb64f8ca19340029ac672fb74a15fd, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
+  m_Tag: ChronomAtlas
+  m_IsVariant: 0

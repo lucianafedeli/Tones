@@ -1,3 +1,4 @@
+using System;
 using Tones.Managers;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Tones.Sessions
     /// Esta es la clase que define el modo experimental de las sesiones.
     /// El modo exprimental consiste en mas de un tono con una espera aleatoria entre ellos.
     /// </summary>
+    [Serializable]
     public class Experimental : Session
     {
         private float totalDuration;

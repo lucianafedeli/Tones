@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Tones.Sessions
 {
     /// <summary>
     /// Esta clase define la informacion necesaria para reproducir un tono y se encarga de llamar al reproductor.
     /// </summary>
+    [Serializable]
     public class Tone
     {
         private int frequencyIndex;
@@ -26,6 +28,7 @@ namespace Tones.Sessions
             }
         }
 
+        [Serializable]
         public enum EarSide
         {
             Left = -1, Right = 1

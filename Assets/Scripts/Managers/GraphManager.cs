@@ -1,6 +1,16 @@
-﻿using Design_Patterns;
+﻿///—————————————————————–
+///   File: GraphManager.cs
+///   Author: Luciano Donati
+///   me@lucianodonati.com	www.lucianodonati.com
+///   Last edit: 24-Oct-18
+///   Description: 
+///—————————————————————–
+
+using Design_Patterns;
+using Managers;
 using Tones.Sessions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tones.Managers
 {
@@ -18,55 +28,26 @@ namespace Tones.Managers
         [SerializeField]
         private float xPadding = 0, yPadding = 0, xHzIncrement = 0, yDbIncrement = 0;
 
-        //public void AddSession(Session.Session session)
-        //{
-        //    float normalizeTo = session.TonePlayEvents.Pairs[0].Start;
+        [SerializeField]
+        private Transform[] CarharttParents;
 
-        //    float toneMaxDuration = session.TonePlayEvents.GetLongestDuration();
-        //    float pacientMaxDuration = session.PacientPushEvents.GetLongestDuration();
-        //    float sessionDuration = 0;
-
-        //    if (pacientMaxDuration > toneMaxDuration)
-        //        sessionDuration = pacientMaxDuration;
-        //    else
-        //        sessionDuration = toneMaxDuration;
-
-        //    Debug.Log("Session Duration: \t\t\t" + sessionDuration);
-        //    Debug.Log("Tone Event: \t" + session.TonePlayEvents.Normalized(normalizeTo).ToString());
-        //    Debug.Log("Pacient push Event: \t" + session.PacientPushEvents.Normalized(normalizeTo).ToString());
-
-        //}
+        [SerializeField]
+        private GameObject CarharttLinePrefab;
 
         private void Start()
         {
-            Session testSession = new Manual(0, .1f, null, Tone.EarSide.Right);
-            GraphSession(testSession);
-
-            testSession = new Manual(1, .2f, null, Tone.EarSide.Left);
-            GraphSession(testSession);
-
-            testSession = new Manual(2, .3f, null, Tone.EarSide.Right);
-            GraphSession(testSession);
-
-            testSession = new Manual(3, .4f, null, Tone.EarSide.Left);
-            GraphSession(testSession);
-
-            testSession = new Manual(4, .5f, null, Tone.EarSide.Right);
-            GraphSession(testSession);
-
-            testSession = new Manual(5, .6f, null, Tone.EarSide.Left);
-            GraphSession(testSession);
-
-            testSession = new Manual(6, .7f, null, Tone.EarSide.Right);
-            GraphSession(testSession);
+            DataManager dm = DataManager.Instance;
+            foreach (var carhartt in dm.PacientsData[dm.CurrentPacient.ID].carhartts)
+            {
+                GraphCarhartt(carhartt);
+            }
         }
 
-        public void GraphSession(Session session)
+        private void GraphSession(Session session)
         {
             GameObject imageInstance = session.IsLeftEar ?
                                         Instantiate(leftEarImagePrefab) :
                                         Instantiate(rightEarImagePrefab);
-
 
             //imageInstance.transform.localPosition = new Vector3(0, 0);
 
@@ -77,5 +58,26 @@ namespace Tones.Managers
             imageInstance.transform.SetParent(imagesParent, false);
         }
 
+        private void GraphCarhartt(Carhartt session)
+        {
+            var parent = CarharttParents[session.Tone.FrequencyIndex - 2];
+
+            var events = session.PacientPushEvents.Pairs;
+
+            parent.GetChild(0).GetComponent<Text>().text = ((int)session.TonePlayEvents.GetLongestDuration()).ToString();
+
+            foreach (var pressedEvent in events)
+            {
+                GameObject line = Instantiate(CarharttLinePrefab, parent);
+                LineRenderer renderer = line.transform.GetChild(0).GetComponent<LineRenderer>();
+
+                float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+
+                renderer.SetPosition(0, new Vector3(pressedEvent.Start * width / 60, 5, 0));
+                renderer.SetPosition(1, new Vector3(pressedEvent.End * width / 60, 5, 0));
+
+                line.transform.GetChild(1).GetComponent<Text>().text = ((int)pressedEvent.Duration()).ToString();
+            }
+        }
     }
 }

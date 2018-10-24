@@ -1,7 +1,9 @@
-﻿using Tones.Managers;
+﻿using System;
+using Tones.Managers;
 
 namespace Tones.Sessions
 {
+    [Serializable]
     public class Assisted : Session
     {
         private static float toneDuration = 1;

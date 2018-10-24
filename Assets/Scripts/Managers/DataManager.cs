@@ -2,6 +2,7 @@
 using Pacient;
 using System.Collections.Generic;
 using System.IO;
+using Tones.Sessions;
 using Tools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,11 +42,19 @@ namespace Managers
                 currentPatient = value;
 
                 if (null == editCurrentPacientButton)
+                {
                     editCurrentPacientButton = GameObject.Find("ButtonEditUser").GetComponent<Button>();
+                }
+
                 if (null == startStudyForCurrentPacientButton)
+                {
                     startStudyForCurrentPacientButton = GameObject.Find("ButtonNewTest").GetComponent<Button>();
+                }
+
                 if (null == createNewPatientButton)
+                {
                     createNewPatientButton = GameObject.Find("ButtonNewUser").GetComponent<Button>();
+                }
 
                 startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPatient;
                 createNewPatientButton.interactable = null == currentPatient;
@@ -86,7 +95,10 @@ namespace Managers
                     foreach (PacientData t in dataArray)
                     {
                         if (pacientNumber < t.ID)
+                        {
                             pacientNumber = t.ID;
+                        }
+
                         PacientsData.Add(t.ID, t);
                     }
                 }
@@ -99,21 +111,32 @@ namespace Managers
         public Dictionary<ulong, PacientData> GetPacientsData()
         {
             if (null == PacientsData)
+            {
                 LoadPacientsData();
+            }
+
             return PacientsData;
         }
 
         public void AddOrUpdatePacient(PacientData data)
         {
             if (null == PacientsData)
+            {
                 PacientsData = new Dictionary<ulong, PacientData>();
+            }
 
             if (null != currentPatient && data.ID == currentPatient.ID)
+            {
                 PacientsData[data.ID] = data;
+            }
             else if (!PacientsData.ContainsKey(data.ID))
+            {
                 PacientsData.Add(pacientNumber, data);
+            }
             else
+            {
                 Debug.LogError("ID already exists. This should never happen!");
+            }
 
             currentPatient = null;
 
@@ -137,6 +160,18 @@ namespace Managers
             PacientsData.Values.CopyTo(toArray, 0);
 
             File.WriteAllText(filePath, JsonHelper.ToJson(toArray, true));
+        }
+
+        public void SaveSuccessfulSession(byte freqIndex, Session session)
+        {
+            PacientsData[CurrentPacient.ID].lastSessions[freqIndex] = session;
+            SavePacientData();
+        }
+
+        public void SaveCarhartt(byte freqIndex, Carhartt session)
+        {
+            PacientsData[CurrentPacient.ID].carhartts[freqIndex] = session;
+            SavePacientData();
         }
     }
 }

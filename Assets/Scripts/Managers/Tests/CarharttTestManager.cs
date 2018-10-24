@@ -53,7 +53,8 @@ namespace Tones.Managers
                 pacientButton.onButtonDown.AddListener(LedOn);
                 pacientButton.onButtonUp.AddListener(LedOff);
 
-                Invoke("SessionEnd", carharttDuration);
+                //Invoke("SessionEnd", carharttDuration);
+                Invoke("SessionEnd", 5);
             }
         }
 
@@ -84,21 +85,13 @@ namespace Tones.Managers
 
         public override void SessionEnd(bool sessionSucceded)
         {
-            base.SessionEnd(sessionSucceded);
+            OngoingTest = false;
+            if (sessionSucceded)
+            {
+                DataManager.Instance.SaveCarhartt((byte)(currentFrequencyIndex - 2), currentSession as Carhartt);
+            }
 
             currentSession = null;
-        }
-
-        public void ShowGraph()
-        {
-            if (null != succesfulSessions)
-            {
-                // TODO: Connect with user and persist data
-                foreach (var session in succesfulSessions)
-                {
-                    GraphManager.Instance.GraphSession(session.Value);
-                }
-            }
         }
     }
 }

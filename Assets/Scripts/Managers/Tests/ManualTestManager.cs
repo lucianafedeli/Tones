@@ -102,16 +102,5 @@ namespace Tones.Managers
             currentSession = null;
         }
 
-        public void ShowGraph()
-        {
-            if (null != succesfulSessions)
-            {
-                // TODO: Connect with user and persist data
-                foreach (var session in succesfulSessions)
-                {
-                    GraphManager.Instance.GraphSession(session.Value);
-                }
-            }
-        }
     }
 }

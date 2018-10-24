@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Managers;
+using System;
 using Tones.Sessions;
 using UnityEngine;
 
@@ -32,10 +32,7 @@ namespace Tones.Managers
         }
         #endregion
 
-        #region Sessions
         protected Sessions.Session currentSession = null;
-        protected Dictionary<byte, Sessions.Session> succesfulSessions = new Dictionary<byte, Sessions.Session>();
-        #endregion
 
         private void Start()
         {
@@ -52,21 +49,29 @@ namespace Tones.Managers
         public void ToggleEar()
         {
             if (ear == Tone.EarSide.Left)
+            {
                 ear = Tone.EarSide.Right;
+            }
             else
+            {
                 ear = Tone.EarSide.Left;
+            }
         }
 
         public void IncreaseFrequency()
         {
             if (currentFrequencyIndex < frequencies.Length)
+            {
                 currentFrequencyIndex++;
+            }
         }
 
         public void DecreaseFrequency()
         {
             if (currentFrequencyIndex > 0)
+            {
                 currentFrequencyIndex--;
+            }
         }
 
         public void OnPacientButtonDown()
@@ -88,7 +93,9 @@ namespace Tones.Managers
         {
             OngoingTest = false;
             if (sessionSucceded)
-                succesfulSessions[currentFrequencyIndex] = currentSession;
+            {
+                DataManager.Instance.SaveSuccessfulSession(currentFrequencyIndex, currentSession);
+            }
         }
 
         //protected virtual IEnumerator WaitForPacient()
