@@ -53,8 +53,8 @@ namespace Tones.Managers
                 pacientButton.onButtonDown.AddListener(LedOn);
                 pacientButton.onButtonUp.AddListener(LedOff);
 
-                //Invoke("SessionEnd", carharttDuration);
-                Invoke("SessionEnd", 5);
+                Invoke("SessionEnd", carharttDuration);
+                //Invoke("SessionEnd", 5);
             }
         }
 
