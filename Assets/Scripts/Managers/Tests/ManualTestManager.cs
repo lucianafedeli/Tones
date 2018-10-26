@@ -97,8 +97,11 @@ namespace Tones.Managers
 
         public override void SessionEnd(bool sessionSucceded)
         {
-            base.SessionEnd(sessionSucceded);
-
+            OngoingTest = false;
+            if (sessionSucceded)
+            {
+                DataManager.Instance.SaveSuccessfulManualSession(currentFrequencyIndex, currentSession as Manual);
+            }
             currentSession = null;
         }
 

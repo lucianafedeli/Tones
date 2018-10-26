@@ -162,7 +162,7 @@ namespace Managers
             File.WriteAllText(filePath, JsonHelper.ToJson(toArray, true));
         }
 
-        public void SaveSuccessfulSession(byte freqIndex, Session session)
+        public void SaveSuccessfulManualSession(byte freqIndex, Manual session)
         {
             PacientsData[CurrentPacient.ID].lastSessions[freqIndex] = session;
             SavePacientData();

@@ -1,5 +1,4 @@
-﻿using Managers;
-using System;
+﻿using System;
 using Tones.Sessions;
 using UnityEngine;
 
@@ -89,14 +88,14 @@ namespace Tones.Managers
             Init();
         }
 
-        public virtual void SessionEnd(bool sessionSucceded)
-        {
-            OngoingTest = false;
-            if (sessionSucceded)
-            {
-                DataManager.Instance.SaveSuccessfulSession(currentFrequencyIndex, currentSession);
-            }
-        }
+        public abstract void SessionEnd(bool sessionSucceded);
+        //{
+        //    OngoingTest = false;
+        //    if (sessionSucceded)
+        //    {
+        //        DataManager.Instance.SaveSuccessfulManualSession(currentFrequencyIndex, currentSession);
+        //    }
+        //}
 
         //protected virtual IEnumerator WaitForPacient()
         //{

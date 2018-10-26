@@ -17,5 +17,10 @@ namespace Tones.Managers
             Debug.Log("Assisted Classic test Started.");
             currentSession = new Assisted(currentFrequencyIndex, currentVolume, timeBetweenSessionsAssisted, this, ear);
         }
+
+        public override void SessionEnd(bool sessionSucceded)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

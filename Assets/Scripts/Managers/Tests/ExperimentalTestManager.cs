@@ -5,6 +5,10 @@ namespace Tones.Managers
 {
     public class ExperimentalTestManager : TestManager
     {
+        public override void SessionEnd(bool sessionSucceded)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public override void StartTest()
         {

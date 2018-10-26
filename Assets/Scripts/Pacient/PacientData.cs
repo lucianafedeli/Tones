@@ -10,7 +10,7 @@ namespace Pacient
         public string firstName, lastName, DNI, birthDate;
         public char gender;
         public bool enabled;
-        public Session[] lastSessions;
+        public Manual[] lastSessions;
         public Carhartt[] carhartts;
 
         public PacientData(ulong ID, string firstName, string lastName, string DNI, string birthDate, char gender)
