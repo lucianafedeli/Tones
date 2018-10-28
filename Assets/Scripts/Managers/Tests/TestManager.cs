@@ -33,7 +33,7 @@ namespace Tones.Managers
 
         protected Sessions.Session currentSession = null;
 
-        private void Start()
+        protected virtual void Start()
         {
             currentFrequencyIndex = startFrequencyIndex;
         }
@@ -88,34 +88,6 @@ namespace Tones.Managers
             Init();
         }
 
-        public abstract void SessionEnd(bool sessionSucceded);
-        //{
-        //    OngoingTest = false;
-        //    if (sessionSucceded)
-        //    {
-        //        DataManager.Instance.SaveSuccessfulManualSession(currentFrequencyIndex, currentSession);
-        //    }
-        //}
-
-        //protected virtual IEnumerator WaitForPacient()
-        //{
-        //    yield return new WaitUntil(() => !currentSession.IsPacientButtonEventOngoing());
-
-        //    if (null == postLimitSucceedSession)
-        //    {
-        //        postLimitSucceedSession = currentSession;
-        //    }
-        //    else
-        //    {
-        //        onLimitSucceedSession = currentSession;
-        //    }
-        //    if (currentVolume > 0)
-        //    {
-        //        currentVolume -= onSessionSuccessDecrement;
-        //        Debug.Log("Vol: " + currentVolume + "dB (-" + onSessionSuccessDecrement + ')');
-        //    }
-
-        //    GraphManager.Instance.AddSession(currentSession);
-        //}
+        public abstract void SessionEnd(bool sessionSucceeded);
     }
 }

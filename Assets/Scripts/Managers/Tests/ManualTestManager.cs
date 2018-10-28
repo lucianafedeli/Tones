@@ -1,6 +1,7 @@
 ﻿using Managers;
 using Tones.Sessions;
 using Tones.Tools;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,15 @@ namespace Tones.Managers
 {
     public class ManualTestManager : TestManager
     {
-        #region Manual
         [SerializeField]
         private PushButton pacientButton = null;
         [SerializeField]
         private PushButton manualSessionButton = null;
+
+        [SerializeField]
+        private Button showGraphsButton = null;
+        [SerializeField]
+        private Sprite[] graphsSprites;
 
         [SerializeField]
         private Button[] interactableDuringSession = null;
@@ -23,11 +28,12 @@ namespace Tones.Managers
 
         [SerializeField]
         private Animator ledLight = null;
-        #endregion
 
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
             pacientName.text = DataManager.Instance.CurrentPacient.ToString();
 
             manualSessionButton.onButtonDown.AddListener(ManualButtonDown);
@@ -42,14 +48,13 @@ namespace Tones.Managers
             if (!OngoingTest)
             {
                 StartTest();
-            } (currentSession as Manual).StartTone();
+            }
+            (currentSession as Manual).StartTone();
         }
 
         private void ManualButtonUp()
         {
             (currentSession as Manual).StopTone();
-
-            SessionEnd();
         }
 
         public override void StartTest()
@@ -68,10 +73,14 @@ namespace Tones.Managers
             pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
             pacientButton.onButtonDown.AddListener(LedOn);
             pacientButton.onButtonUp.AddListener(LedOff);
+
+            showGraphsButton.image.sprite = graphsSprites[0];
         }
 
-        public void SessionEnd()
+        public void ShowGraphics()
         {
+            OngoingTest = false;
+
             pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
             pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
             pacientButton.onButtonDown.RemoveListener(LedOn);
@@ -85,6 +94,21 @@ namespace Tones.Managers
             currentSession.EndSession();
         }
 
+        public override void SessionEnd(bool sessionSucceeded)
+        {
+            if (sessionSucceeded)
+            {
+                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Manual);
+                FindObjectOfType<SceneManagerFinder>().LoadScene("Graphics");
+            }
+            else
+            {
+                showGraphsButton.image.sprite = graphsSprites[1];
+            }
+
+            currentSession = null;
+        }
+
         private void LedOn()
         {
             ledLight.SetTrigger("On");
@@ -93,16 +117,6 @@ namespace Tones.Managers
         private void LedOff()
         {
             ledLight.SetTrigger("Off");
-        }
-
-        public override void SessionEnd(bool sessionSucceded)
-        {
-            OngoingTest = false;
-            if (sessionSucceded)
-            {
-                DataManager.Instance.SaveSuccessfulManualSession(currentFrequencyIndex, currentSession as Manual);
-            }
-            currentSession = null;
         }
 
     }

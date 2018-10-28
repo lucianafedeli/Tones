@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tones.Sessions;
 
 namespace Pacient
@@ -10,7 +11,7 @@ namespace Pacient
         public string firstName, lastName, DNI, birthDate;
         public char gender;
         public bool enabled;
-        public Manual[] lastSessions;
+        public List<Manual> lastSessions;
         public Carhartt[] carhartts;
 
         public PacientData(ulong ID, string firstName, string lastName, string DNI, string birthDate, char gender)

@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tools
 {
+    [Serializable]
     public class TimedEvent
     {
         public TimedEvent(float start, float end)
         {
             this.Start = start;
             this.End = end;
-            if(end < start)
+            if (end < start)
+            {
                 throw new Exception("Event ended before it started?");
+            }
         }
 
         public float Start { get; set; }
@@ -32,6 +34,7 @@ namespace Tools
         }
     }
 
+    [Serializable]
     public class TimedPairEvents
     {
         public TimedPairEvents()
@@ -44,7 +47,7 @@ namespace Tools
             this.pairs = pairs;
         }
 
-        List<TimedEvent> pairs = new List<TimedEvent>();
+        private List<TimedEvent> pairs = new List<TimedEvent>();
         public List<TimedEvent> Pairs
         {
             get
@@ -53,7 +56,7 @@ namespace Tools
             }
         }
 
-
+        [NonSerialized]
         private bool currentEventIsOngoing = false;
         public bool CurrentEventIsOngoing
         {
@@ -61,8 +64,7 @@ namespace Tools
             private set { currentEventIsOngoing = value; }
         }
 
-
-        float eventStartedAt;
+        private float eventStartedAt;
 
         public void EventStarted()
         {
@@ -85,7 +87,7 @@ namespace Tools
         {
             TimedPairEvents normalizedTimedPairEvents = new TimedPairEvents(this.pairs);
 
-            for(int i = 0; i < normalizedTimedPairEvents.pairs.Count; i++)
+            for (int i = 0; i < normalizedTimedPairEvents.pairs.Count; i++)
             {
                 normalizedTimedPairEvents.pairs[i].Start = normalizedTimedPairEvents.pairs[i].Start - normalizer;
                 normalizedTimedPairEvents.pairs[i].End = normalizedTimedPairEvents.pairs[i].End - normalizer;
@@ -97,11 +99,13 @@ namespace Tools
         public float GetLongestDuration()
         {
             float max = 0;
-            for(int i = 0; i < pairs.Count; i++)
+            for (int i = 0; i < pairs.Count; i++)
             {
                 float duration = pairs[i].Duration();
-                if(max < duration)
+                if (max < duration)
+                {
                     max = duration;
+                }
             }
             return max;
         }
@@ -109,7 +113,7 @@ namespace Tools
         public override string ToString()
         {
             string toStringReturn = string.Empty;
-            for(int i = 0; i < pairs.Count; i++)
+            for (int i = 0; i < pairs.Count; i++)
             {
                 toStringReturn += pairs[i].ToString();
                 toStringReturn += '\n';

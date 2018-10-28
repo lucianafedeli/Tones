@@ -34,18 +34,28 @@ namespace Tones.Managers
         [SerializeField]
         private GameObject CarharttLinePrefab;
 
+        [SerializeField]
+        private Button carharttTabButton;
+
         private void Start()
         {
             DataManager dm = DataManager.Instance;
-            foreach (var carhartt in dm.PacientsData[dm.CurrentPacient.ID].carhartts)
+
+            carharttTabButton.interactable = false;
+
+            if (null != dm.PacientsData[dm.CurrentPacient.ID].carhartts)
             {
-                GraphCarhartt(carhartt);
+                carharttTabButton.interactable = true;
+                foreach (var carhartt in dm.PacientsData[dm.CurrentPacient.ID].carhartts)
+                {
+                    GraphCarhartt(carhartt);
+                }
             }
         }
 
         private void GraphSession(Session session)
         {
-            GameObject imageInstance = session.IsLeftEar ?
+            GameObject imageInstance = session.Tone.Ear == Tone.EarSide.Left ?
                                         Instantiate(leftEarImagePrefab) :
                                         Instantiate(rightEarImagePrefab);
 

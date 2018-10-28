@@ -1,9 +1,9 @@
 ﻿using Design_Patterns;
+using Newtonsoft.Json;
 using Pacient;
 using System.Collections.Generic;
 using System.IO;
 using Tones.Sessions;
-using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +30,7 @@ namespace Managers
         private Button editCurrentPacientButton = null;
         private Button startStudyForCurrentPacientButton = null;
         private Button createNewPatientButton = null;
+        private Button showGraphs = null;
 
         [SerializeField]
         private PacientData currentPatient = null;
@@ -56,8 +57,15 @@ namespace Managers
                     createNewPatientButton = GameObject.Find("ButtonNewUser").GetComponent<Button>();
                 }
 
+                if (null == showGraphs)
+                {
+                    showGraphs = GameObject.Find("ButtonGraphs").GetComponent<Button>();
+                }
+
                 startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPatient;
                 createNewPatientButton.interactable = null == currentPatient;
+
+                showGraphs.interactable = (null != currentPatient && null != currentPatient.lastSessions && currentPatient.lastSessions.Count > 0);
             }
         }
 
@@ -80,12 +88,12 @@ namespace Managers
             {
                 string dataAsJson = File.ReadAllText(filePath);
 
-                PacientData[] dataArray = JsonHelper.FromJson<PacientData>(dataAsJson);
+                PacientData[] dataArray = JsonConvert.DeserializeObject<PacientData[]>(dataAsJson);
 
                 if (null == dataArray)
                 {
-                    PacientData singlePacient = JsonUtility.FromJson<PacientData>(dataAsJson);
-                    PacientsData = new Dictionary<ulong, PacientData> { { singlePacient.ID, singlePacient } };
+                    //PacientData singlePacient = JsonUtility.FromJson<PacientData>(dataAsJson);
+                    //PacientsData = new Dictionary<ulong, PacientData> { { singlePacient.ID, singlePacient } };
                 }
                 else
                 {
@@ -159,12 +167,37 @@ namespace Managers
             PacientData[] toArray = new PacientData[PacientsData.Count];
             PacientsData.Values.CopyTo(toArray, 0);
 
-            File.WriteAllText(filePath, JsonHelper.ToJson(toArray, true));
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(toArray));
         }
 
-        public void SaveSuccessfulManualSession(byte freqIndex, Manual session)
+        public void SaveSuccessfulManualSession(Manual newSession)
         {
-            PacientsData[CurrentPacient.ID].lastSessions[freqIndex] = session;
+            if (null == PacientsData[CurrentPacient.ID].lastSessions)
+            {
+                PacientsData[CurrentPacient.ID].lastSessions = new List<Manual>();
+            }
+
+            bool alreadyExists = false;
+            int existsIndex = -1;
+
+            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastSessions.Count && !alreadyExists; i++)
+            {
+                if (PacientsData[CurrentPacient.ID].lastSessions[i].Tone.FrequencyIndex == newSession.Tone.FrequencyIndex)
+                {
+                    alreadyExists = true;
+                    existsIndex = i;
+                }
+            }
+
+            if (alreadyExists)
+            {
+                PacientsData[CurrentPacient.ID].lastSessions[existsIndex] = newSession;
+            }
+            else
+            {
+                PacientsData[CurrentPacient.ID].lastSessions.Add(newSession);
+            }
+
             SavePacientData();
         }
 

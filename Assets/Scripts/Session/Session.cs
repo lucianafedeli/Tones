@@ -1,7 +1,6 @@
 ﻿using System;
 using Tones.Managers;
 using Tools;
-using UnityEngine;
 
 namespace Tones.Sessions
 {
@@ -13,6 +12,7 @@ namespace Tones.Sessions
     [Serializable]
     public abstract class Session
     {
+        [NonSerialized]
         protected TestManager testManager;
 
         protected Tone tone;
@@ -24,7 +24,6 @@ namespace Tones.Sessions
 
         protected byte frequencyIndex = 3;
 
-        [SerializeField]
         private bool succeded = false;
         private bool isPacientPushOngoing = false;
 
@@ -60,18 +59,9 @@ namespace Tones.Sessions
             }
         }
 
-        private bool isLeftEar;
-        public bool IsLeftEar
-        {
-            get { return isLeftEar; }
-            set { isLeftEar = value; }
-        }
-
-
         public Session(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
         {
             tone = new Tone(frequencyIndex, volume, ear);
-            isLeftEar = ear == Tone.EarSide.Left;
             testManager = manager;
         }
 

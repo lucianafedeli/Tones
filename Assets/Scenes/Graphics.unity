@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 362717848}
   - component: {fileID: 362717847}
   m_Layer: 0
-  m_Name: Audiometria
+  m_Name: Audiograma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1651,6 +1651,7 @@ MonoBehaviour:
   - {fileID: 531464110}
   CarharttLinePrefab: {fileID: 1563074467771904, guid: c2c93ec3d23ea4546a18813674928e87,
     type: 2}
+  carharttTabButton: {fileID: 493748886}
 --- !u!4 &1333580001
 Transform:
   m_ObjectHideFlags: 0
