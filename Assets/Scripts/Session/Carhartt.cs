@@ -11,5 +11,7 @@ namespace Tones.Sessions
             StartSession();
             TonePlayer.Instance.PlayTone(tone);
         }
+
+
     }
 }

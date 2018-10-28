@@ -299,6 +299,11 @@ Prefab:
       propertyPath: m_Name
       value: CarharttAxis_1000
       objectReference: {fileID: 0}
+    - target: {fileID: 114532652248989876, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
+        type: 2}
+      propertyPath: m_Text
+      value: 1000Hz
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba, type: 2}
   m_IsPrefabAsset: 0
@@ -568,6 +573,11 @@ Prefab:
     - target: {fileID: 1009519608878810, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba, type: 2}
       propertyPath: m_Name
       value: CarharttAxis_2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532652248989876, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
+        type: 2}
+      propertyPath: m_Text
+      value: 2000Hz
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba, type: 2}
@@ -1147,6 +1157,11 @@ Prefab:
     - target: {fileID: 1009519608878810, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba, type: 2}
       propertyPath: m_Name
       value: CarharttAxis_4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532652248989876, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
+        type: 2}
+      propertyPath: m_Text
+      value: 4000Hz
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba, type: 2}
@@ -2102,7 +2117,7 @@ Prefab:
     - target: {fileID: 224148987214700320, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40.020004
+      value: -40.02
       objectReference: {fileID: 0}
     - target: {fileID: 224148987214700320, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
         type: 2}

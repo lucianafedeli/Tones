@@ -94,6 +94,7 @@ namespace Tones.Sessions
         public void EndSession()
         {
             TonePlayer.Instance.StopTone();
+            tonePlayEvents.EventEnded();
             testManager.SessionEnd(succeded);
         }
 

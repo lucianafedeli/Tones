@@ -201,9 +201,28 @@ namespace Managers
             SavePacientData();
         }
 
-        public void SaveCarhartt(byte freqIndex, Carhartt session)
+        public void SaveCarhartt(Carhartt newSession)
         {
-            PacientsData[CurrentPacient.ID].carhartts[freqIndex] = session;
+            if (null == PacientsData[CurrentPacient.ID].carhartts)
+            {
+                PacientsData[CurrentPacient.ID].carhartts = new List<Carhartt>();
+            }
+            bool found = false;
+            for (int i = 0; i < PacientsData[CurrentPacient.ID].carhartts.Count; i++)
+            {
+                if (PacientsData[CurrentPacient.ID].carhartts[i].Tone.FrequencyIndex == newSession.Tone.FrequencyIndex)
+                {
+                    found = true;
+                    PacientsData[CurrentPacient.ID].carhartts[i] = newSession;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                PacientsData[CurrentPacient.ID].carhartts.Add(newSession);
+            }
+
             SavePacientData();
         }
     }

@@ -12,7 +12,7 @@ namespace Pacient
         public char gender;
         public bool enabled;
         public List<Manual> lastSessions;
-        public Carhartt[] carhartts;
+        public List<Carhartt> carhartts;
 
         public PacientData(ulong ID, string firstName, string lastName, string DNI, string birthDate, char gender)
         {

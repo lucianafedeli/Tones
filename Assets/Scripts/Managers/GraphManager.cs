@@ -70,7 +70,7 @@ namespace Tones.Managers
 
         private void GraphCarhartt(Carhartt session)
         {
-            var parent = CarharttParents[session.Tone.FrequencyIndex - 2];
+            var parent = CarharttParents[session.Tone.FrequencyIndex - 3];
 
             var events = session.PacientPushEvents.Pairs;
 
@@ -78,15 +78,19 @@ namespace Tones.Managers
 
             foreach (var pressedEvent in events)
             {
-                GameObject line = Instantiate(CarharttLinePrefab, parent);
-                LineRenderer renderer = line.transform.GetChild(0).GetComponent<LineRenderer>();
+                if (pressedEvent.Duration() > 1)
+                {
+                    GameObject line = Instantiate(CarharttLinePrefab, parent);
+                    LineRenderer renderer = line.transform.GetChild(0).GetComponent<LineRenderer>();
 
-                float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+                    float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x / 2;
 
-                renderer.SetPosition(0, new Vector3(pressedEvent.Start * width / 60, 5, 0));
-                renderer.SetPosition(1, new Vector3(pressedEvent.End * width / 60, 5, 0));
+                    renderer.SetPosition(0, new Vector3(pressedEvent.Start * width / 60, 5, 0));
+                    renderer.SetPosition(1, new Vector3(pressedEvent.End * width / 60, 5, 0));
 
-                line.transform.GetChild(1).GetComponent<Text>().text = ((int)pressedEvent.Duration()).ToString();
+                    line.transform.GetChild(1).localPosition = new Vector3(pressedEvent.End * width / 60, 5, 0);
+                    line.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
+                }
             }
         }
     }

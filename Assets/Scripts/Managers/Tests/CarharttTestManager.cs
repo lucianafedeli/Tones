@@ -24,8 +24,10 @@ namespace Tones.Managers
         [SerializeField]
         private float carharttDuration = 60;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
             previousState = new bool[interactableDuringSession.Length];
 
             if (null != DataManager.Instance.CurrentPacient)
@@ -87,10 +89,11 @@ namespace Tones.Managers
             OngoingTest = false;
             if (sessionSucceded)
             {
-                DataManager.Instance.SaveCarhartt((byte)(currentFrequencyIndex - 2), currentSession as Carhartt);
+                DataManager.Instance.SaveCarhartt(currentSession as Carhartt);
             }
 
             currentSession = null;
         }
+
     }
 }

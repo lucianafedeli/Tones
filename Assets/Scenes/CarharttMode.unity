@@ -1445,7 +1445,7 @@ MonoBehaviour:
   - {fileID: 1706319074}
   pacientName: {fileID: 611534696}
   ledLight: {fileID: 1929493576}
-  carharttDuration: 8
+  carharttDuration: 60
 --- !u!4 &1066370167
 Transform:
   m_ObjectHideFlags: 0
