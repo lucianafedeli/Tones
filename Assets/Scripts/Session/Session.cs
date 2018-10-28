@@ -12,7 +12,6 @@ namespace Tones.Sessions
     [Serializable]
     public abstract class Session
     {
-        [NonSerialized]
         protected TestManager testManager;
 
         protected Tone tone;

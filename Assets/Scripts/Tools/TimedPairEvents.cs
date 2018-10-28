@@ -5,58 +5,11 @@ using UnityEngine;
 namespace Tools
 {
     [Serializable]
-    public class TimedEvent
-    {
-        public TimedEvent(float start, float end)
-        {
-            this.Start = start;
-            this.End = end;
-            if (end < start)
-            {
-                throw new Exception("Event ended before it started?");
-            }
-        }
-
-        public float Start { get; set; }
-        public float End { get; set; }
-
-
-        public float Duration()
-        {
-            return End - Start;
-        }
-
-        public override string ToString()
-        {
-            return "Event Started: " + Start.ToString("0.00") + "s\t" +
-                   "Event Ended: " + End.ToString("0.00") + "s\t" +
-                   "Duration: " + Duration().ToString("0.00") + "s\n";
-        }
-    }
-
-    [Serializable]
     public class TimedPairEvents
     {
-        public TimedPairEvents()
-        {
+        public List<TimedEvent> pairs = new List<TimedEvent>();
 
-        }
 
-        public TimedPairEvents(List<TimedEvent> pairs)
-        {
-            this.pairs = pairs;
-        }
-
-        private List<TimedEvent> pairs = new List<TimedEvent>();
-        public List<TimedEvent> Pairs
-        {
-            get
-            {
-                return pairs;
-            }
-        }
-
-        [NonSerialized]
         private bool currentEventIsOngoing = false;
         public bool CurrentEventIsOngoing
         {
@@ -85,12 +38,13 @@ namespace Tools
 
         public TimedPairEvents Normalized(float normalizer)
         {
-            TimedPairEvents normalizedTimedPairEvents = new TimedPairEvents(this.pairs);
+            TimedPairEvents normalizedTimedPairEvents = new TimedPairEvents();
+            normalizedTimedPairEvents.pairs = this.pairs;
 
             for (int i = 0; i < normalizedTimedPairEvents.pairs.Count; i++)
             {
-                normalizedTimedPairEvents.pairs[i].Start = normalizedTimedPairEvents.pairs[i].Start - normalizer;
-                normalizedTimedPairEvents.pairs[i].End = normalizedTimedPairEvents.pairs[i].End - normalizer;
+                normalizedTimedPairEvents.pairs[i].start = normalizedTimedPairEvents.pairs[i].start - normalizer;
+                normalizedTimedPairEvents.pairs[i].end = normalizedTimedPairEvents.pairs[i].end - normalizer;
             }
 
             return normalizedTimedPairEvents;

@@ -17,15 +17,15 @@ namespace Managers
         private bool pacientDataHasBeenLoaded = false;
 
         [SerializeField]
-        private ulong pacientNumber = 1;
+        private int pacientNumber = 0;
 
-        public ulong PacientNumber
+        public int PacientNumber
         {
             get { return pacientNumber; }
             set { pacientNumber = value; }
         }
 
-        public Dictionary<ulong, PacientData> PacientsData { get; private set; }
+        public Dictionary<int, PacientData> PacientsData { get; private set; }
 
         private Button editCurrentPacientButton = null;
         private Button startStudyForCurrentPacientButton = null;
@@ -88,35 +88,37 @@ namespace Managers
             {
                 string dataAsJson = File.ReadAllText(filePath);
 
-                PacientData[] dataArray = JsonConvert.DeserializeObject<PacientData[]>(dataAsJson);
+                //PacientData[] dataArray = JsonConvert.DeserializeObject<PacientData[]>(dataAsJson);
 
-                if (null == dataArray)
-                {
-                    //PacientData singlePacient = JsonUtility.FromJson<PacientData>(dataAsJson);
-                    //PacientsData = new Dictionary<ulong, PacientData> { { singlePacient.ID, singlePacient } };
-                }
-                else
-                {
-                    PacientsData = new Dictionary<ulong, PacientData>(dataArray.Length);
+                PacientsData = JsonConvert.DeserializeObject<Dictionary<int, PacientData>>(dataAsJson);
+
+                //if (null == dataArray)
+                //{
+                //    //PacientData singlePacient = JsonUtility.FromJson<PacientData>(dataAsJson);
+                //    //PacientsData = new Dictionary<ulong, PacientData> { { singlePacient.ID, singlePacient } };
+                //}
+                //else
+                //{
+                //    PacientsData = new Dictionary<ulong, PacientData>(dataArray.Length);
 
 
-                    foreach (PacientData t in dataArray)
-                    {
-                        if (pacientNumber < t.ID)
-                        {
-                            pacientNumber = t.ID;
-                        }
+                //    foreach (PacientData t in dataArray)
+                //    {
+                //        if (pacientNumber < t.ID)
+                //        {
+                //            pacientNumber = t.ID;
+                //        }
 
-                        PacientsData.Add(t.ID, t);
-                    }
-                }
+                //        PacientsData.Add(t.ID, t);
+                //    }
+                //}
 
-                pacientNumber++;
+                //pacientNumber++;
                 pacientDataHasBeenLoaded = true;
             }
         }
 
-        public Dictionary<ulong, PacientData> GetPacientsData()
+        public Dictionary<int, PacientData> GetPacientsData()
         {
             if (null == PacientsData)
             {
@@ -130,7 +132,7 @@ namespace Managers
         {
             if (null == PacientsData)
             {
-                PacientsData = new Dictionary<ulong, PacientData>();
+                PacientsData = new Dictionary<int, PacientData>();
             }
 
             if (null != currentPatient && data.ID == currentPatient.ID)
@@ -151,12 +153,12 @@ namespace Managers
             SavePacientData();
         }
 
-        public string GetLatestTest(ulong ID)
+        public string GetLatestTest(int ID)
         {
             return "24/01/1991"; // TODO
         }
 
-        public void RemovePacient(ulong ID)
+        public void RemovePacient(int ID)
         {
             PacientsData[ID].enabled = false;
             SavePacientData();
@@ -164,10 +166,10 @@ namespace Managers
 
         private void SavePacientData()
         {
-            PacientData[] toArray = new PacientData[PacientsData.Count];
-            PacientsData.Values.CopyTo(toArray, 0);
+            //PacientData[] toArray = new PacientData[PacientsData.Count];
+            //PacientsData.Values.CopyTo(toArray, 0);
 
-            File.WriteAllText(filePath, JsonConvert.SerializeObject(toArray));
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(PacientsData, Formatting.Indented));
         }
 
         public void SaveSuccessfulManualSession(Manual newSession)

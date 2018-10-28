@@ -54,7 +54,8 @@ namespace Tones.Managers
 
         private void ManualButtonUp()
         {
-            (currentSession as Manual).StopTone();
+            (currentSession as Manual).EndSession();
+
         }
 
         public override void StartTest()
@@ -79,32 +80,31 @@ namespace Tones.Managers
 
         public void ShowGraphics()
         {
+            FindObjectOfType<SceneManagerFinder>().LoadScene("Graphics");
+        }
+
+        public override void SessionEnd(bool sessionSucceeded)
+        {
             OngoingTest = false;
 
-            pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
-            pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
-            pacientButton.onButtonDown.RemoveListener(LedOn);
-            pacientButton.onButtonUp.RemoveListener(LedOff);
+            if (sessionSucceeded)
+            {
+                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Manual);
+            }
+            else
+            {
+                showGraphsButton.image.sprite = graphsSprites[1];
+            }
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {
                 interactableDuringSession[i].interactable = previousState[i];
             }
 
-            currentSession.EndSession();
-        }
-
-        public override void SessionEnd(bool sessionSucceeded)
-        {
-            if (sessionSucceeded)
-            {
-                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Manual);
-                FindObjectOfType<SceneManagerFinder>().LoadScene("Graphics");
-            }
-            else
-            {
-                showGraphsButton.image.sprite = graphsSprites[1];
-            }
+            pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
+            pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
+            pacientButton.onButtonDown.RemoveListener(LedOn);
+            pacientButton.onButtonUp.RemoveListener(LedOff);
 
             currentSession = null;
         }

@@ -7,14 +7,14 @@ namespace Pacient
     [Serializable]
     public class PacientData
     {
-        public ulong ID;
+        public int ID;
         public string firstName, lastName, DNI, birthDate;
         public char gender;
         public bool enabled;
         public List<Manual> lastSessions;
         public List<Carhartt> carhartts;
 
-        public PacientData(ulong ID, string firstName, string lastName, string DNI, string birthDate, char gender)
+        public PacientData(int ID, string firstName, string lastName, string DNI, string birthDate, char gender)
         {
             this.ID = ID;
             this.firstName = firstName;

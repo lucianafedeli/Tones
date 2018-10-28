@@ -1,6 +1,5 @@
 ﻿using Managers;
 using Pacient;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -24,7 +23,9 @@ namespace UI
         private void Start()
         {
             if (null != DataManager.Instance.CurrentPacient)
+            {
                 InjectData(DataManager.Instance.CurrentPacient);
+            }
         }
 
         private void InjectData(PacientData data)
@@ -65,11 +66,13 @@ namespace UI
         public void ValidateDNI(string DNI)
         {
             if (DNI.Length != 8)
-                return;
-
-            if (null != DataManager.Instance.PacientsData)
             {
-                foreach (KeyValuePair<ulong, PacientData> pacient in DataManager.Instance.PacientsData)
+                return;
+            }
+
+            if (null != DataManager.Instance.GetPacientsData())
+            {
+                foreach (var pacient in DataManager.Instance.GetPacientsData())
                 {
                     if (null == DataManager.Instance.CurrentPacient || DataManager.Instance.CurrentPacient.DNI != DNI)
                     {
@@ -77,7 +80,10 @@ namespace UI
                         {
                             validDNI = false;
                             if (null != OnInvalidDNI)
+                            {
                                 OnInvalidDNI.Invoke();
+                            }
+
                             return;
                         }
                     }
@@ -86,7 +92,9 @@ namespace UI
 
             validDNI = true;
             if (null != OnValidDNI)
+            {
                 OnValidDNI.Invoke();
+            }
         }
     }
 }

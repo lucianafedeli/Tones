@@ -1,12 +1,10 @@
-﻿using System;
-using Tones.Sessions;
+﻿using Tones.Sessions;
 using UnityEngine;
 
 namespace Tones.Managers
 {
     public abstract class TestManager : MonoBehaviour
     {
-        [NonSerialized]
         public bool OngoingTest = false;
 
         protected Tone.EarSide ear = Tone.EarSide.Left;

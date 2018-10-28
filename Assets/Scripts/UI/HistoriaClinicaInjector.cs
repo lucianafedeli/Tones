@@ -1,8 +1,6 @@
 ﻿using Managers;
-using Pacient;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
@@ -20,11 +18,11 @@ namespace UI
 
         private void AddPacients()
         {
-            Dictionary<ulong, PacientData> pacientsData = DataManager.Instance.GetPacientsData();
+            var pacientsData = DataManager.Instance.GetPacientsData();
 
             if (null != pacientsData)
             {
-                foreach (KeyValuePair<ulong, PacientData> pacientData in pacientsData)
+                foreach (var pacientData in pacientsData)
                 {
                     if (pacientData.Value.enabled)
                     {
@@ -44,9 +42,13 @@ namespace UI
             foreach (PacientRow element in rows)
             {
                 if (sortString == "" || element.pacientData.text.ToLower().Contains(sortString.ToLower()))
+                {
                     element.gameObject.SetActive(true);
+                }
                 else
+                {
                     element.gameObject.SetActive(false);
+                }
             }
         }
     }

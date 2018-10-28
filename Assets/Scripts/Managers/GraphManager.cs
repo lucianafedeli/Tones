@@ -43,10 +43,10 @@ namespace Tones.Managers
 
             carharttTabButton.interactable = false;
 
-            if (null != dm.PacientsData[dm.CurrentPacient.ID].carhartts)
+            if (null != dm.GetPacientsData()[dm.CurrentPacient.ID].carhartts)
             {
                 carharttTabButton.interactable = true;
-                foreach (var carhartt in dm.PacientsData[dm.CurrentPacient.ID].carhartts)
+                foreach (var carhartt in dm.GetPacientsData()[dm.CurrentPacient.ID].carhartts)
                 {
                     GraphCarhartt(carhartt);
                 }
@@ -72,7 +72,7 @@ namespace Tones.Managers
         {
             var parent = CarharttParents[session.Tone.FrequencyIndex - 3];
 
-            var events = session.PacientPushEvents.Pairs;
+            var events = session.PacientPushEvents.pairs;
 
             parent.GetChild(0).GetComponent<Text>().text = ((int)session.TonePlayEvents.GetLongestDuration()).ToString();
 
@@ -83,12 +83,12 @@ namespace Tones.Managers
                     GameObject line = Instantiate(CarharttLinePrefab, parent);
                     LineRenderer renderer = line.transform.GetChild(0).GetComponent<LineRenderer>();
 
-                    float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x / 2;
+                    float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x;
 
-                    renderer.SetPosition(0, new Vector3(pressedEvent.Start * width / 60, 5, 0));
-                    renderer.SetPosition(1, new Vector3(pressedEvent.End * width / 60, 5, 0));
+                    renderer.SetPosition(0, new Vector3(pressedEvent.start * width / 60, 5, 0));
+                    renderer.SetPosition(1, new Vector3(pressedEvent.end * width / 60, 5, 0));
 
-                    line.transform.GetChild(1).localPosition = new Vector3(pressedEvent.End * width / 60, 5, 0);
+                    line.transform.GetChild(1).localPosition = new Vector3(pressedEvent.end * width / 60, 5, 0);
                     line.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
                 }
             }
