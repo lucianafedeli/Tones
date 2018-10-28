@@ -184,7 +184,7 @@ namespace Managers
 
             for (int i = 0; i < PacientsData[CurrentPacient.ID].lastSessions.Count && !alreadyExists; i++)
             {
-                if (PacientsData[CurrentPacient.ID].lastSessions[i].Tone.FrequencyIndex == newSession.Tone.FrequencyIndex)
+                if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
                     alreadyExists = true;
                     existsIndex = i;
@@ -212,7 +212,7 @@ namespace Managers
             bool found = false;
             for (int i = 0; i < PacientsData[CurrentPacient.ID].carhartts.Count; i++)
             {
-                if (PacientsData[CurrentPacient.ID].carhartts[i].Tone.FrequencyIndex == newSession.Tone.FrequencyIndex)
+                if (PacientsData[CurrentPacient.ID].carhartts[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
                     found = true;
                     PacientsData[CurrentPacient.ID].carhartts[i] = newSession;

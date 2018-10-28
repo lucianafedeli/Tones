@@ -1,4 +1,5 @@
 ﻿using Managers;
+using System.Collections;
 using Tones.Sessions;
 using Tones.Tools;
 using UnityEngine;
@@ -21,8 +22,7 @@ namespace Tones.Managers
         [SerializeField]
         private Animator ledLight = null;
 
-        [SerializeField]
-        private float carharttDuration = 60;
+        private readonly float carharttDuration = 60;
 
         protected override void Start()
         {
@@ -55,8 +55,14 @@ namespace Tones.Managers
                 pacientButton.onButtonDown.AddListener(LedOn);
                 pacientButton.onButtonUp.AddListener(LedOff);
 
-                Invoke("SessionEnd", carharttDuration);
+                StartCoroutine(SessionEndRoutine());
             }
+        }
+
+        private IEnumerator SessionEndRoutine()
+        {
+            yield return new WaitForSecondsRealtime(carharttDuration);
+            SessionEnd();
         }
 
         public void SessionEnd()

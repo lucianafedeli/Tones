@@ -14,54 +14,19 @@ namespace Tones.Sessions
     {
         protected TestManager testManager;
 
-        protected Tone tone;
-        public Tone Tone
-        {
-            get { return tone; }
-            set { tone = value; }
-        }
-
-        protected byte frequencyIndex = 3;
-
+        public Tone tone;
         private bool succeded = false;
         private bool isPacientPushOngoing = false;
 
-        protected TimedPairEvents tonePlayEvents = new TimedPairEvents();
-        public TimedPairEvents TonePlayEvents
-        {
-            get
-            {
-                if (succeded)
-                {
-                    return tonePlayEvents;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        protected TimedPairEvents pacientPushEvents = new TimedPairEvents();
-        public TimedPairEvents PacientPushEvents
-        {
-            get
-            {
-                if (succeded)
-                {
-                    return pacientPushEvents;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
+        public TimedPairEvents tonePlayEvents;
+        public TimedPairEvents pacientPushEvents;
 
         public Session(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
         {
             tone = new Tone(frequencyIndex, volume, ear);
             testManager = manager;
+            tonePlayEvents = new TimedPairEvents();
+            pacientPushEvents = new TimedPairEvents();
         }
 
         public void StartSession()

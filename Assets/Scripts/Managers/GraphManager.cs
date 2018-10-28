@@ -55,26 +55,26 @@ namespace Tones.Managers
 
         private void GraphSession(Session session)
         {
-            GameObject imageInstance = session.Tone.Ear == Tone.EarSide.Left ?
+            GameObject imageInstance = session.tone.Ear == Tone.EarSide.Left ?
                                         Instantiate(leftEarImagePrefab) :
                                         Instantiate(rightEarImagePrefab);
 
             //imageInstance.transform.localPosition = new Vector3(0, 0);
 
             imageInstance.transform.localPosition = new Vector3(
-                                        xPadding + (xHzIncrement * (session.Tone.FrequencyIndex + 1)) - imageSize / 2,    //x
-                                        -yPadding - yDbIncrement * session.Tone.Volume * 15 + imageSize * .5f);             //y
+                                        xPadding + (xHzIncrement * (session.tone.FrequencyIndex + 1)) - imageSize / 2,    //x
+                                        -yPadding - yDbIncrement * session.tone.Volume * 15 + imageSize * .5f);             //y
 
             imageInstance.transform.SetParent(imagesParent, false);
         }
 
         private void GraphCarhartt(Carhartt session)
         {
-            var parent = CarharttParents[session.Tone.FrequencyIndex - 3];
+            var parent = CarharttParents[session.tone.FrequencyIndex - 3];
 
-            var events = session.PacientPushEvents.pairs;
+            var events = session.pacientPushEvents.pairs;
 
-            parent.GetChild(0).GetComponent<Text>().text = ((int)session.TonePlayEvents.GetLongestDuration()).ToString();
+            parent.GetChild(0).GetComponent<Text>().text = ((int)session.tonePlayEvents.GetLongestDuration()).ToString();
 
             foreach (var pressedEvent in events)
             {

@@ -14,21 +14,20 @@ namespace Tools
         public bool CurrentEventIsOngoing
         {
             get { return currentEventIsOngoing; }
-            private set { currentEventIsOngoing = value; }
         }
 
         private float eventStartedAt;
 
         public void EventStarted()
         {
-            CurrentEventIsOngoing = true;
-            eventStartedAt = Time.time;
+            currentEventIsOngoing = true;
+            eventStartedAt = Time.realtimeSinceStartup;
         }
 
         public void EventEnded()
         {
-            CurrentEventIsOngoing = false;
-            pairs.Add(new TimedEvent(eventStartedAt, Time.time));
+            currentEventIsOngoing = false;
+            pairs.Add(new TimedEvent(eventStartedAt, Time.realtimeSinceStartup));
         }
 
         public void AddPair(TimedEvent newEvent)
