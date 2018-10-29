@@ -88,8 +88,10 @@ namespace Tones.Managers
                     renderer.SetPosition(0, new Vector3(pressedEvent.start * width / 60, 5, 0));
                     renderer.SetPosition(1, new Vector3(pressedEvent.end * width / 60, 5, 0));
 
-                    line.transform.GetChild(1).localPosition = new Vector3(pressedEvent.end * width / 60, 5, 0);
+                    line.transform.GetChild(1).localPosition = new Vector3((pressedEvent.end * width / 60) - 10, -10, 0);
                     line.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
+
+                    line.transform.localPosition = new Vector3(-140 * 3, 0, 0);
                 }
             }
         }

@@ -447,8 +447,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: AUDIOGRAMA
 --- !u!222 &362717848
@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 477236114}
   - component: {fileID: 477236113}
   - component: {fileID: 477236116}
+  - component: {fileID: 477236117}
   m_Layer: 5
   m_Name: ToPDF
   m_TagString: Untagged
@@ -663,9 +664,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 477236117}
+        m_MethodName: TakeScreenshotAndShare
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -724,6 +725,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.5}
   m_EffectDistance: {x: 1.77, y: -2.85}
   m_UseGraphicAlpha: 1
+--- !u!114 &477236117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 477236111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b539e7cb73bea8d42bc9707a034b21d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subject: 
+  ShareMessage: 
+  url: 
+  ScreenshotName: 
 --- !u!1 &492736259
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,8 +804,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: CARHARTT
 --- !u!222 &492736262
@@ -1342,7 +1358,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1070945868680298, guid: e2fcd5dcaa6eee046bf180ac2e8d996b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2fcd5dcaa6eee046bf180ac2e8d996b, type: 2}
@@ -2117,7 +2133,7 @@ Prefab:
     - target: {fileID: 224148987214700320, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40.02
+      value: -40.020004
       objectReference: {fileID: 0}
     - target: {fileID: 224148987214700320, guid: 7e44088c7d536f04ab4fc1ce8a87b0ba,
         type: 2}
