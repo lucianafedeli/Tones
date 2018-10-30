@@ -7,7 +7,7 @@ namespace Tools
     {
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            ScenesManager.Instance.LoadScene("Instructions");
+            ScenesManager.Instance.LoadTonesScene("Instructions");
         }
     }
 }

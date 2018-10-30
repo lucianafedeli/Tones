@@ -5,24 +5,25 @@ using UnityEngine.UI;
 public class ToneSettingsManager : MonoBehaviour
 {
     [SerializeField]
-    Text freqText= null;
+    private Text freqText = null;
     [SerializeField]
-    Button freqDown= null, freqUp= null;
+    private Button freqDown = null, freqUp = null;
 
     [SerializeField]
-    Text dBText= null;
+    private Text dBText = null;
     [SerializeField]
-    Button dBDown= null, dBUp= null;
-
-    const int dbMin = 0, dbMax = 100;
-    const int dbDelta = 5;
-
-    int freqIndex = 0, currentDB = 20;
+    private Button dBDown = null, dBUp = null;
+    private const int dbMin = 5, dbMax = 60;
+    private const int dbDelta = 5;
+    public byte freqIndex = 0;
+    public int currentDB = 10;
 
     private void Start()
     {
-        currentDB = 20;
+        currentDB = 10;
         freqIndex = 3; // Para 1000
+
+        UpdateDBUI();
     }
 
     public void IncreaseFrequency()
@@ -30,10 +31,14 @@ public class ToneSettingsManager : MonoBehaviour
         freqIndex++;
 
         if (TestManager.frequencies.Length - 1 == freqIndex)
+        {
             freqUp.interactable = false;
+        }
 
         if (!freqDown.interactable)
+        {
             freqDown.interactable = true;
+        }
 
         UpdateFrequencyUI();
     }
@@ -43,10 +48,14 @@ public class ToneSettingsManager : MonoBehaviour
         freqIndex--;
 
         if (0 == freqIndex)
+        {
             freqDown.interactable = false;
+        }
 
         if (!freqUp.interactable)
+        {
             freqUp.interactable = true;
+        }
 
         UpdateFrequencyUI();
     }
@@ -61,10 +70,14 @@ public class ToneSettingsManager : MonoBehaviour
         currentDB += dbDelta;
 
         if (currentDB == dbMax)
+        {
             dBUp.interactable = false;
+        }
 
         if (!dBDown.interactable)
+        {
             dBDown.interactable = true;
+        }
 
         UpdateDBUI();
     }
@@ -74,10 +87,14 @@ public class ToneSettingsManager : MonoBehaviour
         currentDB -= dbDelta;
 
         if (currentDB == dbMin)
+        {
             dBDown.interactable = false;
+        }
 
         if (!dBUp.interactable)
+        {
             dBUp.interactable = true;
+        }
 
         UpdateDBUI();
     }

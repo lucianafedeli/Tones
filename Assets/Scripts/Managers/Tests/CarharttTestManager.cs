@@ -10,6 +10,9 @@ namespace Tones.Managers
     public class CarharttTestManager : TestManager
     {
         [SerializeField]
+        protected CarharttToneSettingsManager carToneManager;
+
+        [SerializeField]
         private PushButton pacientButton = null;
 
         [SerializeField]
@@ -42,7 +45,7 @@ namespace Tones.Managers
             {
                 base.StartTest();
                 Debug.Log("Carhartt test Started.");
-                currentSession = new Carhartt(currentFrequencyIndex, currentVolume, this, ear);
+                currentSession = new Carhartt(carToneManager.freqIndex, carToneManager.currentDB, this, ear);
 
                 for (int i = 0; i < interactableDuringSession.Length; i++)
                 {

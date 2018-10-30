@@ -1,6 +1,6 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using Pacient;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +12,8 @@ namespace UI
         [SerializeField] public Toggle toggle;
         [SerializeField] public Image rowBG;
         [SerializeField] public Color OnSelectedColor;
-        [SerializeField] public Text   pacientData;
-        [SerializeField] public Text   lastTestDate;
+        [SerializeField] public Text pacientData;
+        [SerializeField] public Text lastTestDate;
 
         [NonSerialized] public PacientData pacient;
 
@@ -23,7 +23,7 @@ namespace UI
             toggle.onValueChanged.AddListener(delegate { ToggleValueChanged(); });
         }
 
-        void ToggleValueChanged()
+        private void ToggleValueChanged()
         {
             if (toggle.isOn)
             {
@@ -39,9 +39,9 @@ namespace UI
 
         public void SetPacientData(PacientData data)
         {
-            pacient           = data;
-            pacientData.text  = pacient.ToString() + " - " + pacient.DNI;
-            lastTestDate.text = DataManager.Instance.GetLatestTest(pacient.ID);
+            pacient = data;
+            pacientData.text = pacient.ToString() + " - " + pacient.DNI;
+            lastTestDate.text = data.lastTestDate;
         }
     }
 }

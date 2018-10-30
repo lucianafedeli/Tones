@@ -8,7 +8,7 @@ namespace Pacient
     public class PacientData
     {
         public int ID;
-        public string firstName, lastName, DNI, birthDate;
+        public string firstName, lastName, DNI, birthDate, lastTestDate;
         public char gender;
         public bool enabled;
         public List<Manual> lastSessions;
@@ -22,6 +22,7 @@ namespace Pacient
             this.DNI = DNI;
             this.birthDate = birthDate;
             this.gender = gender;
+            this.lastTestDate = "[Sin examen]";
             this.enabled = true;
         }
 

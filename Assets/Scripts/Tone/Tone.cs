@@ -20,7 +20,7 @@ namespace Tones.Sessions
         }
 
         private float volume;
-        public float Volume
+        public float dB
         {
             get
             {

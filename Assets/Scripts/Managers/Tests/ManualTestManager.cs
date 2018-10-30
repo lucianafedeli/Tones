@@ -54,15 +54,17 @@ namespace Tones.Managers
 
         private void ManualButtonUp()
         {
-            (currentSession as Manual).EndSession();
-
+            if (OngoingTest)
+            {
+                (currentSession as Manual).EndSession();
+            }
         }
 
         public override void StartTest()
         {
             base.StartTest();
             Debug.Log("Manual Classic test Started.");
-            currentSession = new Manual(currentFrequencyIndex, currentVolume, this, ear);
+            currentSession = new Manual(toneManager.freqIndex, toneManager.currentDB, this, ear);
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {

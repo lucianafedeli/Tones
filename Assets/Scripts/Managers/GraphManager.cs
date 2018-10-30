@@ -25,8 +25,7 @@ namespace Tones.Managers
         [SerializeField]
         private Transform imagesParent = null;
 
-        [SerializeField]
-        private float xPadding = 0, yPadding = 0, xHzIncrement = 0, yDbIncrement = 0;
+        private readonly float xPadding = 21.43f, yPadding = 42.5f, xHzIncrement = 71.5f, yDbIncrement = 3.75f;
 
         [SerializeField]
         private Transform[] CarharttParents;
@@ -51,32 +50,39 @@ namespace Tones.Managers
                     GraphCarhartt(carhartt);
                 }
             }
+
+            if (null != dm.GetPacientsData()[dm.CurrentPacient.ID].lastSessions)
+            {
+                foreach (var session in dm.GetPacientsData()[dm.CurrentPacient.ID].lastSessions)
+                {
+                    GraphSession(session);
+                }
+            }
         }
 
         private void GraphSession(Session session)
         {
-            GameObject imageInstance = session.tone.Ear == Tone.EarSide.Left ?
-                                        Instantiate(leftEarImagePrefab) :
-                                        Instantiate(rightEarImagePrefab);
-
-            //imageInstance.transform.localPosition = new Vector3(0, 0);
+            GameObject imageInstance = session.tone.Ear == Tone.EarSide.Right ?
+                                        Instantiate(rightEarImagePrefab) :
+                                        Instantiate(leftEarImagePrefab);
 
             imageInstance.transform.localPosition = new Vector3(
                                         xPadding + (xHzIncrement * (session.tone.FrequencyIndex + 1)) - imageSize / 2,    //x
-                                        -yPadding - yDbIncrement * session.tone.Volume * 15 + imageSize * .5f);             //y
+                                        -yPadding - (yDbIncrement * session.tone.dB) + imageSize / 2);             //y
 
             imageInstance.transform.SetParent(imagesParent, false);
         }
 
         private void GraphCarhartt(Carhartt session)
         {
-            var parent = CarharttParents[session.tone.FrequencyIndex - 3];
+            var parent = CarharttParents[session.tone.FrequencyIndex - 2];
 
-            var events = session.pacientPushEvents.pairs;
+            var toneEvent = session.tonePlayEvents.pairs[0];
+            var pacientPushEvents = session.pacientPushEvents.pairs;
 
             parent.GetChild(0).GetComponent<Text>().text = ((int)session.tonePlayEvents.GetLongestDuration()).ToString();
 
-            foreach (var pressedEvent in events)
+            foreach (var pressedEvent in pacientPushEvents)
             {
                 if (pressedEvent.Duration() > 1)
                 {
@@ -85,13 +91,15 @@ namespace Tones.Managers
 
                     float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x;
 
-                    renderer.SetPosition(0, new Vector3(pressedEvent.start * width / 60, 5, 0));
-                    renderer.SetPosition(1, new Vector3(pressedEvent.end * width / 60, 5, 0));
+                    renderer.SetPosition(0, new Vector3((pressedEvent.start - toneEvent.start) * width / 60, 5, 0));
+                    renderer.SetPosition(1, new Vector3((pressedEvent.end - toneEvent.start) * width / 60, 5, 0));
 
-                    line.transform.GetChild(1).localPosition = new Vector3((pressedEvent.end * width / 60) - 10, -10, 0);
+                    float length = pressedEvent.end * width / 60 - pressedEvent.start * width / 60;
+
+                    line.transform.GetChild(1).localPosition = new Vector3((pressedEvent.end - toneEvent.start) * width / 60 - 10, -10, 0);
                     line.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
 
-                    line.transform.localPosition = new Vector3(-140 * 3, 0, 0);
+                    //line.transform.localPosition = new Vector3(-length, 0, 0);
                 }
             }
         }

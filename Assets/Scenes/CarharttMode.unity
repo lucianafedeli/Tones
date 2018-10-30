@@ -629,7 +629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -97.600006, y: -143.7}
+  m_AnchoredPosition: {x: -97.59985, y: -143.7}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265997658
@@ -1434,8 +1434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e1c0d0db1d7204bb6b7212f6c664d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toneManager: {fileID: 0}
   OngoingTest: 0
-  currentVolume: 0
+  carToneManager: {fileID: 2032890575}
   pacientButton: {fileID: 1808018795}
   interactableDuringSession:
   - {fileID: 1993430153}
@@ -1633,7 +1634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -97.599976, y: 0}
+  m_AnchoredPosition: {x: -97.59985, y: 0}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359092173
@@ -2965,8 +2966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -91, y: -51}
-  m_SizeDelta: {x: -221.59998, y: -132.20001}
+  m_AnchoredPosition: {x: -97.20001, y: -58.535004}
+  m_SizeDelta: {x: -221.6, y: -117.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032890575
 MonoBehaviour:
@@ -2985,6 +2986,8 @@ MonoBehaviour:
   dBText: {fileID: 568601514}
   dBDown: {fileID: 152121888}
   dBUp: {fileID: 1706319074}
+  freqIndex: 0
+  currentDB: 20
 --- !u!114 &2032890576
 MonoBehaviour:
   m_ObjectHideFlags: 0

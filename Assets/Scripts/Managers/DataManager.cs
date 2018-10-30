@@ -1,6 +1,7 @@
 ﻿using Design_Patterns;
 using Newtonsoft.Json;
 using Pacient;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Tones.Sessions;
@@ -112,8 +113,7 @@ namespace Managers
                 //        PacientsData.Add(t.ID, t);
                 //    }
                 //}
-
-                //pacientNumber++;
+                pacientNumber = null != PacientsData ? PacientsData.Count : 0;
                 pacientDataHasBeenLoaded = true;
             }
         }
@@ -141,7 +141,7 @@ namespace Managers
             }
             else if (!PacientsData.ContainsKey(data.ID))
             {
-                PacientsData.Add(pacientNumber, data);
+                PacientsData.Add(pacientNumber++, data);
             }
             else
             {
@@ -151,11 +151,6 @@ namespace Managers
             currentPatient = null;
 
             SavePacientData();
-        }
-
-        public string GetLatestTest(int ID)
-        {
-            return "24/01/1991"; // TODO
         }
 
         public void RemovePacient(int ID)
@@ -186,8 +181,11 @@ namespace Managers
             {
                 if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
-                    alreadyExists = true;
-                    existsIndex = i;
+                    if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.Ear == newSession.tone.Ear)
+                    {
+                        alreadyExists = true;
+                        existsIndex = i;
+                    }
                 }
             }
 
@@ -199,6 +197,8 @@ namespace Managers
             {
                 PacientsData[CurrentPacient.ID].lastSessions.Add(newSession);
             }
+
+            PacientsData[CurrentPacient.ID].lastTestDate = DateTime.Now.ToString("dd/MM/yyyy");
 
             SavePacientData();
         }
@@ -224,6 +224,8 @@ namespace Managers
             {
                 PacientsData[CurrentPacient.ID].carhartts.Add(newSession);
             }
+
+            PacientsData[CurrentPacient.ID].lastTestDate = DateTime.Now.ToString("dd/MM/yyyy");
 
             SavePacientData();
         }

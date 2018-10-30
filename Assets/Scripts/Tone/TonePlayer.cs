@@ -44,7 +44,8 @@ namespace Tones.Sessions
                 toneSource.clip = theSineClip;
                 toneSource.loop = true;
                 toneSource.panStereo = (int)tone.Ear;
-                toneSource.volume = tone.Volume;
+                toneSource.volume = tone.dB / 90; // 90 --- 1
+                                                  // dB --- X
 
                 {
                     int length = (int)theSineClip.length;

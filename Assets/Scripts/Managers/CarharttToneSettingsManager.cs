@@ -13,14 +13,17 @@ public class CarharttToneSettingsManager : MonoBehaviour
     private Text dBText = null;
     [SerializeField]
     private Button dBDown = null, dBUp = null;
-    private const int dbMin = 0, dbMax = 100;
+    private const int dbMin = 5, dbMax = 60;
     private const int dbDelta = 5;
-    private int freqIndex = 0, currentDB = 20;
+    public byte freqIndex = 0;
+    public int currentDB = 5;
 
     private void Start()
     {
-        currentDB = 20;
+        currentDB = 10;
         freqIndex = 2; // Para 500
+
+        UpdateDBUI();
     }
 
     public void IncreaseFrequency()

@@ -8,19 +8,19 @@ namespace Tools
     {
         public void LoadScene(string scene)
         {
-            ScenesManager.Instance.LoadScene(scene);
+            ScenesManager.Instance.LoadTonesScene(scene);
         }
 
-        private void Start()
-        {
-            PlayerPrefs.DeleteAll();
-        }
         public void LoadPrevious()
         {
             if (SceneManager.GetActiveScene().name == "Instructions")
-                ScenesManager.Instance.LoadScene("HistoriaClinica");
+            {
+                ScenesManager.Instance.LoadTonesScene("HistoriaClinica");
+            }
             else
+            {
                 ScenesManager.Instance.LoadPrevious();
+            }
         }
 
     }

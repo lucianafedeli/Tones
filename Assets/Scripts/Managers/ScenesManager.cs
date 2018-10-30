@@ -11,13 +11,21 @@ namespace Managers
         public void LoadPrevious()
         {
             if (previousScene != string.Empty)
-                LoadScene(previousScene);
+            {
+                LoadTonesScene(previousScene);
+            }
         }
 
-        public void LoadScene(string scene)
+        public void LoadTonesScene(string scene)
         {
-            if (previousScene == "Intro" && scene == "Instructions" || PlayerPrefs.GetInt("DontShowInstructions", 0) == 1)
-                scene = "HistoriaClinica";
+            if (previousScene == "Intro" && scene == "Instructions")
+            {
+                bool showInstructions = PlayerPrefs.GetInt(InstructionsManager.DontShowKey, 0) == 0;
+                if (!showInstructions)
+                {
+                    scene = "HistoriaClinica";
+                }
+            }
 
             previousScene = SceneManager.GetActiveScene().name;
 

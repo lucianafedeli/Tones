@@ -5,41 +5,26 @@ namespace Tones.Managers
 {
     public abstract class TestManager : MonoBehaviour
     {
+        [SerializeField]
+        protected ToneSettingsManager toneManager;
+
         public bool OngoingTest = false;
 
         protected Tone.EarSide ear = Tone.EarSide.Left;
 
-        #region Volume
-        protected readonly byte startVolume = 10;
-        protected readonly byte maxDb = 80;
-
-        [SerializeField]
-        protected byte currentVolume;
-        #endregion
-
         #region Frequency
         public static readonly int[] frequencies = { 125, 250, 500, 1000, 2000, 4000, 8000 };
 
-        protected readonly byte startFrequencyIndex = 3;
-
-        protected byte currentFrequencyIndex;
-        protected int CurrentFrequency
-        {
-            get { return frequencies[currentFrequencyIndex]; }
-        }
         #endregion
 
         protected Sessions.Session currentSession = null;
 
         protected virtual void Start()
         {
-            currentFrequencyIndex = startFrequencyIndex;
         }
 
         private void Init()
         {
-            currentVolume = startVolume;
-
             OngoingTest = true;
         }
 
@@ -52,22 +37,6 @@ namespace Tones.Managers
             else
             {
                 ear = Tone.EarSide.Left;
-            }
-        }
-
-        public void IncreaseFrequency()
-        {
-            if (currentFrequencyIndex < frequencies.Length)
-            {
-                currentFrequencyIndex++;
-            }
-        }
-
-        public void DecreaseFrequency()
-        {
-            if (currentFrequencyIndex > 0)
-            {
-                currentFrequencyIndex--;
             }
         }
 

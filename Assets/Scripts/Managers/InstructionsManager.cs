@@ -5,30 +5,34 @@ namespace Managers
 {
     public class InstructionsManager : MonoBehaviour
     {
-        [SerializeField]
-        Toggle dontShowAgainToggle = null;
+
+        public static string DontShowKey = "DontShowInstructions";
 
         [SerializeField]
-        float timeBetweenInstructions = 5;
-        [SerializeField]
-        Animator instructionsAnim = null;
+        private Toggle dontShowAgainToggle = null;
 
-        float currentTime = 0;
+        [SerializeField]
+        private float timeBetweenInstructions = 5;
+        [SerializeField]
+        private Animator instructionsAnim = null;
+        private float currentTime = 0;
 
         private void Start()
         {
-            dontShowAgainToggle.isOn = PlayerPrefs.GetInt("DontShowInstructions", 0) == 0;
+            dontShowAgainToggle.isOn = PlayerPrefs.GetInt(DontShowKey, 0) == 1;
         }
 
         public void DontShowInstructions(bool shouldHide)
         {
-            PlayerPrefs.SetInt("DontShowInstructions", shouldHide ? 0 : 1);
+            PlayerPrefs.SetInt(DontShowKey, shouldHide ? 1 : 0);
         }
 
         private void Update()
         {
             if (currentTime >= timeBetweenInstructions)
+            {
                 Next();
+            }
 
             currentTime += Time.deltaTime;
         }
@@ -38,7 +42,7 @@ namespace Managers
             Next();
         }
 
-        void Next()
+        private void Next()
         {
             currentTime = 0;
             instructionsAnim.SetTrigger("Next");

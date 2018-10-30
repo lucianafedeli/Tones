@@ -488,8 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4270af4a7475564894a61a10d6b5602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toneManager: {fileID: 0}
   OngoingTest: 0
-  currentVolume: 0
 --- !u!4 &211285464
 Transform:
   m_ObjectHideFlags: 0
@@ -1173,7 +1173,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 369256810}
   m_OnClick:
     m_PersistentCalls:
@@ -1334,7 +1334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.79
-  m_Text: '20
+  m_Text: '10
 
     dB'
 --- !u!222 &408815984
@@ -1551,6 +1551,8 @@ MonoBehaviour:
   dBText: {fileID: 408815983}
   dBDown: {fileID: 369256809}
   dBUp: {fileID: 1352615026}
+  freqIndex: 0
+  currentDB: 10
 --- !u!1 &629592084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,8 +2842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be3938c8931a8c4c9fe6aa6ffeaec98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toneManager: {fileID: 628543918}
   OngoingTest: 0
-  currentVolume: 0
   pacientButton: {fileID: 1513874139}
   manualSessionButton: {fileID: 390486358}
   showGraphsButton: {fileID: 96042490}
