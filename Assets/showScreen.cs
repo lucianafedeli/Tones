@@ -5,7 +5,7 @@ public class showScreen : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<Text>().text = "W: " + Screen.width + " H: " + Screen.height;
+        GetComponent<Text>().text = Application.persistentDataPath;
     }
 
 
