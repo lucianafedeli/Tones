@@ -31,7 +31,11 @@ namespace Tones.Managers
         private Transform[] CarharttParents;
 
         [SerializeField]
-        private GameObject CarharttLinePrefab;
+        private GameObject CarharttLeftPrefab;
+
+        [SerializeField]
+        private GameObject CarharttRightPrefab;
+
 
         [SerializeField]
         private Button carharttTabButton;
@@ -86,20 +90,37 @@ namespace Tones.Managers
             {
                 if (pressedEvent.Duration() > 1)
                 {
-                    GameObject line = Instantiate(CarharttLinePrefab, parent);
-                    LineRenderer renderer = line.transform.GetChild(0).GetComponent<LineRenderer>();
+                    GameObject instantiatedLine = null;
+                    if (session.tone.Ear == Tone.EarSide.Left)
+                    {
+                        instantiatedLine = Instantiate(CarharttLeftPrefab, parent);
+                    }
+                    else
+                    {
+                        instantiatedLine = Instantiate(CarharttRightPrefab, parent);
+                    }
+
+                    LineRenderer renderer = instantiatedLine.transform.GetChild(0).GetComponent<LineRenderer>();
 
                     float width = renderer.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+                    if (session.tone.Ear == Tone.EarSide.Left)
+                    {
+                        renderer.SetPosition(0, new Vector3((pressedEvent.start - toneEvent.start) * width / 60, 6, 0));
+                        renderer.SetPosition(1, new Vector3((pressedEvent.end - toneEvent.start) * width / 60, 6, 0));
 
-                    renderer.SetPosition(0, new Vector3((pressedEvent.start - toneEvent.start) * width / 60, 5, 0));
-                    renderer.SetPosition(1, new Vector3((pressedEvent.end - toneEvent.start) * width / 60, 5, 0));
+                        instantiatedLine.transform.GetChild(1).localPosition = new Vector3(
+                            (pressedEvent.end - toneEvent.start) * width / 60 - 10, 18, 0);
+                    }
+                    else
+                    {
+                        renderer.SetPosition(0, new Vector3((pressedEvent.start - toneEvent.start) * width / 60, -8, 0));
+                        renderer.SetPosition(1, new Vector3((pressedEvent.end - toneEvent.start) * width / 60, -8, 0));
 
-                    float length = pressedEvent.end * width / 60 - pressedEvent.start * width / 60;
+                        instantiatedLine.transform.GetChild(1).localPosition = new Vector3(
+                            (pressedEvent.end - toneEvent.start) * width / 60 - 10, -20, 0);
+                    }
 
-                    line.transform.GetChild(1).localPosition = new Vector3((pressedEvent.end - toneEvent.start) * width / 60 - 10, -10, 0);
-                    line.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
-
-                    //line.transform.localPosition = new Vector3(-length, 0, 0);
+                    instantiatedLine.transform.GetChild(1).GetComponent<Text>().text = pressedEvent.Duration().ToString("0.0");
                 }
             }
         }

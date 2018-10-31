@@ -1676,7 +1676,9 @@ MonoBehaviour:
   - {fileID: 291096115}
   - {fileID: 432418699}
   - {fileID: 531464110}
-  CarharttLinePrefab: {fileID: 1563074467771904, guid: c2c93ec3d23ea4546a18813674928e87,
+  CarharttLeftPrefab: {fileID: 1563074467771904, guid: c2c93ec3d23ea4546a18813674928e87,
+    type: 2}
+  CarharttRightPrefab: {fileID: 1563074467771904, guid: 48ff245d6d847e5488532432638638e0,
     type: 2}
   carharttTabButton: {fileID: 493748886}
 --- !u!4 &1333580001

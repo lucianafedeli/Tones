@@ -214,9 +214,12 @@ namespace Managers
             {
                 if (PacientsData[CurrentPacient.ID].carhartts[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
-                    found = true;
-                    PacientsData[CurrentPacient.ID].carhartts[i] = newSession;
-                    break;
+                    if (PacientsData[CurrentPacient.ID].carhartts[i].tone.Ear == newSession.tone.Ear)
+                    {
+                        found = true;
+                        PacientsData[CurrentPacient.ID].carhartts[i] = newSession;
+                        break;
+                    }
                 }
             }
 
