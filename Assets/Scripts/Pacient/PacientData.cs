@@ -11,7 +11,7 @@ namespace Pacient
         public string firstName, lastName, DNI, birthDate, lastTestDate;
         public char gender;
         public bool enabled;
-        public List<Manual> lastSessions;
+        public List<Classic> lastSessions;
         public List<Carhartt> carhartts;
 
         public PacientData(int ID, string firstName, string lastName, string DNI, string birthDate, char gender)

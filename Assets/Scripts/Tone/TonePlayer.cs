@@ -23,12 +23,13 @@ namespace Tones.Sessions
 
         private int currentFrequency = 0;
 
-
-        private void Start()
+        private void Awake()
         {
             if (null == toneSource)
             {
                 toneSource = GetComponent<AudioSource>();
+                toneSource.playOnAwake = false;
+                toneSource.Stop();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Managers;
+using System.Collections;
 using Tones.Sessions;
 using Tones.Tools;
 using Tools;
@@ -29,6 +30,13 @@ namespace Tones.Managers
         [SerializeField]
         private Animator ledLight = null;
 
+        private bool classicMode = true, heardFreq = false;
+
+        [SerializeField]
+        private Image fillButton;
+
+        [SerializeField]
+        private Slider durationSlider;
 
         protected override void Start()
         {
@@ -42,29 +50,61 @@ namespace Tones.Managers
             previousState = new bool[interactableDuringSession.Length];
         }
 
+        public void ToggleMode()
+        {
+            classicMode = !classicMode;
+            if (!classicMode)
+            {
+                toneManager.freqIndex = 3;
+                toneManager.currentDB = 10;
+
+                toneManager.UpdateDBUI();
+                toneManager.UpdateFrequencyUI();
+            }
+        }
+
         private void ManualButtonDown()
         {
             //manualSessionButton.onButtonDown.RemoveListener(ManualButtonDown);
             if (!OngoingTest)
             {
                 StartTest();
+
+                (currentSession as Classic).StartTone();
+
+                if (!classicMode)
+                {
+                    StartCoroutine(EndToneAssistedRoutine());
+                }
             }
-            (currentSession as Manual).StartTone();
+        }
+
+        private IEnumerator EndToneAssistedRoutine()
+        {
+            float t = 0;
+            do
+            {
+                yield return null;
+                t += Time.deltaTime;
+                fillButton.fillAmount = t / durationSlider.value;
+            } while (t < durationSlider.value);
+            fillButton.fillAmount = 1;
+            currentSession.EndSession();
         }
 
         private void ManualButtonUp()
         {
-            if (OngoingTest)
+            if (classicMode && OngoingTest)
             {
-                (currentSession as Manual).EndSession();
+                currentSession.EndSession();
             }
         }
 
         public override void StartTest()
         {
             base.StartTest();
-            Debug.Log("Manual Classic test Started.");
-            currentSession = new Manual(toneManager.freqIndex, toneManager.currentDB, this, ear);
+
+            currentSession = new Classic(toneManager.freqIndex, toneManager.currentDB, this, ear);
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {
@@ -91,17 +131,46 @@ namespace Tones.Managers
 
             if (sessionSucceeded)
             {
-                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Manual);
+                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Classic);
+                if (!classicMode)
+                {
+                    if (toneManager.currentDB > ToneSettingsManager.dbMin)
+                    {
+                        toneManager.DecreaseDB();
+                        heardFreq = true;
+                    }
+                    else
+                    {
+                        NextFrequency();
+                    }
+                }
             }
             else
             {
-                showGraphsButton.image.sprite = graphsSprites[1];
+                if (classicMode)
+                {
+                    showGraphsButton.image.sprite = graphsSprites[1];
+                }
+                else
+                {
+                    if (!heardFreq || toneManager.currentDB == ToneSettingsManager.dbMax)
+                    {
+                        toneManager.IncreaseVolume();
+                        toneManager.IncreaseVolume();
+                    }
+                    else
+                    {
+                        NextFrequency();
+                    }
+                }
             }
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {
                 interactableDuringSession[i].interactable = previousState[i];
             }
+
+            ledLight.SetTrigger("Off");
 
             pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
             pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
@@ -121,5 +190,22 @@ namespace Tones.Managers
             ledLight.SetTrigger("Off");
         }
 
+        private void NextFrequency()
+        {
+            heardFreq = false;
+
+            toneManager.currentDB = 10;
+            toneManager.UpdateDBUI();
+
+            if (toneManager.freqIndex < 6)
+            {
+                toneManager.IncreaseFrequency();
+            }
+            else
+            {
+                toneManager.freqIndex = 0;
+                toneManager.UpdateFrequencyUI();
+            }
+        }
     }
 }

@@ -6,12 +6,15 @@ namespace Tones.Sessions
     [Serializable]
     public class Carhartt : Session
     {
-        public Carhartt(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, volume, manager, isLeftEar)
+        public Carhartt(byte frequencyIndex, int dB, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, dB, manager, isLeftEar)
         {
-            StartSession();
-            TonePlayer.Instance.PlayTone(tone);
+
         }
 
-
+        public override void StartSession()
+        {
+            tonePlayEvents.EventStarted();
+            TonePlayer.Instance.PlayTone(tone);
+        }
     }
 }

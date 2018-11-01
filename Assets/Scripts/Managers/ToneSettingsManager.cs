@@ -13,7 +13,7 @@ public class ToneSettingsManager : MonoBehaviour
     private Text dBText = null;
     [SerializeField]
     private Button dBDown = null, dBUp = null;
-    private const int dbMin = 5, dbMax = 60;
+    public const int dbMin = 5, dbMax = 60;
     private const int dbDelta = 5;
     public byte freqIndex = 0;
     public int currentDB = 10;
@@ -60,7 +60,7 @@ public class ToneSettingsManager : MonoBehaviour
         UpdateFrequencyUI();
     }
 
-    private void UpdateFrequencyUI()
+    public void UpdateFrequencyUI()
     {
         freqText.text = TestManager.frequencies[freqIndex] + "\nHz";
     }
@@ -82,7 +82,7 @@ public class ToneSettingsManager : MonoBehaviour
         UpdateDBUI();
     }
 
-    public void DecreaseVolume()
+    public void DecreaseDB()
     {
         currentDB -= dbDelta;
 
@@ -99,7 +99,7 @@ public class ToneSettingsManager : MonoBehaviour
         UpdateDBUI();
     }
 
-    private void UpdateDBUI()
+    public void UpdateDBUI()
     {
         dBText.text = currentDB + "\ndB";
     }

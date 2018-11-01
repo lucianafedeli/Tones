@@ -21,18 +21,15 @@ namespace Tones.Sessions
         public TimedPairEvents tonePlayEvents;
         public TimedPairEvents pacientPushEvents;
 
-        public Session(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide ear)
+        public Session(byte frequencyIndex, int dB, TestManager manager, Tone.EarSide ear)
         {
-            tone = new Tone(frequencyIndex, volume, ear);
+            tone = new Tone(frequencyIndex, dB, ear);
             testManager = manager;
             tonePlayEvents = new TimedPairEvents();
             pacientPushEvents = new TimedPairEvents();
         }
 
-        public void StartSession()
-        {
-            tonePlayEvents.EventStarted();
-        }
+        public abstract void StartSession();
 
         public void PacientButtonDown()
         {

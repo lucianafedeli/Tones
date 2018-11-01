@@ -19,14 +19,8 @@ namespace Tones.Sessions
 
         }
 
-        private float volume;
-        public float dB
-        {
-            get
-            {
-                return volume;
-            }
-        }
+        public int dB;
+
 
         [Serializable]
         public enum EarSide
@@ -41,10 +35,10 @@ namespace Tones.Sessions
         }
 
 
-        public Tone(int frequencyIndex, float volume, EarSide ear)
+        public Tone(int frequencyIndex, int dB, EarSide ear)
         {
             this.frequencyIndex = frequencyIndex;
-            this.volume = volume;
+            this.dB = dB;
             this.ear = ear;
         }
 

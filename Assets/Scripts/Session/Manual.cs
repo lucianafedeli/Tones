@@ -4,11 +4,14 @@ using Tones.Managers;
 namespace Tones.Sessions
 {
     [Serializable]
-    public class Manual : Session
+    public class Classic : Session
     {
-        public Manual(byte frequencyIndex, float volume, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, volume, manager, isLeftEar)
+        public Classic(byte frequencyIndex, int dB, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, dB, manager, isLeftEar)
         {
-            StartSession();
+        }
+
+        public override void StartSession()
+        {
         }
 
         public void StartTone()

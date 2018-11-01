@@ -167,11 +167,11 @@ namespace Managers
             File.WriteAllText(filePath, JsonConvert.SerializeObject(PacientsData, Formatting.Indented));
         }
 
-        public void SaveSuccessfulManualSession(Manual newSession)
+        public void SaveSuccessfulManualSession(Classic newSession)
         {
             if (null == PacientsData[CurrentPacient.ID].lastSessions)
             {
-                PacientsData[CurrentPacient.ID].lastSessions = new List<Manual>();
+                PacientsData[CurrentPacient.ID].lastSessions = new List<Classic>();
             }
 
             bool alreadyExists = false;
@@ -210,6 +210,7 @@ namespace Managers
                 PacientsData[CurrentPacient.ID].carhartts = new List<Carhartt>();
             }
             bool found = false;
+
             for (int i = 0; i < PacientsData[CurrentPacient.ID].carhartts.Count; i++)
             {
                 if (PacientsData[CurrentPacient.ID].carhartts[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
