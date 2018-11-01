@@ -581,7 +581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 527.4, y: -197.9}
+  m_AnchoredPosition: {x: 527.4, y: -197.89998}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &301040935
@@ -2705,7 +2705,9 @@ MonoBehaviour:
   - {fileID: 1352615026}
   pacientName: {fileID: 312014668}
   ledLight: {fileID: 1224364022}
+  buttonAnim: {fileID: 2124175927}
   fillButton: {fileID: 2124175929}
+  fillBG: {fileID: 960088357}
   durationSlider: {fileID: 301040935}
 --- !u!4 &1320981018
 Transform:
@@ -4084,7 +4086,7 @@ MonoBehaviour:
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
 --- !u!222 &2124175930
 CanvasRenderer:
   m_ObjectHideFlags: 0

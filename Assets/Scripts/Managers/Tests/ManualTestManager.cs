@@ -28,15 +28,17 @@ namespace Tones.Managers
         private Text pacientName = null;
 
         [SerializeField]
-        private Animator ledLight = null;
+        private Animator ledLight = null, buttonAnim;
 
         private bool classicMode = true, heardFreq = false;
 
         [SerializeField]
-        private Image fillButton;
+        private Image fillButton, fillBG;
 
         [SerializeField]
         private Slider durationSlider;
+
+
 
         protected override void Start()
         {
@@ -82,6 +84,9 @@ namespace Tones.Managers
         private IEnumerator EndToneAssistedRoutine()
         {
             float t = 0;
+
+            buttonAnim.enabled = false;
+            fillBG.color = new Color(1, 1, 1, .7f);
             do
             {
                 yield return null;
@@ -90,6 +95,8 @@ namespace Tones.Managers
             } while (t < durationSlider.value);
             fillButton.fillAmount = 1;
             currentSession.EndSession();
+            fillBG.color = Color.white;
+            buttonAnim.enabled = true;
         }
 
         private void ManualButtonUp()
