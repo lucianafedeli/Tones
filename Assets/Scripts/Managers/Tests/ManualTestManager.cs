@@ -131,7 +131,7 @@ namespace Tones.Managers
 
             if (sessionSucceeded)
             {
-                DataManager.Instance.SaveSuccessfulManualSession(currentSession as Classic);
+                DataManager.Instance.SaveSuccsefulClassicSession(currentSession as Classic);
                 if (!classicMode)
                 {
                     if (toneManager.currentDB > ToneSettingsManager.dbMin)

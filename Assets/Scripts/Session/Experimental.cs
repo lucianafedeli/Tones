@@ -9,7 +9,7 @@ namespace Tones.Sessions
     /// El modo exprimental consiste en mas de un tono con una espera aleatoria entre ellos.
     /// </summary>
     [Serializable]
-    public class Experimental : Session
+    public class Experimental : Classic
     {
         private float totalDuration;
 

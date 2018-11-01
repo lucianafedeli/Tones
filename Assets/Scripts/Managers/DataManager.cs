@@ -167,7 +167,7 @@ namespace Managers
             File.WriteAllText(filePath, JsonConvert.SerializeObject(PacientsData, Formatting.Indented));
         }
 
-        public void SaveSuccessfulManualSession(Classic newSession)
+        public void SaveSuccsefulClassicSession(Classic newSession)
         {
             if (null == PacientsData[CurrentPacient.ID].lastSessions)
             {
