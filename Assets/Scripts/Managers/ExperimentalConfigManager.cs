@@ -71,6 +71,7 @@ public class ExperimentalConfigManager : MonoBehaviour
     private void Start()
     {
         currentRF = PlayerPrefs.GetInt(ExperimentalTestManager.LowHighFreqKey, 0) == 0 ? RF.Agudas : RF.Graves;
+        TextRF.text = currentRF.ToString();
 
         currentTET = PlayerPrefs.GetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
 
@@ -79,6 +80,11 @@ public class ExperimentalConfigManager : MonoBehaviour
         currentTL = PlayerPrefs.GetFloat(ExperimentalTestManager.LT_DurationKey, currentTL);
 
         currentVI = PlayerPrefs.GetInt(ExperimentalTestManager.StartDBKey, currentVI);
+
+        UpdateDBUI();
+        UpdateTCUI();
+        UpdateTETUI();
+        UpdateTLUI();
     }
 
     private void IncreaseIntValue(ref int current, int delta, int max, Button up, Button down)
@@ -86,15 +92,15 @@ public class ExperimentalConfigManager : MonoBehaviour
         if (current < max)
         {
             current += delta;
-            if (current >= max)
-            {
-                up.interactable = false;
-            }
 
             if (!down.interactable)
             {
                 down.interactable = true;
             }
+        }
+        if (current >= max)
+        {
+            up.interactable = false;
         }
     }
 
@@ -103,15 +109,15 @@ public class ExperimentalConfigManager : MonoBehaviour
         if (current > min)
         {
             current -= delta;
-            if (current <= min)
-            {
-                down.interactable = false;
-            }
 
             if (!up.interactable)
             {
                 up.interactable = true;
             }
+        }
+        if (current <= min)
+        {
+            down.interactable = false;
         }
     }
 
@@ -120,15 +126,15 @@ public class ExperimentalConfigManager : MonoBehaviour
         if (current < max)
         {
             current += delta;
-            if (current >= max)
-            {
-                up.interactable = false;
-            }
 
             if (!down.interactable)
             {
                 down.interactable = true;
             }
+        }
+        if (current >= max)
+        {
+            up.interactable = false;
         }
     }
 
@@ -137,15 +143,14 @@ public class ExperimentalConfigManager : MonoBehaviour
         if (current > min)
         {
             current -= delta;
-            if (current <= min)
-            {
-                down.interactable = false;
-            }
-
             if (!up.interactable)
             {
                 up.interactable = true;
             }
+        }
+        if (current <= min)
+        {
+            down.interactable = false;
         }
     }
 

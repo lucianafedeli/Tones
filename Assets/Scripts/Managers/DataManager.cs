@@ -66,10 +66,9 @@ namespace Managers
                 startStudyForCurrentPacientButton.interactable = editCurrentPacientButton.interactable = null != currentPatient;
                 createNewPatientButton.interactable = null == currentPatient;
 
-                showGraphs.interactable = (null != currentPatient && null != currentPatient.lastSessions && currentPatient.lastSessions.Count > 0);
+                showGraphs.interactable = null != currentPatient && (null != currentPatient.lastClassicSessions || null != currentPatient.lastExperimentalSessions);
             }
         }
-
 
         private string filePath = string.Empty;
 
@@ -169,19 +168,19 @@ namespace Managers
 
         public void SaveSuccsefulClassicSession(Classic newSession)
         {
-            if (null == PacientsData[CurrentPacient.ID].lastSessions)
+            if (null == PacientsData[CurrentPacient.ID].lastClassicSessions)
             {
-                PacientsData[CurrentPacient.ID].lastSessions = new List<Classic>();
+                PacientsData[CurrentPacient.ID].lastClassicSessions = new List<Classic>();
             }
 
             bool alreadyExists = false;
             int existsIndex = -1;
 
-            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastSessions.Count && !alreadyExists; i++)
+            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastClassicSessions.Count && !alreadyExists; i++)
             {
-                if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
+                if (PacientsData[CurrentPacient.ID].lastClassicSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
-                    if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.Ear == newSession.tone.Ear)
+                    if (PacientsData[CurrentPacient.ID].lastClassicSessions[i].tone.Ear == newSession.tone.Ear)
                     {
                         alreadyExists = true;
                         existsIndex = i;
@@ -191,11 +190,11 @@ namespace Managers
 
             if (alreadyExists)
             {
-                PacientsData[CurrentPacient.ID].lastSessions[existsIndex] = newSession;
+                PacientsData[CurrentPacient.ID].lastClassicSessions[existsIndex] = newSession;
             }
             else
             {
-                PacientsData[CurrentPacient.ID].lastSessions.Add(newSession);
+                PacientsData[CurrentPacient.ID].lastClassicSessions.Add(newSession);
             }
 
             PacientsData[CurrentPacient.ID].lastTestDate = DateTime.Now.ToString("dd/MM/yyyy");
@@ -236,19 +235,19 @@ namespace Managers
 
         public void SaveSuccsefulExperimentalSession(Experimental newSession)
         {
-            if (null == PacientsData[CurrentPacient.ID].lastSessions)
+            if (null == PacientsData[CurrentPacient.ID].lastExperimentalSessions)
             {
-                PacientsData[CurrentPacient.ID].lastSessions = new List<Classic>();
+                PacientsData[CurrentPacient.ID].lastExperimentalSessions = new List<Experimental>();
             }
 
             bool alreadyExists = false;
             int existsIndex = -1;
 
-            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastSessions.Count && !alreadyExists; i++)
+            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastExperimentalSessions.Count && !alreadyExists; i++)
             {
-                if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
+                if (PacientsData[CurrentPacient.ID].lastExperimentalSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
                 {
-                    if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.Ear == newSession.tone.Ear)
+                    if (PacientsData[CurrentPacient.ID].lastExperimentalSessions[i].tone.Ear == newSession.tone.Ear)
                     {
                         alreadyExists = true;
                         existsIndex = i;
@@ -258,11 +257,11 @@ namespace Managers
 
             if (alreadyExists)
             {
-                PacientsData[CurrentPacient.ID].lastSessions[existsIndex] = newSession;
+                PacientsData[CurrentPacient.ID].lastExperimentalSessions[existsIndex] = newSession;
             }
             else
             {
-                PacientsData[CurrentPacient.ID].lastSessions.Add(newSession);
+                PacientsData[CurrentPacient.ID].lastExperimentalSessions.Add(newSession);
             }
 
             PacientsData[CurrentPacient.ID].lastTestDate = DateTime.Now.ToString("dd/MM/yyyy");

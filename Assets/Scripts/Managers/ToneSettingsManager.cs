@@ -15,49 +15,57 @@ public class ToneSettingsManager : MonoBehaviour
     private Button dBDown = null, dBUp = null;
     public const int dbMin = 5, dbMax = 60;
     private const int dbDelta = 5;
-    public byte freqIndex = 0;
+
+    public byte freqIndex = 3;
     public int currentDB = 10;
 
     private void Start()
     {
-        currentDB = 10;
-        freqIndex = 3; // Para 1000
-
         UpdateDBUI();
+        UpdateFrequencyUI();
     }
 
     public void IncreaseFrequency()
     {
-        freqIndex++;
-
-        if (TestManager.frequencies.Length - 1 == freqIndex)
+        if (freqIndex < TestManager.frequencies.Length - 1)
         {
-            freqUp.interactable = false;
-        }
+            freqIndex++;
+            if (null != freqDown)
+            {
+                if (TestManager.frequencies.Length - 1 == freqIndex)
+                {
+                    freqUp.interactable = false;
+                }
 
-        if (!freqDown.interactable)
-        {
-            freqDown.interactable = true;
+                if (!freqDown.interactable)
+                {
+                    freqDown.interactable = true;
+                }
+            }
+            UpdateFrequencyUI();
         }
-
-        UpdateFrequencyUI();
     }
 
     public void DecreaseFrequency()
     {
-        freqIndex--;
-
-        if (0 == freqIndex)
+        if (freqIndex > 0)
         {
-            freqDown.interactable = false;
-        }
+            freqIndex--;
 
-        if (!freqUp.interactable)
-        {
-            freqUp.interactable = true;
-        }
+            if (null != freqUp)
+            {
+                if (0 == freqIndex)
+                {
+                    freqDown.interactable = false;
+                }
 
-        UpdateFrequencyUI();
+                if (!freqUp.interactable)
+                {
+                    freqUp.interactable = true;
+                }
+            }
+            UpdateFrequencyUI();
+        }
     }
 
     public void UpdateFrequencyUI()
@@ -67,36 +75,45 @@ public class ToneSettingsManager : MonoBehaviour
 
     public void IncreaseVolume()
     {
-        currentDB += dbDelta;
-
-        if (currentDB == dbMax)
+        if (currentDB < dbMax)
         {
-            dBUp.interactable = false;
-        }
+            currentDB += dbDelta;
+            if (null != dBUp)
+            {
+                if (currentDB == dbMax)
+                {
+                    dBUp.interactable = false;
+                }
 
-        if (!dBDown.interactable)
-        {
-            dBDown.interactable = true;
+                if (!dBDown.interactable)
+                {
+                    dBDown.interactable = true;
+                }
+            }
+            UpdateDBUI();
         }
-
-        UpdateDBUI();
     }
 
     public void DecreaseDB()
     {
-        currentDB -= dbDelta;
-
-        if (currentDB == dbMin)
+        if (currentDB > dbMin)
         {
-            dBDown.interactable = false;
-        }
+            currentDB -= dbDelta;
 
-        if (!dBUp.interactable)
-        {
-            dBUp.interactable = true;
-        }
+            if (null != dBUp)
+            {
+                if (currentDB == dbMin)
+                {
+                    dBDown.interactable = false;
+                }
 
-        UpdateDBUI();
+                if (!dBUp.interactable)
+                {
+                    dBUp.interactable = true;
+                }
+            }
+            UpdateDBUI();
+        }
     }
 
     public void UpdateDBUI()

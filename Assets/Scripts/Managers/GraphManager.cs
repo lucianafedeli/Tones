@@ -20,6 +20,9 @@ namespace Tones.Managers
         private GameObject leftEarImagePrefab = null, rightEarImagePrefab = null;
 
         [SerializeField]
+        private GameObject leftEarEXImagePrefab = null, rightEarEXImagePrefab = null;
+
+        [SerializeField]
         private float imageSize = 25f;
 
         [SerializeField]
@@ -55,11 +58,19 @@ namespace Tones.Managers
                 }
             }
 
-            if (null != dm.GetPacientsData()[dm.CurrentPacient.ID].lastSessions)
+            if (null != dm.GetPacientsData()[dm.CurrentPacient.ID].lastClassicSessions)
             {
-                foreach (var session in dm.GetPacientsData()[dm.CurrentPacient.ID].lastSessions)
+                foreach (var session in dm.GetPacientsData()[dm.CurrentPacient.ID].lastClassicSessions)
                 {
                     GraphSession(session);
+                }
+            }
+
+            if (null != dm.GetPacientsData()[dm.CurrentPacient.ID].lastExperimentalSessions)
+            {
+                foreach (var session in dm.GetPacientsData()[dm.CurrentPacient.ID].lastExperimentalSessions)
+                {
+                    GraphEXSession(session);
                 }
             }
         }
@@ -69,6 +80,19 @@ namespace Tones.Managers
             GameObject imageInstance = session.tone.Ear == Tone.EarSide.Right ?
                                         Instantiate(rightEarImagePrefab) :
                                         Instantiate(leftEarImagePrefab);
+
+            imageInstance.transform.localPosition = new Vector3(
+                                        xPadding + (xHzIncrement * (session.tone.FrequencyIndex + 1)) - imageSize / 2,    //x
+                                        -yPadding - (yDbIncrement * session.tone.dB) + imageSize / 2);             //y
+
+            imageInstance.transform.SetParent(imagesParent, false);
+        }
+
+        private void GraphEXSession(Session session)
+        {
+            GameObject imageInstance = session.tone.Ear == Tone.EarSide.Right ?
+                                        Instantiate(rightEarEXImagePrefab) :
+                                        Instantiate(leftEarEXImagePrefab);
 
             imageInstance.transform.localPosition = new Vector3(
                                         xPadding + (xHzIncrement * (session.tone.FrequencyIndex + 1)) - imageSize / 2,    //x

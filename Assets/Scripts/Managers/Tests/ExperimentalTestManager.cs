@@ -15,7 +15,7 @@ namespace Tones.Managers
         protected Experimental postLimitSucceedSession = null;
 
         [SerializeField]
-        private Image[] preOnPostImages = null;
+        private Text[] preOnPostText = null;
 
         [SerializeField]
         private PushButton pacientButton = null;
@@ -24,8 +24,6 @@ namespace Tones.Managers
 
         [SerializeField]
         private Button showGraphsButton = null;
-        [SerializeField]
-        private Sprite[] graphsSprites = null;
 
         [SerializeField]
         private Button[] interactableDuringSession = null;
@@ -45,6 +43,7 @@ namespace Tones.Managers
         public const string DeadTimeDurationKey = "DeadTimeDurationKey";
 
         private float shortToneDuration, longToneDuration, deadTimeDuration;
+        private bool startLowFreq = false;
 
         protected override void Start()
         {
@@ -54,7 +53,9 @@ namespace Tones.Managers
 
             previousState = new bool[interactableDuringSession.Length];
 
-            toneManager.freqIndex = (byte)(PlayerPrefs.GetInt(LowHighFreqKey, 0) == 0 ? 6 : 0);
+            startLowFreq = PlayerPrefs.GetInt(LowHighFreqKey, 0) == 0;
+            toneManager.freqIndex = (byte)(startLowFreq ? 6 : 0);
+
             toneManager.currentDB = PlayerPrefs.GetInt(StartDBKey, 10);
 
             toneManager.UpdateDBUI();
@@ -69,7 +70,10 @@ namespace Tones.Managers
         {
             if (!OngoingTest)
             {
-
+                for (int i = 0; i < 3; i++)
+                {
+                    preOnPostText[i].text = "";
+                }
 
                 StartCoroutine(ExperimentalRoutine());
             }
@@ -84,24 +88,38 @@ namespace Tones.Managers
             {
                 currentSession = new Experimental(toneManager.freqIndex, toneManager.currentDB, this, ear);
 
+                pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
+                pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
+                pacientButton.onButtonDown.AddListener(LedOn);
+                pacientButton.onButtonUp.AddListener(LedOff);
+
                 numberOfTones = Random.Range(1, 3);
 
                 for (int i = 0; i < numberOfTones; i++)
                 {
-                    if (Random.value >= .5f)
+                    (currentSession as Experimental).StartTone();
+                    if (Random.value >= .5f) // Long
                     {
-
+                        yield return new WaitForSecondsRealtime(longToneDuration);
                     }
-                    else
+                    else // Short
                     {
-
+                        yield return new WaitForSecondsRealtime(shortToneDuration);
                     }
+                    (currentSession as Experimental).StopTone();
+
+                    yield return new WaitForSecondsRealtime(deadTimeDuration);
                 }
-                (currentSession as Experimental).StartTone();
 
-                yield return null;
+                pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
+                pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
+                pacientButton.onButtonDown.RemoveListener(LedOn);
+                pacientButton.onButtonUp.RemoveListener(LedOff);
+
+                currentSession.EndSession();
+                yield return new WaitUntil(() => null == currentSession);
             }
-            currentSession.EndSession();
+            StopTest();
         }
 
         private bool IsExperimentalComplete()
@@ -114,19 +132,21 @@ namespace Tones.Managers
             base.StartTest();
             Debug.Log("Experimental test Started.");
 
-
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {
                 previousState[i] = interactableDuringSession[i].interactable;
                 interactableDuringSession[i].interactable = false;
             }
+        }
 
-            pacientButton.onButtonDown.AddListener(currentSession.PacientButtonDown);
-            pacientButton.onButtonUp.AddListener(currentSession.PacientButtonUp);
-            pacientButton.onButtonDown.AddListener(LedOn);
-            pacientButton.onButtonUp.AddListener(LedOff);
+        private void StopTest()
+        {
 
-            showGraphsButton.image.sprite = graphsSprites[0];
+
+            for (int i = 0; i < interactableDuringSession.Length; i++)
+            {
+                interactableDuringSession[i].interactable = previousState[i];
+            }
         }
 
         public void ShowGraphics()
@@ -140,7 +160,7 @@ namespace Tones.Managers
 
             if (sessionSucceeded)
             {
-                DataManager.Instance.SaveSuccsefulClassicSession(currentSession as Classic);
+                DataManager.Instance.SaveSuccsefulExperimentalSession(currentSession as Experimental);
 
                 if (toneManager.currentDB > ToneSettingsManager.dbMin)
                 {
@@ -152,10 +172,22 @@ namespace Tones.Managers
                     NextFrequency();
                 }
 
+                if (null == onLimitSucceedSession)
+                {
+                    onLimitSucceedSession = currentSession as Experimental;
+                    preOnPostText[1].text = frequencies[currentSession.tone.FrequencyIndex] + " Hz\n" + currentSession.tone.dB + " dB";
+                }
+                else
+                {
+                    postLimitSucceedSession = onLimitSucceedSession;
+                    onLimitSucceedSession = currentSession as Experimental;
+                    preOnPostText[1].text = frequencies[currentSession.tone.FrequencyIndex] + " Hz\n" + currentSession.tone.dB + " dB";
+                    preOnPostText[2].text = frequencies[postLimitSucceedSession.tone.FrequencyIndex] + " Hz\n" + postLimitSucceedSession.tone.dB + " dB";
+                }
+
             }
             else
             {
-
                 if (!heardFreq || toneManager.currentDB == ToneSettingsManager.dbMax)
                 {
                     toneManager.IncreaseVolume();
@@ -166,19 +198,11 @@ namespace Tones.Managers
                     NextFrequency();
                 }
 
+                preLimitFailedSession = currentSession as Experimental;
+                preOnPostText[0].text = frequencies[currentSession.tone.FrequencyIndex] + " Hz\n" + currentSession.tone.dB + " dB";
             }
 
-            for (int i = 0; i < interactableDuringSession.Length; i++)
-            {
-                interactableDuringSession[i].interactable = previousState[i];
-            }
-
-            ledLight.SetTrigger("Off");
-
-            pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
-            pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
-            pacientButton.onButtonDown.RemoveListener(LedOn);
-            pacientButton.onButtonUp.RemoveListener(LedOff);
+            //ledLight.SetTrigger("Off");
 
             currentSession = null;
         }
@@ -197,18 +221,19 @@ namespace Tones.Managers
         {
             heardFreq = false;
 
-            toneManager.currentDB = 10;
+            toneManager.currentDB = PlayerPrefs.GetInt(StartDBKey, 10);
             toneManager.UpdateDBUI();
 
-            if (toneManager.freqIndex < 6)
+            if (startLowFreq)
             {
                 toneManager.IncreaseFrequency();
             }
             else
             {
-                toneManager.freqIndex = 0;
-                toneManager.UpdateFrequencyUI();
+                toneManager.DecreaseFrequency();
             }
+
+            toneManager.UpdateFrequencyUI();
         }
     }
 }

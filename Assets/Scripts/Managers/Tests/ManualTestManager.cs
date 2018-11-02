@@ -174,7 +174,7 @@ namespace Tones.Managers
                 interactableDuringSession[i].interactable = previousState[i];
             }
 
-            ledLight.SetTrigger("Off");
+            //ledLight.SetTrigger("Off");
 
             pacientButton.onButtonDown.RemoveListener(currentSession.PacientButtonDown);
             pacientButton.onButtonUp.RemoveListener(currentSession.PacientButtonUp);
