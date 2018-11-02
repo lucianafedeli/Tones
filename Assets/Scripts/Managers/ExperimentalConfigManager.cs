@@ -147,6 +147,7 @@ public class ExperimentalConfigManager : MonoBehaviour
         {
             currentRF = RF.Agudas;
         }
+        PlayerPrefs.SetInt(ExperimentalTestManager.LowHighFreqKey, currentRF == RF.Agudas ? 0 : 1);
 
         TextRF.text = currentRF.ToString();
     }
@@ -198,6 +199,7 @@ public class ExperimentalConfigManager : MonoBehaviour
     public void DecreaseTimeBetweenTones()
     {
         DecreaseFloatValue(ref currentTET, TETdelta, TETmin, UpTET, DownTET);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
         UpdateTETUI();
     }
 
@@ -210,12 +212,14 @@ public class ExperimentalConfigManager : MonoBehaviour
     public void IncreaseShortTones()
     {
         IncreaseFloatValue(ref currentTC, TCdelta, TCmax, UpTC, DownTC);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.ST_DurationKey, currentTC);
         UpdateTCUI();
     }
 
     public void DecreaseShortTones()
     {
         DecreaseFloatValue(ref currentTC, TCdelta, TCmin, UpTC, DownTC);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.ST_DurationKey, currentTC);
         UpdateTCUI();
     }
 
@@ -228,12 +232,14 @@ public class ExperimentalConfigManager : MonoBehaviour
     public void IncreaseLongTones()
     {
         IncreaseFloatValue(ref currentTL, TLdelta, TLmax, UpTL, DownTL);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.LT_DurationKey, currentTL);
         UpdateTLUI();
     }
 
     public void DecreaseLongTones()
     {
         DecreaseFloatValue(ref currentTL, TLdelta, TLmin, UpTL, DownTL);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.LT_DurationKey, currentTL);
         UpdateTLUI();
     }
 
