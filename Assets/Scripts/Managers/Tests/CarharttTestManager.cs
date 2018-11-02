@@ -47,6 +47,7 @@ namespace Tones.Managers
                 Debug.Log("Carhartt test Started.");
                 currentSession = new Carhartt(carToneManager.freqIndex, carToneManager.currentDB, this, ear);
 
+
                 for (int i = 0; i < interactableDuringSession.Length; i++)
                 {
                     previousState[i] = interactableDuringSession[i].interactable;
@@ -64,6 +65,7 @@ namespace Tones.Managers
 
         private IEnumerator SessionEndRoutine()
         {
+            currentSession.StartSession();
             yield return new WaitForSecondsRealtime(carharttDuration);
             SessionEnd();
         }
