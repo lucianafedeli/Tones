@@ -67,11 +67,19 @@ public class ExperimentalConfigManager : MonoBehaviour
     private float currentTL = 3;
     #endregion
 
+
     private void Start()
     {
+
         currentRF = PlayerPrefs.GetInt(ExperimentalTestManager.LowHighFreqKey, 0) == 0 ? RF.Agudas : RF.Graves;
 
         currentTET = PlayerPrefs.GetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
+
+        currentTC = PlayerPrefs.GetFloat(ExperimentalTestManager.ST_DurationKey, currentTC);
+
+        currentTL = PlayerPrefs.GetFloat(ExperimentalTestManager.LT_DurationKey, currentTL);
+
+        currentVI = PlayerPrefs.GetInt(ExperimentalTestManager.StartDBKey, currentVI);
     }
 
     private void IncreaseIntValue(ref int current, int delta, int max, Button up, Button down)
@@ -162,12 +170,14 @@ public class ExperimentalConfigManager : MonoBehaviour
     public void IncreaseVolume()
     {
         IncreaseIntValue(ref currentVI, dbDelta, dbMax, UpVI, DownVI);
+        PlayerPrefs.SetInt(ExperimentalTestManager.StartDBKey, currentVI);
         UpdateDBUI();
     }
 
     public void DecreaseVolume()
     {
         DecreaseIntValue(ref currentVI, dbDelta, dbMin, UpVI, DownVI);
+        PlayerPrefs.SetInt(ExperimentalTestManager.StartDBKey, currentVI);
         UpdateDBUI();
     }
 
