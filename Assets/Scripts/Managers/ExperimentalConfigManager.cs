@@ -1,3 +1,4 @@
+using Tones.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -190,6 +191,7 @@ public class ExperimentalConfigManager : MonoBehaviour
     public void IncreaseTimeBetweenTones()
     {
         IncreaseFloatValue(ref currentTET, TETdelta, TETmax, UpTET, DownTET);
+        PlayerPrefs.SetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
         UpdateTETUI();
     }
 
