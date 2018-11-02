@@ -5,7 +5,6 @@ using UnityEngine;
 public class PDFExporter : MonoBehaviour
 {
     private bool isProcessing = false;
-    private bool isFocus = false;
     public string subject, ShareMessage, url;
     public string ScreenshotName;
 

@@ -67,14 +67,11 @@ public class ExperimentalConfigManager : MonoBehaviour
     private float currentTL = 3;
     #endregion
 
-
     private void Start()
     {
-
         currentRF = PlayerPrefs.GetInt(ExperimentalTestManager.LowHighFreqKey, 0) == 0 ? RF.Agudas : RF.Graves;
 
         currentTET = PlayerPrefs.GetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
-
     }
 
     private void IncreaseIntValue(ref int current, int delta, int max, Button up, Button down)

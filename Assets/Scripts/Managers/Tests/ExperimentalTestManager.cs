@@ -40,8 +40,11 @@ namespace Tones.Managers
         private bool heardFreq = false;
 
         public const string LowHighFreqKey = "LowHighFreqKey";
+        public const string StartDBKey = "StartDBKey";
         public const string ST_DurationKey = "ST_DurationKey", LT_DurationKey = "LT_DurationKey";
         public const string DeadTimeDurationKey = "DeadTimeDurationKey";
+
+        private float shortToneDuration, longToneDuration, deadTimeDuration;
 
         protected override void Start()
         {
@@ -50,32 +53,54 @@ namespace Tones.Managers
             startExperimentalButton.onButtonUp.AddListener(StartExperimental);
 
             previousState = new bool[interactableDuringSession.Length];
+
+            toneManager.freqIndex = (byte)(PlayerPrefs.GetInt(LowHighFreqKey, 0) == 0 ? 6 : 0);
+            toneManager.currentDB = PlayerPrefs.GetInt(StartDBKey, 10);
+
+            toneManager.UpdateDBUI();
+            toneManager.UpdateFrequencyUI();
+
+            shortToneDuration = PlayerPrefs.GetFloat(ST_DurationKey, 1f);
+            longToneDuration = PlayerPrefs.GetFloat(LT_DurationKey, 2.5f);
+            deadTimeDuration = PlayerPrefs.GetFloat(DeadTimeDurationKey, 1.5f);
         }
 
         private void StartExperimental()
         {
             if (!OngoingTest)
             {
+
+
                 StartCoroutine(ExperimentalRoutine());
             }
         }
 
         private IEnumerator ExperimentalRoutine()
         {
-            float t = 0;
+            int numberOfTones = 0;
 
+            StartTest();
             while (!IsExperimentalComplete())
             {
-                StartTest();
+                currentSession = new Experimental(toneManager.freqIndex, toneManager.currentDB, this, ear);
+
+                numberOfTones = Random.Range(1, 3);
+
+                for (int i = 0; i < numberOfTones; i++)
+                {
+                    if (Random.value >= .5f)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
                 (currentSession as Experimental).StartTone();
 
-
                 yield return null;
-                t += Time.deltaTime;
-                fillButton.fillAmount = t / durationSlider.value;
-
             }
-            fillButton.fillAmount = 1;
             currentSession.EndSession();
         }
 
@@ -88,7 +113,7 @@ namespace Tones.Managers
         {
             base.StartTest();
             Debug.Log("Experimental test Started.");
-            currentSession = new Experimental(toneManager.freqIndex, toneManager.currentDB, this, ear);
+
 
             for (int i = 0; i < interactableDuringSession.Length; i++)
             {

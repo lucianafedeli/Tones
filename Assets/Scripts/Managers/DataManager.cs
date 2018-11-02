@@ -233,5 +233,42 @@ namespace Managers
 
             SavePacientData();
         }
+
+        public void SaveSuccsefulExperimentalSession(Experimental newSession)
+        {
+            if (null == PacientsData[CurrentPacient.ID].lastSessions)
+            {
+                PacientsData[CurrentPacient.ID].lastSessions = new List<Classic>();
+            }
+
+            bool alreadyExists = false;
+            int existsIndex = -1;
+
+            for (int i = 0; i < PacientsData[CurrentPacient.ID].lastSessions.Count && !alreadyExists; i++)
+            {
+                if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.FrequencyIndex == newSession.tone.FrequencyIndex)
+                {
+                    if (PacientsData[CurrentPacient.ID].lastSessions[i].tone.Ear == newSession.tone.Ear)
+                    {
+                        alreadyExists = true;
+                        existsIndex = i;
+                    }
+                }
+            }
+
+            if (alreadyExists)
+            {
+                PacientsData[CurrentPacient.ID].lastSessions[existsIndex] = newSession;
+            }
+            else
+            {
+                PacientsData[CurrentPacient.ID].lastSessions.Add(newSession);
+            }
+
+            PacientsData[CurrentPacient.ID].lastTestDate = DateTime.Now.ToString("dd/MM/yyyy");
+
+            SavePacientData();
+        }
+
     }
 }

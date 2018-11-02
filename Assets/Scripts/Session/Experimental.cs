@@ -1,6 +1,5 @@
 using System;
 using Tones.Managers;
-using UnityEngine;
 
 namespace Tones.Sessions
 {
@@ -11,32 +10,9 @@ namespace Tones.Sessions
     [Serializable]
     public class Experimental : Classic
     {
-        private float totalDuration;
-
-        protected int frequency;
-
-        protected float volume;
-
-        private static Vector2 numberOfTones;
-
-        private static Vector2 timeBetweenTones;
-
-        private static float shortToneDuration;
-        private static float longToneDuration;
-
         public Experimental(byte frequencyIndex, int dB, TestManager manager, Tone.EarSide isLeftEar) : base(frequencyIndex, dB, manager, isLeftEar)
         {
 
-        }
-
-        private void CreateTones()
-        {
-
-        }
-
-        public override void StartSession()
-        {
-            throw new NotImplementedException();
         }
     }
 }

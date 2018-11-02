@@ -18,7 +18,7 @@ namespace Tones.Managers
         [SerializeField]
         private Button showGraphsButton = null;
         [SerializeField]
-        private Sprite[] graphsSprites;
+        private Sprite[] graphsSprites = null;
 
         [SerializeField]
         private Button[] interactableDuringSession = null;
@@ -28,17 +28,15 @@ namespace Tones.Managers
         private Text pacientName = null;
 
         [SerializeField]
-        private Animator ledLight = null, buttonAnim;
+        private Animator ledLight = null, buttonAnim = null;
 
         private bool classicMode = true, heardFreq = false;
 
         [SerializeField]
-        private Image fillButton, fillBG;
+        private Image fillButton = null, fillBG = null;
 
         [SerializeField]
-        private Slider durationSlider;
-
-
+        private Slider durationSlider = null;
 
         protected override void Start()
         {
@@ -67,7 +65,6 @@ namespace Tones.Managers
 
         private void ManualButtonDown()
         {
-            //manualSessionButton.onButtonDown.RemoveListener(ManualButtonDown);
             if (!OngoingTest)
             {
                 StartTest();
