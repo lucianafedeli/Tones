@@ -75,6 +75,11 @@ public class ExperimentalConfigManager : MonoBehaviour
 
         currentTET = PlayerPrefs.GetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);
 
+        currentTC = PlayerPrefs.GetFloat(ExperimentalTestManager.ST_DurationKey, currentTC);
+
+        currentTL = PlayerPrefs.GetFloat(ExperimentalTestManager.LT_DurationKey, currentTL);
+
+
     }
 
     private void IncreaseIntValue(ref int current, int delta, int max, Button up, Button down)
