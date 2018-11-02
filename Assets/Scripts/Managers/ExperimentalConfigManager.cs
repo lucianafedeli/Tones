@@ -70,7 +70,6 @@ public class ExperimentalConfigManager : MonoBehaviour
 
     private void Start()
     {
-
         currentRF = PlayerPrefs.GetInt(ExperimentalTestManager.LowHighFreqKey, 0) == 0 ? RF.Agudas : RF.Graves;
 
         currentTET = PlayerPrefs.GetFloat(ExperimentalTestManager.DeadTimeDurationKey, currentTET);

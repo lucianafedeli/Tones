@@ -265,7 +265,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1320981017}
+      - m_Target: {fileID: 0}
         m_MethodName: ShowGraphics
         m_Mode: 1
         m_Arguments:
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 582957510}
   - component: {fileID: 582957509}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Post
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
           m_StringArgument: Toggle
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1320981017}
+      - m_Target: {fileID: 0}
         m_MethodName: ToggleEar
         m_Mode: 1
         m_Arguments:
@@ -1630,7 +1630,7 @@ MonoBehaviour:
           m_StringArgument: Pressed
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1320981017}
+      - m_Target: {fileID: 0}
         m_MethodName: ToggleMode
         m_Mode: 1
         m_Arguments:
@@ -1833,32 +1833,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1320981016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be3938c8931a8c4c9fe6aa6ffeaec98, type: 3}
+  m_Script: {fileID: 11500000, guid: 911425f0e486cb24aa4223b209da0e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toneManager: {fileID: 628543918}
   OngoingTest: 0
-  pacientButton: {fileID: 1513874139}
-  manualSessionButton: {fileID: 390486358}
-  showGraphsButton: {fileID: 96042490}
-  graphsSprites:
-  - {fileID: 21300000, guid: cb9907167686446c8b29dca04bac307b, type: 3}
-  - {fileID: 21300000, guid: 612c8c3a864e0cb4490ace0b47d68410, type: 3}
-  interactableDuringSession:
-  - {fileID: 1257204436}
-  - {fileID: 1249070400}
-  - {fileID: 1993430153}
-  - {fileID: 1229823554}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pacientName: {fileID: 312014668}
-  ledLight: {fileID: 1224364022}
-  buttonAnim: {fileID: 2124175927}
-  fillButton: {fileID: 2124175929}
-  fillBG: {fileID: 960088357}
-  durationSlider: {fileID: 0}
+  preOnPostImages: []
+  pacientButton: {fileID: 0}
+  startExperimentalButton: {fileID: 0}
+  showGraphsButton: {fileID: 0}
+  graphsSprites: []
+  interactableDuringSession: []
+  pacientName: {fileID: 0}
+  ledLight: {fileID: 0}
 --- !u!4 &1320981018
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,7 +2121,7 @@ GameObject:
   - component: {fileID: 1512498806}
   - component: {fileID: 1512498805}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Pre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2341,7 +2328,7 @@ GameObject:
   - component: {fileID: 1672511404}
   - component: {fileID: 1672511403}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
