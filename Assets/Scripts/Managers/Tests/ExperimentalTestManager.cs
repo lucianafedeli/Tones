@@ -10,9 +10,12 @@ namespace Tones.Managers
 {
     public class ExperimentalTestManager : TestManager
     {
-        //protected Session preLimitFailedSession = null;
-        //protected Session onLimitSucceedSession = null;
-        //protected Session postLimitSucceedSession = null;
+        protected Experimental preLimitFailedSession = null;
+        protected Experimental onLimitSucceedSession = null;
+        protected Experimental postLimitSucceedSession = null;
+
+        [SerializeField]
+        private Image[] preOnPostImages = null;
 
         [SerializeField]
         private PushButton pacientButton = null;
@@ -22,7 +25,7 @@ namespace Tones.Managers
         [SerializeField]
         private Button showGraphsButton = null;
         [SerializeField]
-        private Sprite[] graphsSprites;
+        private Sprite[] graphsSprites = null;
 
         [SerializeField]
         private Button[] interactableDuringSession = null;
@@ -36,11 +39,9 @@ namespace Tones.Managers
 
         private bool heardFreq = false;
 
-        [SerializeField]
-        private Image fillButton;
-
-        [SerializeField]
-        private Slider durationSlider;
+        public const string LowHighFreqKey = "LowHighFreqKey";
+        public const string ST_DurationKey = "ST_DurationKey", LT_DurationKey = "LT_DurationKey";
+        public const string DeadTimeDurationKey = "DeadTimeDurationKey";
 
         protected override void Start()
         {
@@ -55,25 +56,32 @@ namespace Tones.Managers
         {
             if (!OngoingTest)
             {
-                StartTest();
-
-                (currentSession as Classic).StartTone();
-
-                StartCoroutine(EndToneAssistedRoutine());
+                StartCoroutine(ExperimentalRoutine());
             }
         }
 
-        private IEnumerator EndToneAssistedRoutine()
+        private IEnumerator ExperimentalRoutine()
         {
             float t = 0;
-            do
+
+            while (!IsExperimentalComplete())
             {
+                StartTest();
+                (currentSession as Experimental).StartTone();
+
+
                 yield return null;
                 t += Time.deltaTime;
                 fillButton.fillAmount = t / durationSlider.value;
-            } while (t < durationSlider.value);
+
+            }
             fillButton.fillAmount = 1;
             currentSession.EndSession();
+        }
+
+        private bool IsExperimentalComplete()
+        {
+            return null != preLimitFailedSession && null != onLimitSucceedSession && null != postLimitSucceedSession;
         }
 
         public override void StartTest()
